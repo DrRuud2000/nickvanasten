@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>nick | game developer &amp; game designer</title>
+  <meta name="description" content="Nick van Asten's portfolio: game development and game design at Fontys ICT.">
+  <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
+  <link rel="stylesheet" href="Portfolio.css">
+</head>
+<body class="portfolio-page">
+  <nav>
+    <a class="brand" href="#home" aria-label="Nick van Asten - home">
+      <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
+      <span class="brand-name">NICK VAN ASTEN<b>.</b></span>
+    </a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects" data-insert>Projects</a></li>
+      <li><a href="#about-card">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <div class="wrap">
+      <div class="eyebrow">Game Design &middot; Portfolio</div>
+      <h1>&ldquo;Making stories worth getting lost in.&rdquo;</h1>
+      <div class="btns">
+        <a class="btn primary" href="#projects" data-insert>View my projects</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap center">
+      <div class="eyebrow">Selected work</div>
+      <h2>Explore my projects</h2>
+      <p class="projects-intro">Tap the portfolio disc to explore my projects, roles and skills.</p>
+      <div class="tv-stage">
+        <div class="tv-stage-label">
+          <span>Interactive project library</span>
+          <span>Portfolio system &middot; 2026</span>
+        </div>
+        <div class="rig" id="rig">
+          <div class="monitor">
+            <div class="screen" id="screen" data-state="off">
+              <div class="screen-lamp" aria-hidden="true"></div>
+              <div class="pane s-off">
+                <span>No disc inserted<br>Insert the portfolio disc to browse projects</span>
+              </div>
+              <div class="pane s-menu">
+                <div class="mbar">
+                  <span>&#9654; Select game</span>
+                  <span id="counter">01 / 05</span>
+                </div>
+                <div class="mtabs" id="tabs" role="group" aria-label="Choose a game"></div>
+                <div class="mmain">
+                  <div class="mframe" id="frame"></div>
+                  <div class="mdet">
+                    <h3 id="ptitle"></h3>
+                    <p id="pdesc"></p>
+                    <p class="project-contribution"><span>My contribution</span><span id="pcontribution"></span></p>
+                    <div class="tags" id="ptags"></div>
+                    <a class="btn primary" id="cta" href="#">View project</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chin">
+              <div class="slot"></div>
+              <div class="led"></div>
+            </div>
+          </div>
+          <div class="stand"></div>
+          <button class="discwrap" id="disc" type="button" aria-label="Insert the portfolio disc">
+            <span class="disc"></span>
+            <span class="hint">Click to insert</span>
+          </button>
+          <button class="eject" id="eject" type="button">&#9167; Eject disc</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow">About me</div>
+      <h2>Personal Info</h2>
+      <div class="about" id="about-card">
+        <img class="avatar" src="Images/Nick.png" alt="Portrait of Nick van Asten">
+        <div class="about-copy">
+          <div class="about-label">Game developer &amp; creative thinker</div>
+          <p>
+            Hi, I&apos;m Nick, an ICT student at Fontys and a game developer with a passion for
+            dark, atmospheric worlds. I enjoy building immersive experiences and combining
+            creative ideas with technical problem-solving.
+          </p>
+          <details class="about-more">
+            <summary>A bit more about me</summary>
+            <div class="about-more-content">
+              <p>
+                I have always had a vivid imagination and enjoy turning original ideas into
+                ambitious experiences. I have built with LEGO for as long as I can remember,
+                often creating things from scratch without instructions and relying on an idea
+                in my head to bring them to life.
+              </p>
+              <figure class="about-progress">
+                <img src="Images/InProgress.jpeg" alt="A LEGO project under construction">
+                <figcaption>LEGO build in progress</figcaption>
+              </figure>
+              <p>
+                I also designed Fortnite and Minecraft maps for friends and for myself to play.
+                These included hide-and-seek and murder-mystery experiences, where I could build
+                places and ideas for other people to explore.
+              </p>
+
+              <div class="about-video-story">
+                <figure class="about-story-image">
+                  <img src="Gif/OldNick.gif" alt="Nick enjoying a video game as a child">
+                  <figcaption>
+                    I have enjoyed making videos and playing games since I was young.
+                  </figcaption>
+                </figure>
+                <div class="about-story-copy">
+                  <h3>Video editing and storytelling</h3>
+                  <p>
+                    I have been making videos and developing ideas for as long as I can remember.
+                    During the COVID-19 pandemic, I ran a TikTok account that grew to 4.6K
+                    followers. I enjoy shaping an idea into a finished video through editing,
+                    pacing and storytelling.
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-stop-motion">
+                <h3>LEGO Stop-Motion: A Story Built One Frame at a Time</h3>
+                <video controls preload="metadata" playsinline>
+                  <source src="Video/LegoStopMotion.mp4" type="video/mp4">
+                  Your browser does not support the video element.
+                </video>
+              </div>
+
+              <button class="about-secret-disc" id="legoDisc" type="button" aria-label="Insert the secret CRLego video disc">
+                <span class="secret-disc" aria-hidden="true"></span>
+                <span class="secret-disc-copy">
+                  <strong>Secret Disc</strong>
+                  <span>The first Lego stop-motion I made when I was 9 years old</span>
+                </span>
+              </button>
+            </div>
+          </details>
+          <div class="skills">
+            <span>Unreal Engine</span>
+            <span>Unity</span>
+            <span>Blueprints/ C#</span>
+            <span>Game Design</span>
+            <span>Storytelling</span>
+            <span>Git</span>
+            <span>Blender</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="wrap center">
+      <div class="eyebrow">Experience &amp; education</div>
+      <h2>My CV</h2>
+      <p>An overview of my education, experience, and skills.</p>
+      <a class="btn primary" href="NickvanAstenCV.pdf" target="_blank" rel="noopener">View my CV (PDF)</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap center">
+      <div class="eyebrow">Get in touch</div>
+      <h2>Contact</h2>
+      <div class="cards">
+        <a class="card" href="mailto:nick@vanasten.eu">
+          <small>Email</small>
+          nick@vanasten.eu
+        </a>
+        <a
+          class="card"
+          href="https://www.linkedin.com/in/nick-van-asten-056778326"
+          target="_blank"
+          rel="noopener"
+        >
+          <small>LinkedIn</small>
+          Nick van Asten
+        </a>
+        <a class="card" href="https://github.com/DrRuud2000" target="_blank" rel="noopener">
+          <small>GitHub</small>
+          DrRuud2000
+        </a>
+        <a class="card" href="https://drruud.itch.io/" target="_blank" rel="noopener">
+          <small>Itch</small>
+          drruud
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Nick van Asten &middot; Game Developer</footer>
+
+  <div class="goat-fx" id="goatFx" aria-hidden="true">
+    <div class="eaten">
+      <div>
+        Goat? A goat has eaten your page.
+        <small>Entering Tower Clash...</small>
+      </div>
+    </div>
+    <div class="goat"><span>&#128016;</span></div>
+  </div>
+
+  <!-- AI helped me with the script. But I Designed the website myself. -->
+  <script>
+    const projects = [
+      {
+        name: "Sublevel",
+        media: "Gif/BobLevel.gif",
+        link: "sublevel.html",
+        color: "#4a0a10",
+        theme: { name: "sublevel", accent: "#d4222d", glow: "rgba(163, 18, 27, .3)" },
+        tags: ["Unreal Engine", "Horror"],
+        description: "A bunker horror experience focused on player movement, interactions and sound-driven scares.",
+        contribution: "I built player movement and interactions, and designed sound and scares."
+      },
+      {
+        name: "Project Splitstar",
+        media: "Gif/Splitstar.gif",
+        link: "ProjectSplitstar.html",
+        color: "#1a1a3a",
+        theme: { name: "splitstar", accent: "#4fe3ff", glow: "rgba(79, 227, 255, .24)" },
+        tags: ["Unreal Engine", "2.5 D Side-Scroller"],
+        description: "A fast-paced 2.5D shooter.",
+        contribution: "I built movement, aiming, shooting, power-ups, and segmented health."
+      },
+      {
+        name: "You Are Haunted",
+        media: "Gif/Yahscare.gif",
+        link: "YouAreHaunted.html",
+        color: "#0f2a22",
+        theme: { name: "haunted", accent: "#6fe0d0", glow: "rgba(111, 224, 208, .24)" },
+        tags: ["Unreal Engine", "VR", "Horror"],
+        description: "A VR castle horror experience.",
+        contribution: "I designed level flow, player guidance, VR interactions, and sound."
+      },
+      {
+        name: "Pack",
+        media: "Gif/Packer.gif",
+        link: "Pack.html",
+        color: "#2a0a2e",
+        theme: { name: "pack", accent: "#c77dff", glow: "rgba(199, 125, 255, .24)" },
+        tags: ["Unreal Engine", "Puzzle/ Escape"],
+        description: "A one-week Unreal Engine escape challenge.",
+        contribution: "I shaped the escape rooms, puzzles, and host-led story."
+      },
+      {
+        name: "TowerClash",
+        media: "Images/PosterTowerClash.png",
+        link: "TowerClash.html",
+        color: "#3a1a0a",
+        theme: { name: "towerclash", accent: "#e0b95a", glow: "rgba(224, 185, 90, .24)" },
+        tags: ["BoardGame", "Stack", "Attack"],
+        description: "A medieval tile-building board game.",
+        contribution: "I designed the rules and cards, then refined them through playtesting."
+      },
+
+    ];
+
+    const $ = (id) => document.getElementById(id);
+    const tabs = $("tabs");
+    const frame = $("frame");
+    const rig = $("rig");
+    const tvStage = document.querySelector(".tv-stage");
+    const screen = $("screen");
+    let cur = 0;
+    let ejectTimer = null;
+    const legoDisc = {
+      accent: "#70d6c7",
+      glow: "rgba(79, 227, 255, .24)"
+    };
+
+    function applyProjectTheme() {
+      const theme = projects[cur].theme;
+      tvStage.style.setProperty("--tv-accent", theme.accent);
+      tvStage.style.setProperty("--tv-glow", theme.glow);
+      tvStage.dataset.theme = theme.name;
+    }
+
+    function kies(i) {
+      cur = i;
+      const project = projects[i];
+      if (rig.classList.contains("inserted")) applyProjectTheme();
+
+      [...tabs.children].forEach((button, index) => {
+        button.classList.toggle("active", index === i);
+        button.setAttribute("aria-pressed", String(index === i));
+      });
+
+      let element;
+      if (project.media) {
+        const path = new URL(project.media, document.baseURI).pathname;
+        const isVideo = /\.(mp4|webm)$/i.test(path);
+        element = document.createElement(isVideo ? "video" : "img");
+        element.src = project.media;
+        element.alt = project.name;
+
+        if (isVideo) {
+          element.autoplay = true;
+          element.loop = true;
+          element.muted = true;
+          element.playsInline = true;
+        }
+      } else {
+        element = document.createElement("div");
+        element.className = "ph";
+        element.textContent = project.name;
+        element.style.setProperty("--c1", project.color);
+      }
+
+      frame.replaceChildren(element);
+      $("ptitle").textContent = project.name;
+      $("pdesc").textContent = project.description;
+      $("pcontribution").textContent = project.contribution;
+      $("ptags").replaceChildren(
+        ...project.tags.map((tag) =>
+          Object.assign(document.createElement("span"), { textContent: tag })
+        )
+      );
+      $("cta").href = project.link;
+      $("cta").textContent = "\u25B6 View " + project.name;
+      $("cta").hidden = false;
+      $("counter").textContent =
+        String(i + 1).padStart(2, "0") + " / " + String(projects.length).padStart(2, "0");
+    }
+
+    projects.forEach((project, index) => {
+      const button = document.createElement("button");
+      button.className = "mtab";
+      button.type = "button";
+      button.textContent = project.name;
+      button.onclick = () => kies(index);
+      tabs.appendChild(button);
+    });
+
+    kies(0);
+
+    function finishEject() {
+      if (ejectTimer !== null) {
+        window.clearTimeout(ejectTimer);
+        ejectTimer = null;
+      }
+      rig.classList.remove("ejecting");
+      rig.style.removeProperty("--insert-x");
+      rig.style.removeProperty("--insert-y");
+    }
+
+    function insert() {
+      if (rig.classList.contains("inserted")) return;
+      if (rig.classList.contains("ejecting")) {
+        const disc = $("disc");
+        disc.style.transition = "none";
+        finishEject();
+        void disc.offsetWidth;
+        disc.style.removeProperty("transition");
+      }
+
+      tvStage.removeAttribute("data-disc");
+      const discBounds = $("disc").getBoundingClientRect();
+      const slotBounds = document.querySelector(".slot").getBoundingClientRect();
+      rig.style.setProperty(
+        "--insert-x",
+        `${slotBounds.left + slotBounds.width / 2 - discBounds.left - discBounds.width / 2}px`
+      );
+      rig.style.setProperty(
+        "--insert-y",
+        `${slotBounds.top + slotBounds.height / 2 - discBounds.top - discBounds.height / 2}px`
+      );
+      rig.classList.add("inserted", "on");
+      applyProjectTheme();
+      screen.dataset.state = "menu";
+      if (window.matchMedia("(max-width: 700px)").matches) {
+        screen.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function eject() {
+      if (!rig.classList.contains("inserted")) return;
+
+      rig.classList.remove("inserted", "on");
+      rig.classList.add("ejecting");
+      tvStage.removeAttribute("data-disc");
+      tvStage.style.removeProperty("--tv-accent");
+      tvStage.style.removeProperty("--tv-glow");
+      delete tvStage.dataset.theme;
+      screen.dataset.state = "off";
+      kies(cur);
+
+      ejectTimer = window.setTimeout(finishEject, 1400);
+    }
+
+    function insertLegoDisc() {
+      if (!rig.classList.contains("inserted")) insert();
+
+      const video = document.createElement("video");
+      video.src = "Video/CRLego.mp4";
+      video.controls = true;
+      video.autoplay = true;
+      video.muted = false;
+      video.loop = false;
+      video.playsInline = true;
+      video.setAttribute("aria-label", "CRLego video");
+      frame.replaceChildren(video);
+      $("ptitle").textContent = "CRLego";
+      $("pdesc").textContent = "A LEGO creation brought to life.";
+      $("ptags").replaceChildren();
+      $("cta").hidden = true;
+      $("counter").textContent = "LEGO DISC";
+
+      tvStage.style.setProperty("--tv-accent", legoDisc.accent);
+      tvStage.style.setProperty("--tv-glow", legoDisc.glow);
+      tvStage.dataset.theme = "lego";
+      tvStage.dataset.disc = "lego";
+      rig.classList.add("inserted", "on");
+      screen.dataset.state = "menu";
+      tvStage.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function showProjects() {
+      if (tvStage.dataset.disc === "lego") {
+        rig.classList.remove("inserted", "on", "ejecting");
+        rig.style.removeProperty("--insert-x");
+        rig.style.removeProperty("--insert-y");
+        tvStage.removeAttribute("data-disc");
+        tvStage.style.removeProperty("--tv-accent");
+        tvStage.style.removeProperty("--tv-glow");
+        delete tvStage.dataset.theme;
+        screen.dataset.state = "off";
+        kies(cur);
+      }
+      insert();
+      const isMobile = window.matchMedia("(max-width: 700px)").matches;
+      const target = isMobile ? screen : tvStage;
+      target.scrollIntoView({ behavior: "smooth", block: isMobile ? "start" : "center" });
+    }
+
+    $("disc").onclick = insert;
+    $("eject").onclick = eject;
+    $("legoDisc").onclick = insertLegoDisc;
+    document.querySelectorAll("[data-insert]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        event.preventDefault();
+        if (window.location.hash !== "#projects") {
+          window.history.pushState(null, "", "#projects");
+        }
+        showProjects();
+      });
+    });
+
+    const landingUrl = new URL(window.location.href);
+    if (landingUrl.searchParams.has("insert") && landingUrl.hash === "#projects") {
+      landingUrl.searchParams.delete("insert");
+      window.history.replaceState(
+        null,
+        "",
+        landingUrl.pathname + landingUrl.search + landingUrl.hash
+      );
+      requestAnimationFrame(showProjects);
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (screen.dataset.state !== "menu" || tvStage.dataset.disc === "lego") return;
+      if (event.key === "ArrowRight") kies((cur + 1) % projects.length);
+      if (event.key === "ArrowLeft") kies((cur - 1 + projects.length) % projects.length);
+    });
+  </script>
+
+  <script>
+    (function () {
+      const fx = document.getElementById("goatFx");
+      const cta = document.getElementById("cta");
+      let going = false;
+
+      cta.addEventListener("click", function (e) {
+        const href = cta.getAttribute("href");
+        if (href !== "towerclash.html") return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        e.preventDefault();
+        if (going) return;
+        going = true;
+        fx.classList.add("on");
+        setTimeout(function () { location.href = href; }, 2650);
+      });
+
+      window.addEventListener("pageshow", function (e) {
+        if (!e.persisted) return;
+        going = false;
+        fx.classList.remove("on");
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>splitstar | nick van asten</title>
+  <meta name="description" content="Splitstar: a fast-paced 2.5D space shooter. Nick van Asten worked on player movement, aiming, shooting, power-ups and the segmented health system.">
+  <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
+  <link rel="stylesheet" href="Portfolio.css">
+</head>
+<body class="splitstar-page">
+  <nav>
+    <a class="brand" href="index.html" aria-label="Nick van Asten - home">
+      <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
+      <span class="brand-name">NICK VAN ASTEN<b>.</b></span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html?insert=1#projects">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="starline"></div>
+
+  <header class="project-hero">
+    <div class="wrap">
+      <a class="back" href="index.html?insert=1#projects">&larr; Back to portfolio</a>
+      <div class="eyebrow">Group project &middot; 2.5D shooter</div>
+      <h1>Project Splitstar</h1>
+      <p>A fast-paced 2.5D space shooter about dodging, aiming and surviving enemies and projectiles.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="project-copy">
+      <dl class="project-details">
+        <div><dt>Genre</dt><dd>Shooter</dd></div>
+        <div><dt>Perspective</dt><dd>2.5D</dd></div>
+        <div><dt>Type</dt><dd>Team project</dd></div>
+        <div><dt>My focus</dt><dd>Player systems</dd></div>
+      </dl>
+
+      <div class="eyebrow">Role</div>
+      <h2>The Pilot</h2>
+      <p class="lead">
+        In our team, I was responsible for the player-related gameplay systems: movement,
+        rotation and aiming, shooting, power-ups and the player health system. My goal was to
+        make the player feel responsive and in control, while making sure every system supported
+        the combat experience as a whole.
+      </p>
+      <p>
+        Next to building these systems, I researched existing games, documented my design
+        decisions, evaluated gameplay issues and used feedback to find improvements.
+      </p>
+
+      <h2 class="block">From Prototype to Gameplay</h2>
+      <p>
+        The prototype let me explore how aiming direction could stay clear while the player moves.
+        That early test informed the controls and combat systems developed for the game.
+      </p>
+      <figure class="story-figure">
+        <img src="Images/Prototype.png" alt="Early Splitstar prototype testing aiming direction">
+        <figcaption>Prototype: testing clear aiming feedback.</figcaption>
+      </figure>
+
+      <h2 class="block">My Contribution</h2>
+      <div class="contrib">
+        <article class="c-card">
+          <h3>Player Movement</h3>
+          <p>
+            I built the movement system around responsive controls that support fast-paced
+            combat. Research into other shooters showed me that input should feel predictable,
+            and that players need to reposition while aiming independently.
+          </p>
+        </article>
+        <article class="c-card">
+          <h3>Rotation &amp; Aiming</h3>
+          <p>
+            I worked on how the player rotates and aims, so the ship's orientation and shooting
+            direction stay readable. Playtesting revealed that players could aim outside the
+            camera view, which led to a fix (see the development process below).
+          </p>
+        </article>
+        <article class="c-card">
+          <h3>Shooting Mechanics</h3>
+          <p>
+            I implemented shooting so the player can attack while repositioning. Movement,
+            rotation, aiming and shooting have to work as one, because together they decide
+            how combat feels.
+          </p>
+        </article>
+        <article class="c-card">
+          <h3>Power-ups</h3>
+          <p>
+            I contributed to the power-ups, which let the player's capabilities change during a
+            run. They had to work alongside the existing movement, combat and health mechanics.
+          </p>
+        </article>
+
+        <div class="c-card wide splitstar-trailer">
+          <video controls preload="metadata">
+            <source src="Video/ProjectsplitstartrailerComp.mp4" type="video/mp4">
+          </video>
+        </div>
+        <article class="c-card wide">
+          <h3>Segmented Health System</h3>
+          <p>
+            My main individual contribution. Inspired by <em>My Friend Pedro</em>, I split health
+            into visible segments instead of one continuous bar, so players can read damage
+            quickly in busy fights. A <code>PlayerHealth</code> component stores current and
+            maximum health (120 HP) and handles damage and healing, while the UI updates
+            immediately when health changes. The Bastion shield is handled separately and
+            absorbs damage before regular health is touched.
+          </p>
+
+          <div class="hud" id="hud" aria-label="Interactive health bar demo">
+            <div class="hud-top">
+              <span>Interactive demo</span>
+              <span class="hud-hp" id="hp-text">120 / 120 HP</span>
+            </div>
+            <div class="segs" id="segs"></div>
+            <div class="shield"><i id="shield-bar"></i></div>
+            <p class="hud-msg" id="hud-msg" role="status" aria-live="polite">Systems online.</p>
+            <div class="hud-btns">
+              <button type="button" id="btn-hit">Take hit (20)</button>
+              <button type="button" id="btn-heal">Heal (10)</button>
+              <button type="button" id="btn-shield">Raise Bastion shield</button>
+              <button type="button" id="btn-reset">Reset</button>
+            </div>
+            <p class="hud-note">A small recreation of the segmented layout (12 segments of 10 HP). It is not the game build.</p>
+          </div>
+        </article>
+      </div>
+
+      <h2 class="block">Design Decisions</h2>
+      <p>
+        During implementation, I analysed how other games handle movement, combat
+        readability, aiming and health feedback. I used them as references to judge what suits
+        our own game, not to copy their mechanics.
+      </p>
+      <ul class="principles">
+        <li>Movement should feel responsive and predictable, not slippery.</li>
+        <li>Players should be able to reposition while keeping control of their aim.</li>
+        <li>Projectiles, damage and health must stay readable during combat.</li>
+        <li>Defensive abilities should reward skilled play, not remove the cost of bad positioning.</li>
+        <li>Visual feedback should communicate important information immediately.</li>
+      </ul>
+
+      <h2 class="block">The Game in Action</h2>
+      <p>
+        In the finished game, movement, aiming and combat come together on screen, with score and
+        health feedback helping the player read what is happening.
+      </p>
+      <figure class="story-figure">
+        <img src="Images/InGame.png" alt="Splitstar gameplay showing combat, score and health">
+        <figcaption>In-game: combat with score and health feedback.</figcaption>
+      </figure>
+
+
+      <div class="result">
+        <h3>Result</h3>
+        <p>
+          My work gave Splitstar a responsive player foundation: movement, aiming, shooting,
+          power-ups and a readable segmented health system that work together.
+        </p>
+        <p>
+          The project taught me to treat gameplay systems as connected parts of one player
+          experience, instead of separate technical features.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <div class="end">
+    <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+  </div>
+  <div class="starline"></div>
+  <footer>&copy; 2026 Nick van Asten &middot; Game Developer</footer>
+
+  <!-- AI helped me with the script. But I Designed the health system in game myself. -->
+  <script>
+    (function () {
+      var MAX = 120, SEG = 10, SHIELD_MAX = 30, HIT = 20, HEAL = 10;
+      var hp = MAX, shield = 0;
+      var hud = document.getElementById('hud');
+      var segs = document.getElementById('segs');
+      var fills = [];
+      for (var i = 0; i < MAX / SEG; i++) {
+        var s = document.createElement('div');
+        s.className = 'seg';
+        var f = document.createElement('i');
+        s.appendChild(f);
+        segs.appendChild(s);
+        fills.push(f);
+      }
+      var hpText = document.getElementById('hp-text');
+      var shieldBar = document.getElementById('shield-bar');
+      var msg = document.getElementById('hud-msg');
+
+      function render(text) {
+        fills.forEach(function (f, i) {
+          var pct = Math.max(0, Math.min(1, (hp - i * SEG) / SEG)) * 100;
+          f.style.width = pct + '%';
+        });
+        shieldBar.style.width = (shield / SHIELD_MAX * 100) + '%';
+        hpText.textContent = hp + ' / ' + MAX + ' HP';
+        hud.classList.toggle('low', hp > 0 && hp <= 30);
+        if (text) msg.textContent = text;
+      }
+      document.getElementById('btn-hit').addEventListener('click', function () {
+        if (hp === 0) return;
+        var absorbed = Math.min(shield, HIT);
+        shield -= absorbed;
+        hp = Math.max(0, hp - (HIT - absorbed));
+        render(hp === 0 ? 'Ship destroyed.' :
+               absorbed ? 'Shield absorbed ' + absorbed + ' damage.' : 'Hull hit: -' + HIT + ' HP.');
+      });
+      document.getElementById('btn-heal').addEventListener('click', function () {
+        if (hp === 0) return;
+        hp = Math.min(MAX, hp + HEAL);
+        render(hp === MAX ? 'Health is full.' : 'Repaired +' + HEAL + ' HP.');
+      });
+      document.getElementById('btn-shield').addEventListener('click', function () {
+        if (hp === 0) return;
+        shield = SHIELD_MAX;
+        render('Bastion shield raised.');
+      });
+      document.getElementById('btn-reset').addEventListener('click', function () {
+        hp = MAX; shield = 0;
+        render('Systems online.');
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>
