@@ -1121,7 +1121,7 @@ body.portfolio-page .tv-stage-label span:last-child {
 
 body.portfolio-page .rig {
   position: relative;
-  width: min(780px, 92vw);
+  width: min(780px, 100%);
   margin: 0 auto;
   padding-bottom: 120px;
   perspective: 900px;
