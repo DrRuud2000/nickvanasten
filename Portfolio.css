@@ -1379,6 +1379,26 @@ body.portfolio-page .mframe video {
   display: block;
 }
 
+body.portfolio-page .mframe img {
+  transition: opacity .2s ease;
+}
+
+body.portfolio-page .mframe img.is-loading {
+  opacity: 0;
+}
+
+body.portfolio-page .mframe .media-status {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  color: var(--mute);
+  font-size: .8rem;
+  text-align: center;
+}
+
 body.portfolio-page .mframe .ph {
   position: absolute;
   inset: 0;

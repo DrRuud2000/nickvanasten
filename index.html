@@ -280,10 +280,56 @@
     const screen = $("screen");
     let cur = 0;
     let ejectTimer = null;
+    const preloadedImages = new Map();
     const legoDisc = {
       accent: "#70d6c7",
       glow: "rgba(79, 227, 255, .24)"
     };
+
+    function preloadProjectImage(project) {
+      if (/\.(mp4|webm)$/i.test(project.media)) return null;
+
+      let image = preloadedImages.get(project.media);
+      if (!image) {
+        image = new Image();
+        preloadedImages.set(project.media, image);
+        image.addEventListener("error", () => {
+          if (preloadedImages.get(project.media) === image) {
+            preloadedImages.delete(project.media);
+          }
+        }, { once: true });
+        image.src = project.media;
+      }
+
+      return image;
+    }
+
+    function showProjectImage(project) {
+      const image = preloadProjectImage(project);
+      image.alt = project.name;
+
+      if (image.complete && image.naturalWidth > 0) {
+        image.className = "";
+        frame.replaceChildren(image);
+        return;
+      }
+
+      image.className = "is-loading";
+      const status = document.createElement("div");
+      status.className = "media-status";
+      status.setAttribute("role", "status");
+      status.textContent = image.complete ? "Preview could not be loaded." : "Loading preview...";
+      frame.replaceChildren(image, status);
+
+      image.addEventListener("load", () => {
+        image.className = "";
+        if (status.parentElement === frame) status.remove();
+      }, { once: true });
+      image.addEventListener("error", () => {
+        status.textContent = "Preview could not be loaded.";
+        status.setAttribute("role", "alert");
+      }, { once: true });
+    }
 
     function applyProjectTheme() {
       const theme = projects[cur].theme;
@@ -306,15 +352,16 @@
       if (project.media) {
         const path = new URL(project.media, document.baseURI).pathname;
         const isVideo = /\.(mp4|webm)$/i.test(path);
-        element = document.createElement(isVideo ? "video" : "img");
-        element.src = project.media;
-        element.alt = project.name;
-
         if (isVideo) {
+          element = document.createElement("video");
+          element.src = project.media;
+          element.alt = project.name;
           element.autoplay = true;
           element.loop = true;
           element.muted = true;
           element.playsInline = true;
+        } else {
+          showProjectImage(project);
         }
       } else {
         element = document.createElement("div");
@@ -323,7 +370,7 @@
         element.style.setProperty("--c1", project.color);
       }
 
-      frame.replaceChildren(element);
+      if (element) frame.replaceChildren(element);
       $("ptitle").textContent = project.name;
       $("pdesc").textContent = project.description;
       $("pcontribution").textContent = project.contribution;
@@ -345,6 +392,8 @@
       button.type = "button";
       button.textContent = project.name;
       button.onclick = () => kies(index);
+      button.addEventListener("pointerenter", () => preloadProjectImage(project));
+      button.addEventListener("focus", () => preloadProjectImage(project));
       tabs.appendChild(button);
     });
 
