@@ -1026,6 +1026,13 @@ body.portfolio-page #home h1 {
   text-shadow: 0 0 38px rgba(112, 214, 199, .16);
 }
 
+body.portfolio-page #home .home-intro {
+  max-width: 600px;
+  margin: 18px 0 24px;
+  color: var(--mute);
+  font-size: 1.05rem;
+}
+
 body.portfolio-page #home .btns {
   justify-content: flex-start;
 }
@@ -1065,6 +1072,258 @@ body.portfolio-page #projects h2 {
 body.portfolio-page .projects-intro {
   color: var(--mute);
   margin: 0 auto 28px;
+  font-size: 1.05rem;
+}
+
+body.portfolio-page #projects > .wrap {
+  max-width: 1320px;
+}
+
+body.portfolio-page .featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 32px);
+  margin-top: 42px;
+  text-align: left;
+}
+
+body.portfolio-page .featured-project,
+body.portfolio-page .sidequest-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text);
+  background: linear-gradient(145deg, #172832, var(--card) 72%);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, .22);
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+body.portfolio-page .featured-project:hover,
+body.portfolio-page .featured-project:focus-visible,
+body.portfolio-page .sidequest-card:hover,
+body.portfolio-page .sidequest-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--red2);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .28), 0 0 22px rgba(112, 214, 199, .08);
+}
+
+body.portfolio-page .featured-project:focus-visible,
+body.portfolio-page .sidequest-card:focus-visible {
+  outline: 2px solid var(--red2);
+  outline-offset: 3px;
+}
+
+body.portfolio-page .featured-project > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #080d12;
+  border-bottom: 1px solid var(--line);
+  transition: transform .45s;
+}
+
+body.portfolio-page .featured-project:hover > img {
+  transform: scale(1.035);
+}
+
+body.portfolio-page .featured-project-copy {
+  display: flex;
+  flex: 1;
+  min-height: 390px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(22px, 2.3vw, 32px);
+}
+
+body.portfolio-page .project-kicker {
+  color: var(--red2);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+body.portfolio-page .featured-project h3,
+body.portfolio-page .sidequest-card h3 {
+  margin: 12px 0;
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.45rem, 2vw, 1.8rem);
+  letter-spacing: .03em;
+  line-height: 1.25;
+}
+
+body.portfolio-page .featured-project p,
+body.portfolio-page .sidequest-card p {
+  margin: 0 0 20px;
+  color: var(--mute);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+body.portfolio-page .project-contribution {
+  width: 100%;
+  margin: 2px 0 24px;
+  padding: 17px 18px;
+  background: rgba(5, 12, 16, .45);
+  border-left: 3px solid var(--red2);
+}
+
+body.portfolio-page .project-contribution > span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--red2);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+body.portfolio-page .featured-project .project-contribution p,
+body.portfolio-page .sidequest-card .project-contribution p {
+  margin: 0;
+  color: #d3dddf;
+  font-size: .96rem;
+  line-height: 1.65;
+}
+
+body.portfolio-page .project-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: auto;
+  color: var(--red2);
+  font-size: .94rem;
+  font-weight: 600;
+}
+
+body.portfolio-page .project-link span {
+  transition: transform .2s;
+}
+
+body.portfolio-page .featured-project:hover .project-link span,
+body.portfolio-page .sidequest-card:hover .project-link span {
+  transform: translateX(4px);
+}
+
+body.portfolio-page .sidequests {
+  margin-top: 76px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+body.portfolio-page .sidequests > .eyebrow {
+  margin-bottom: 8px;
+}
+
+body.portfolio-page .sidequests h2 {
+  margin-bottom: 24px;
+}
+
+body.portfolio-page .sidequest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1050px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+body.portfolio-page .sidequest-card {
+  display: grid;
+  grid-template-columns: minmax(150px, .85fr) 1.15fr;
+  align-items: stretch;
+}
+
+body.portfolio-page .sidequest-card > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 310px;
+  object-fit: cover;
+  background: #080d12;
+  border-right: 1px solid var(--line);
+}
+
+body.portfolio-page .sidequest-card[href="towerclash.html"] > img {
+  object-fit: contain;
+}
+
+body.portfolio-page .sidequest-card > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(20px, 2vw, 28px);
+}
+
+@media (max-width: 1050px) {
+  body.portfolio-page .featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  body.portfolio-page .featured-grid,
+  body.portfolio-page .sidequest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.portfolio-page .featured-grid {
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  body.portfolio-page .sidequest-grid {
+    max-width: 520px;
+  }
+
+  body.portfolio-page .featured-project-copy {
+    min-height: 0;
+  }
+
+  body.portfolio-page .sidequest-card {
+    grid-template-columns: minmax(140px, .8fr) 1.2fr;
+  }
+
+  body.portfolio-page .sidequest-card > img {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  body.portfolio-page .sidequests {
+    margin-top: 56px;
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  body.portfolio-page .sidequest-card {
+    display: flex;
+  }
+
+  body.portfolio-page .sidequest-card > img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  body.portfolio-page .featured-project-copy {
+    padding: 22px;
+  }
+
+  body.portfolio-page .sidequest-card > div {
+    padding: 22px;
+  }
+
+  body.portfolio-page .project-contribution {
+    padding: 15px 16px;
+  }
 }
 
 body.portfolio-page .tv-stage {
@@ -1437,7 +1696,7 @@ body.portfolio-page .mdet .project-contribution {
   line-height: 1.4;
 }
 
-body.portfolio-page .project-contribution span:first-child {
+body.portfolio-page .mdet .project-contribution span:first-child {
   display: block;
   margin-bottom: 2px;
   color: var(--tv-accent);
@@ -2209,7 +2468,7 @@ body.pack-page .gallery img {
 
 body.vr-page .gallery img {
   aspect-ratio: 16 / 10;
-  background: #05080a;
+  background: #0c0b09;
   object-fit: contain;
 }
 
@@ -2293,7 +2552,7 @@ body.pack-page .result {
 }
 
 body.vr-page .result {
-  background: linear-gradient(90deg, #0f2a2a, var(--card));
+  background: linear-gradient(90deg, #21190f, var(--card));
 }
 
 body.tower-page .result h3,
@@ -2401,17 +2660,17 @@ body.pack-page .project-hero .wrap {
 }
 
 body.vr-page {
-  --bg: #070b0d;
-  --bg2: #0c1316;
-  --card: #0f171b;
-  --line: #22353b;
-  --text: #e4eeee;
-  --mute: #8fa6a8;
-  --red: #1f7f75;
-  --red2: #6fe0d0;
+  --bg: #090807;
+  --bg2: #11100e;
+  --card: #191714;
+  --line: #393329;
+  --text: #e8e0d1;
+  --mute: #a69a84;
+  --red: #806334;
+  --red2: #c6a15b;
   background-image:
-    radial-gradient(ellipse at 50% 0, #0f2a2c 0, transparent 55%),
-    radial-gradient(ellipse at 15% 90%, rgba(111, 224, 208, .06), transparent 50%);
+    radial-gradient(ellipse at 50% 0, rgba(117, 83, 37, .18) 0, transparent 55%),
+    radial-gradient(ellipse at 15% 90%, rgba(105, 78, 42, .07), transparent 50%);
 }
 
 body.vr-page .project-hero,
@@ -2423,15 +2682,7 @@ body.vr-page .end {
 }
 
 body.vr-page .project-hero h1 {
-  text-shadow: 0 0 36px rgba(111, 224, 208, .45);
-  animation: ghost 8s infinite;
-}
-
-@keyframes ghost {
-  0%, 90%, 100% { opacity: 1; filter: none; }
-  92% { opacity: .35; }
-  94% { opacity: 1; filter: blur(1px); }
-  96% { opacity: .6; }
+  text-shadow: 0 0 30px rgba(198, 161, 91, .2);
 }
 
 body.vr-page .project-hero .eyebrow {
@@ -2439,7 +2690,7 @@ body.vr-page .project-hero .eyebrow {
 }
 
 body.vr-page .project-copy p {
-  color: #c3d3d3;
+  color: #d0c6b3;
 }
 
 body.vr-page .project-copy h2 {
@@ -2454,7 +2705,7 @@ body.vr-page .project-media {
   width: min(420px, 100%);
   aspect-ratio: 9 / 16;
   border-color: var(--red);
-  box-shadow: 0 0 60px rgba(111, 224, 208, .14);
+  box-shadow: 0 0 60px rgba(198, 161, 91, .1);
 }
 
 .fog {
@@ -2465,21 +2716,21 @@ body.vr-page .project-media {
   overflow: hidden;
 }
 
-.fog i {
+body.vr-page .fog i {
   position: absolute;
   width: 60vw;
   height: 40vh;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(111, 224, 208, .07), transparent 70%);
+  background: radial-gradient(ellipse, rgba(117, 83, 37, .045), transparent 70%);
   animation: fog 24s ease-in-out infinite alternate;
 }
 
-.fog i:nth-child(1) {
+body.vr-page .fog i:nth-child(1) {
   top: 10%;
   left: -20vw;
 }
 
-.fog i:nth-child(2) {
+body.vr-page .fog i:nth-child(2) {
   top: 55%;
   right: -25vw;
   animation-duration: 31s;
