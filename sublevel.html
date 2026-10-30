@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="Portfolio.css">
   <style>
     /* ===== Sublevel: overview + process chapters (voeg later samen met Portfolio.css) ===== */
-    body.sublevel-page .overview { max-width: 760px; margin: 0 auto 48px; padding: 0 6vw; text-align: left; }
+    body.sublevel-page .overview { max-width: 760px; margin: clamp(56px, 9vw, 110px) auto clamp(56px, 7vw, 88px); padding: 0 6vw; text-align: left; }
     body.sublevel-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
     body.sublevel-page .overview p { color: #c9c5c0; }
 
@@ -79,9 +79,127 @@
       body.sublevel-page .sl-hero { padding: 28px 20px; }
       body.sublevel-page .sl-hero-btns .btn { flex: 1 1 100%; max-width: 280px; text-align: center; }
     }
+    /* Footer altijd onderaan + knoppen onderaan */
+    body.sublevel-page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+    body.sublevel-page > * { width: 100%; }
+    body.sublevel-page > footer { margin-top: auto; }
+    body.sublevel-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 50px 6vw 80px; }
+    body.sublevel-page .clip > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* Chapters om en om: oneven = video links, even = video rechts */
+    body.sublevel-page .chapter.alt .entry { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
+    body.sublevel-page .chapter.alt .entry .clip { order: 2; }
+    @media (max-width: 900px) {
+      body.sublevel-page .chapter.alt .entry { grid-template-columns: 1fr; }
+      body.sublevel-page .chapter.alt .entry .clip { order: 0; }
+    }
+
+    /* Zijnavigatie: alleen compacte blokjes links; tekst verschijnt bij hover */
+    body.sublevel-page nav.side-nav {
+      position: fixed;
+      top: 50%;
+      left: 8px;
+      right: auto;
+      bottom: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 42px;
+      min-width: 0;
+      max-width: none;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-8px, -50%);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    body.sublevel-page nav.side-nav.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(0, -50%);
+    }
+    body.sublevel-page nav.side-nav a {
+      position: relative;
+      display: grid;
+      flex: 0 0 36px;
+      place-items: center;
+      box-sizing: border-box;
+      width: 36px;
+      min-width: 36px;
+      height: 36px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 1px solid transparent;
+      box-shadow: none;
+      color: var(--mute);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+      transition: color .2s, border-color .2s;
+    }
+    body.sublevel-page nav.side-nav a:hover,
+    body.sublevel-page nav.side-nav a:focus-visible,
+    body.sublevel-page nav.side-nav a.active {
+      color: var(--red2);
+      background: transparent;
+      border-color: var(--red2);
+      outline: 0;
+    }
+    body.sublevel-page nav.side-nav a span {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 10px);
+      right: auto;
+      z-index: 2;
+      width: max-content;
+      max-width: 220px;
+      padding: 5px 9px;
+      margin: 0;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      box-shadow: none;
+      color: var(--text);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: opacity .2s ease;
+    }
+    body.sublevel-page nav.side-nav a:hover span,
+    body.sublevel-page nav.side-nav a:focus-visible span {
+      opacity: 1;
+    }
+    @media (max-width: 900px) {
+      body.sublevel-page nav.side-nav {
+        top: auto;
+        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        left: 50%;
+        right: auto;
+        flex-direction: row;
+        width: auto;
+        transform: translate(-50%, 12px);
+      }
+      body.sublevel-page nav.side-nav.show { transform: translate(-50%, 0); }
+      body.sublevel-page nav.side-nav a { flex-basis: 36px; }
+      body.sublevel-page nav.side-nav a span { display: none; }
+    }
   </style>
 </head>
-<body class="sublevel-page">
+<body class="sublevel-page" id="top">
   <nav>
     <a class="brand" href="index.html" aria-label="Nick van Asten - home">
       <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
@@ -114,7 +232,7 @@
       <p>An abandoned bunker horror game about exploring, surviving and never feeling quite safe.</p>
       <div class="btns sl-hero-btns">
         <a class="btn primary" href="https://drruud.itch.io/sublevel" target="_blank" rel="noopener noreferrer">Play the game</a>
-        <a class="btn" href="#chapters">My process</a>
+        <a class="btn" href="#prototype">My process</a>
       </div>
     </div>
   </header>
@@ -137,13 +255,8 @@
     </dl>
   </section>
 
-  <nav class="chapter-nav" id="chapters" aria-label="Process chapters">
-    <a href="#prototype"><b>01</b> Prototype</a>
-    <a href="#player"><b>02</b> Player</a>
-    <a href="#interactables"><b>03</b> Interactables</a>
-    <a href="#atmosphere"><b>04</b> Atmosphere</a>
-    <a href="#widgets"><b>05</b> Widgets</a>
-  </nav>
+  <!-- Zijnavigatie (verschijnt vanaf chapter 1) -->
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#player" data-target="player" aria-label="Player">02<span>Player</span></a><a href="#interactables" data-target="interactables" aria-label="Interactables">03<span>Interactables</span></a><a href="#atmosphere" data-target="atmosphere" aria-label="Atmosphere">04<span>Atmosphere</span></a><a href="#widgets" data-target="widgets" aria-label="Widgets">05<span>Widgets</span></a></nav>
 
   <!-- 01 PROTOTYPE -->
   <section class="chapter" id="prototype" aria-labelledby="prototype-title">
@@ -154,21 +267,21 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel_Prototype_Loop.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Sublevel/Map.png" alt="Core loop blueprint"><figcaption>Map Design &middot; click to zoom</figcaption></figure>
+        <img src="Images/Sublevel/Idea.png" alt="Core Idea">
+        <figure class="blueprint"><img src="Images/Sublevel/Map.png" alt="Map Design"><figcaption>Map Design &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Core Idea</h3>
         <p>Explore, solve, survive. Getting this loop playable in the first weeks gave the three of us a shared base to build on.</p>
-    </div>
+      </div>
     </div>
     <div class="entry">
       <figure class="clip">
         <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/PrototypeScare.mp4" type="video/mp4"></video>
       </figure>
       <div class="entry-text">
-        <h3>Level blockout</h3>
-        <p>Grey boxes only. This showed us early where the player could get lost, where rooms felt too empty and how long a stretch of corridor could be before it got boring.</p>
+        <h3>Prototype Scare</h3>
+        <p>A simple scare sequence designed to test the effectiveness of our sound design and pacing.</p>
       </div>
     </div>
   </section>
@@ -182,7 +295,7 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Run.mp4" type="video/mp4"></video>
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Run.mp4" type="video/mp4"></video>
         <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
         <figure class="blueprint"><img src="Images/Sublevel/SprintSound.png" alt="Movement blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
@@ -193,8 +306,8 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel_Player_Camera.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Blueprint_Player_Camera.png" alt="Camera blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/HeadBop.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Sublevel/Camera.png" alt="Camera blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Camera</h3>
@@ -241,7 +354,8 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Valve.mp4" type="video/mp4"></video>
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Valve.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
         <figure class="blueprint"><img src="Images/Sublevel/Valve.png" alt="Valve blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
@@ -252,7 +366,7 @@
     <div class="entry">
       <figure class="clip">
         <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Locker.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Blueprint_Locker.png" alt="Locker (prototype) blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <figure class="blueprint"><img src="Images/Sublevel/Locker.png" alt="Locker (prototype) blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Locker (prototype)</h3>
@@ -270,7 +384,7 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video data-audio muted loop playsinline preload="metadata"><source src="Video/Sublevel/Ambientsound.mp4" type="video/mp4"></video>
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Ambientsound.mp4" type="video/mp4"></video>
         <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
         <figure class="blueprint"><img src="Images/Layout_Sound.png" alt="Ambience blueprint"><figcaption>Sound Layout &middot; click to zoom</figcaption></figure>
       </figure>
@@ -281,7 +395,7 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video data-audio muted loop playsinline preload="metadata"><source src="Video/Sublevel/Jumpscare.mp4" type="video/mp4"></video>
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Jumpscare.mp4" type="video/mp4"></video>
         <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
         <figure class="blueprint"><img src="Images/Sublevel/Jumpscaretension.png" alt="Jumpscare blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
@@ -290,6 +404,7 @@
         <p>Audio cues and environmental events build anticipation before an encounter instead of relying only on sudden scares.</p>
       </div>
     </div>
+  </section>
 
   <!-- 05 WIDGETS -->
   <section class="chapter" id="widgets" aria-labelledby="widgets-title">
@@ -310,7 +425,16 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <img src="Images/Sublevel/LoadingScreen.png" alt="Widgets" loading="lazy">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Message.mp4" type="video/mp4"></video>
+      </figure>
+      <div class="entry-text">
+        <h3>Interaction prompts</h3>
+        <p>Prompts, pickups and menus that appear only when they are needed.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/LoadingScreen.mp4" type="video/mp4"></video>
         <figure class="blueprint"><img src="Images/Sublevel/Widgets.png" alt="Interaction prompts blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
@@ -320,7 +444,8 @@
     </div>
   </section>
 
-
+  <main class="wrap">
+    <div class="project-copy">
       <section class="sublevel-story" aria-labelledby="sublevel-story-title">
         <div class="eyebrow">The game</div>
         <h2 id="sublevel-story-title">A way out of the darkness</h2>
@@ -334,6 +459,7 @@
           objects and sudden scares make every step feel uncertain. You never know what is waiting
           around the next corner.
         </p>
+      </section>
 
       <div class="result">
         <h3>Result</h3>
@@ -348,6 +474,7 @@
 
   <div class="end">
     <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+    <a class="btn" href="#top">Go back to the top &uarr;</a>
   </div>
   <div class="hazard"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
@@ -382,6 +509,27 @@
           if (v.paused) v.play();
         });
       });
+    })();
+
+    // Zijnavigatie: tonen vanaf chapter 1, actieve chapter markeren
+    (function () {
+      var nav = document.getElementById('side-nav');
+      var secs = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+      var links = nav.querySelectorAll('a[data-target]');
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var h = window.innerHeight;
+        nav.classList.toggle('show', secs[0].getBoundingClientRect().top < h * 0.5);
+        var cur = null;
+        secs.forEach(function (s) { if (s.getBoundingClientRect().top <= h * 0.4) cur = s.id; });
+        links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-target') === cur); });
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
     })();
   </script>
 </body>

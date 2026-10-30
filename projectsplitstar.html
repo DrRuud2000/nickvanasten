@@ -7,8 +7,90 @@
   <meta name="description" content="Splitstar: a fast-paced 2.5D space shooter. Nick van Asten worked on player movement, aiming, shooting, power-ups and the segmented health system.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
+  <style>
+    /* ===== Splitstar: Sublevel-format (voeg later samen met Portfolio.css) ===== */
+    body.splitstar-page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+    body.splitstar-page > * { width: 100%; }
+    body.splitstar-page > footer { margin-top: auto; }
+
+    /* Hero met gameplay-video op de achtergrond */
+    body.splitstar-page .ss-hero { position: relative; display: grid; place-items: center; min-height: clamp(460px, calc(100svh - 70px), 860px); padding: 40px 6vw; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
+    body.splitstar-page .ss-hero-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+    body.splitstar-page .ss-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5, 8, 20, .6), rgba(5, 8, 20, .3) 45%, rgba(5, 8, 20, .92)); }
+    body.splitstar-page .ss-hero p { color: #e6ecff; text-shadow: 0 2px 14px #000; }
+    body.splitstar-page .ss-hero-btns { margin-top: 30px; }
+    body.splitstar-page .ss-hero .btn:not(.primary) { background: rgba(5, 8, 20, .5); }
+    body.splitstar-page .ss-hero .project-page-nav a, body.splitstar-page .ss-hero .project-page-nav span { background: rgba(5, 8, 20, .6); }
+
+    /* Overview */
+    body.splitstar-page .overview { max-width: 760px; margin: clamp(56px, 9vw, 110px) auto clamp(40px, 6vw, 72px); padding: 0 6vw; text-align: left; }
+    body.splitstar-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+
+    /* Trailer */
+    body.splitstar-page .trailer { max-width: 1000px; margin: 0 auto clamp(56px, 8vw, 96px); padding: 0 clamp(20px, 4vw, 48px); scroll-margin-top: 70px; }
+    body.splitstar-page .trailer .eyebrow { text-align: center; margin-bottom: 14px; }
+    body.splitstar-page .trailer figure { margin: 0; background: #050814; border: 1px solid var(--line); box-shadow: 0 0 60px rgba(79, 227, 255, .12); }
+    body.splitstar-page .trailer video { display: block; width: 100%; height: auto; }
+
+    /* Chapters */
+    body.splitstar-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
+    body.splitstar-page .chapter.alt { background: rgba(10, 16, 36, .85); border-bottom: 1px solid var(--line); }
+    body.splitstar-page .chapter-head, body.splitstar-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.splitstar-page .chapter-head { margin-bottom: 40px; }
+    body.splitstar-page .chapter-head .eyebrow { color: var(--coral); }
+    body.splitstar-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: #c3cbe6; }
+
+    body.splitstar-page .entry { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
+    body.splitstar-page .entry:last-child { margin-bottom: 0; }
+    body.splitstar-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    body.splitstar-page .entry-text p { margin: 0 0 12px; color: #c3cbe6; }
+    body.splitstar-page .entry-text p:last-child { margin-bottom: 0; }
+
+    /* Om en om: oneven chapter = video links, even chapter = video rechts */
+    body.splitstar-page .chapter.alt .entry { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
+    body.splitstar-page .chapter.alt .entry > :first-child { order: 2; }
+
+    body.splitstar-page .clip { position: relative; aspect-ratio: 16 / 9; margin: 0; background: #000; border: 1px solid var(--line); overflow: hidden; }
+    body.splitstar-page .clip video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    body.splitstar-page .clip > img { display: block; width: 100%; height: 100%; object-fit: contain; background: #050814; }
+
+    body.splitstar-page .blueprint { position: absolute; right: 10px; bottom: 10px; z-index: 3; width: clamp(90px, 22%, 260px); margin: 0; background: #000; border: 1px solid var(--cyan); box-shadow: 0 6px 20px rgba(0, 0, 0, .7); }
+    body.splitstar-page .blueprint img { display: block; width: 100%; height: auto; }
+    body.splitstar-page .blueprint figcaption { padding: 2px 6px; background: rgba(0, 0, 0, .85); color: var(--mute); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    /* Segmented health demo staat op de plek van de video */
+    body.splitstar-page .entry > .hud { margin-top: 0; }
+
+    body.splitstar-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 50px 6vw 80px; }
+
+    @media (max-width: 900px) {
+      body.splitstar-page .chapter { padding: 48px 0; }
+      body.splitstar-page .entry, body.splitstar-page .chapter.alt .entry { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+      body.splitstar-page .chapter.alt .entry > :first-child { order: 0; }
+    }
+    @media (max-width: 700px) {
+      body.splitstar-page .ss-hero { padding: 28px 20px; }
+      body.splitstar-page .ss-hero-btns .btn { flex: 1 1 100%; max-width: 280px; text-align: center; }
+    }
+    @media (max-width: 520px) {
+      body.splitstar-page .blueprint { width: 32%; }
+    }
+
+    /* Zijnavigatie */
+    body.splitstar-page nav.side-nav { position: fixed; top: 50%; left: 8px; right: auto; bottom: auto; z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 42px; height: auto; margin: 0; padding: 0; background: transparent; border: 0; backdrop-filter: none; opacity: 0; pointer-events: none; transform: translate(-8px, -50%); transition: opacity .25s ease, transform .25s ease; }
+    body.splitstar-page nav.side-nav.show { opacity: 1; pointer-events: auto; transform: translate(0, -50%); }
+    body.splitstar-page nav.side-nav a { position: relative; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; background: transparent; border: 1px solid transparent; color: var(--mute); font-size: .72rem; font-weight: 700; letter-spacing: .08em; transition: color .2s, border-color .2s; }
+    body.splitstar-page nav.side-nav a:hover, body.splitstar-page nav.side-nav a:focus-visible, body.splitstar-page nav.side-nav a.active { color: var(--cyan); border-color: var(--cyan); outline: 0; }
+    body.splitstar-page nav.side-nav a span { position: absolute; top: 50%; left: calc(100% + 10px); width: max-content; max-width: 220px; padding: 5px 9px; background: var(--bg2); border: 1px solid var(--line); color: var(--text); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .2s ease; }
+    body.splitstar-page nav.side-nav a:hover span, body.splitstar-page nav.side-nav a:focus-visible span { opacity: 1; }
+    @media (max-width: 900px) {
+      body.splitstar-page nav.side-nav { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); left: 50%; flex-direction: row; width: auto; transform: translate(-50%, 12px); }
+      body.splitstar-page nav.side-nav.show { transform: translate(-50%, 0); }
+      body.splitstar-page nav.side-nav a span { display: none; }
+    }
+  </style>
 </head>
-<body class="splitstar-page">
+<body class="splitstar-page" id="top">
   <nav>
     <a class="brand" href="index.html" aria-label="Nick van Asten - home">
       <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
@@ -23,7 +105,11 @@
   </nav>
   <div class="starline"></div>
 
-  <header class="project-hero">
+  <header class="project-hero ss-hero">
+    <!-- Vervang de bron door je gameplay-preview (zoals Sublevel PreviewComp.mp4) -->
+    <video class="ss-hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="Video/Splitstar/Gameplay.mp4" type="video/mp4">
+    </video>
     <div class="wrap">
       <div class="project-page-nav" role="navigation" aria-label="Project navigation">
         <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
@@ -36,151 +122,160 @@
       <div class="eyebrow">Group project &middot; 2.5D shooter</div>
       <h1>Project Splitstar</h1>
       <p>A fast-paced 2.5D space shooter about dodging, aiming and surviving enemies and projectiles.</p>
+      <div class="btns ss-hero-btns">
+        <a class="btn primary" href="#trailer">Watch the trailer</a>
+        <a class="btn" href="#prototype">My process</a>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="project-copy">
-      <dl class="project-details">
-        <div><dt>Genre</dt><dd>Shooter</dd></div>
-        <div><dt>Perspective</dt><dd>2.5D</dd></div>
-        <div><dt>Type</dt><dd>Team project</dd></div>
-        <div><dt>My focus</dt><dd>Player systems</dd></div>
-      </dl>
+  <!-- OVERVIEW -->
+  <section class="overview" id="overview" aria-labelledby="overview-title">
+    <div class="eyebrow">Overview</div>
+    <h2 id="overview-title">The Pilot</h2>
+    <dl class="project-details">
+      <div><dt>Genre</dt><dd>Shooter</dd></div>
+      <div><dt>Perspective</dt><dd>2.5D</dd></div>
+      <div><dt>Type</dt><dd>Team project</dd></div>
+      <div><dt>My focus</dt><dd>Player systems</dd></div>
+    </dl>
+  </section>
 
-      <div class="eyebrow">Role</div>
-      <h2>The Pilot</h2>
-      <p class="lead">
-        In our team, I was responsible for the player-related gameplay systems: movement,
-        rotation and aiming, shooting, power-ups and the player health system. My goal was to
-        make the player feel responsive and in control, while making sure every system supported
-        the combat experience as a whole.
-      </p>
-      <p>
-        Next to building these systems, I researched existing games, documented my design
-        decisions, evaluated gameplay issues and used feedback to find improvements.
-      </p>
+  <!-- TRAILER -->
+  <section class="trailer" id="trailer" aria-label="Splitstar trailer">
+    <div class="eyebrow">Trailer</div>
+    <figure>
+      <video controls preload="metadata">
+        <source src="Video/ProjectsplitstartrailerComp.mp4" type="video/mp4">
+      </video>
+    </figure>
+  </section>
 
-      <h2 class="block">From Prototype to Gameplay</h2>
-      <p>
-        The prototype let me explore how aiming direction could stay clear while the player moves.
-        That early test informed the controls and combat systems developed for the game.
-      </p>
-      <figure class="story-figure">
+  <!-- Zijnavigatie (verschijnt vanaf chapter 1) -->
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#player" data-target="player" aria-label="Player">02<span>Player</span></a><a href="#health" data-target="health" aria-label="Health">03<span>Health</span></a><a href="#action" data-target="action" aria-label="In action">04<span>In action</span></a></nav>
+
+  <!-- 01 PROTOTYPE -->
+  <section class="chapter" id="prototype" aria-labelledby="prototype-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 01 &middot; Design phase</div>
+      <h2 id="prototype-title">Prototype</h2>
+    </div>
+    <div class="entry">
+      <figure class="clip">
         <img src="Images/Prototype.png" alt="Early Splitstar prototype testing aiming direction">
-        <figcaption>Prototype: testing clear aiming feedback.</figcaption>
       </figure>
-
-      <h2 class="block">My Contribution</h2>
-      <div class="contrib">
-        <article class="c-card">
-          <h3>Player Movement</h3>
-          <p>
-            I built the movement system around responsive controls that support fast-paced
-            combat. Research into other shooters showed me that input should feel predictable,
-            and that players need to reposition while aiming independently.
-          </p>
-        </article>
-        <article class="c-card">
-          <h3>Rotation &amp; Aiming</h3>
-          <p>
-            I worked on how the player rotates and aims, so the ship's orientation and shooting
-            direction stay readable. Playtesting revealed that players could aim outside the
-            camera view, which led to a fix (see the development process below).
-          </p>
-        </article>
-        <article class="c-card">
-          <h3>Shooting Mechanics</h3>
-          <p>
-            I implemented shooting so the player can attack while repositioning. Movement,
-            rotation, aiming and shooting have to work as one, because together they decide
-            how combat feels.
-          </p>
-        </article>
-        <article class="c-card">
-          <h3>Power-ups</h3>
-          <p>
-            I contributed to the power-ups, which let the player's capabilities change during a
-            run. They had to work alongside the existing movement, combat and health mechanics.
-          </p>
-        </article>
-
-        <div class="c-card wide splitstar-trailer">
-          <video controls preload="metadata">
-            <source src="Video/ProjectsplitstartrailerComp.mp4" type="video/mp4">
-          </video>
-        </div>
-        <article class="c-card wide">
-          <h3>Segmented Health System</h3>
-          <p>
-            My main individual contribution. Inspired by <em>My Friend Pedro</em>, I split health
-            into visible segments instead of one continuous bar, so players can read damage
-            quickly in busy fights. A <code>PlayerHealth</code> component stores current and
-            maximum health (120 HP) and handles damage and healing, while the UI updates
-            immediately when health changes. The Bastion shield is handled separately and
-            absorbs damage before regular health is touched.
-          </p>
-
-          <div class="hud" id="hud" aria-label="Interactive health bar demo">
-            <div class="hud-top">
-              <span>Interactive demo</span>
-              <span class="hud-hp" id="hp-text">120 / 120 HP</span>
-            </div>
-            <div class="segs" id="segs"></div>
-            <div class="shield"><i id="shield-bar"></i></div>
-            <p class="hud-msg" id="hud-msg" role="status" aria-live="polite">Systems online.</p>
-            <div class="hud-btns">
-              <button type="button" id="btn-hit">Take hit (20)</button>
-              <button type="button" id="btn-heal">Heal (10)</button>
-              <button type="button" id="btn-shield">Raise Bastion shield</button>
-              <button type="button" id="btn-reset">Reset</button>
-            </div>
-            <p class="hud-note">A small recreation of the segmented layout (12 segments of 10 HP). It is not the game build.</p>
-          </div>
-        </article>
+      <div class="entry-text">
+        <h3>Aiming prototype</h3>
+        <p>Explain what you tested here and what it taught you.</p>
       </div>
+    </div>
+  </section>
 
-      <h2 class="block">Design Decisions</h2>
-      <p>
-        During implementation, I analysed how other games handle movement, combat
-        readability, aiming and health feedback. I used them as references to judge what suits
-        our own game, not to copy their mechanics.
-      </p>
-      <ul class="principles">
-        <li>Movement should feel responsive and predictable, not slippery.</li>
-        <li>Players should be able to reposition while keeping control of their aim.</li>
-        <li>Projectiles, damage and health must stay readable during combat.</li>
-        <li>Defensive abilities should reward skilled play, not remove the cost of bad positioning.</li>
-        <li>Visual feedback should communicate important information immediately.</li>
-      </ul>
-
-      <h2 class="block">The Game in Action</h2>
-      <p>
-        In the finished game, movement, aiming and combat come together on screen, with score and
-        health feedback helping the player read what is happening.
-      </p>
-      <figure class="story-figure">
-        <img src="Images/InGame.png" alt="Splitstar gameplay showing combat, score and health">
-        <figcaption>In-game: combat with score and health feedback.</figcaption>
+  <!-- 02 PLAYER -->
+  <section class="chapter alt" id="player" aria-labelledby="player-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 02 &middot; Player systems</div>
+      <h2 id="player-title">Player</h2>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Movement.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Movement.png" alt="Movement blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
+      <div class="entry-text">
+        <h3>Movement</h3>
+        <p>Explain how the movement works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Aiming.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Aiming.png" alt="Rotation and aiming blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Rotation &amp; Aiming</h3>
+        <p>Explain how rotation and aiming work here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Shooting.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Shooting.png" alt="Shooting blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Shooting</h3>
+        <p>Explain how shooting works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Powerups.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Powerups.png" alt="Power-ups blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Power-ups</h3>
+        <p>Explain how the power-ups work here.</p>
+      </div>
+    </div>
+  </section>
 
-
-      <div class="result">
-        <h3>Result</h3>
+  <!-- 03 HEALTH -->
+  <section class="chapter" id="health" aria-labelledby="health-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Health</div>
+      <h2 id="health-title">Segmented Health System</h2>
+    </div>
+    <div class="entry">
+      <div class="hud" id="hud" aria-label="Interactive health bar demo">
+        <div class="hud-top">
+          <span>Interactive demo</span>
+          <span class="hud-hp" id="hp-text">120 / 120 HP</span>
+        </div>
+        <div class="segs" id="segs"></div>
+        <div class="shield"><i id="shield-bar"></i></div>
+        <p class="hud-msg" id="hud-msg" role="status" aria-live="polite">Systems online.</p>
+        <div class="hud-btns">
+          <button type="button" id="btn-hit">Take hit (20)</button>
+          <button type="button" id="btn-heal">Heal (10)</button>
+          <button type="button" id="btn-shield">Raise Bastion shield</button>
+          <button type="button" id="btn-reset">Reset</button>
+        </div>
+        <p class="hud-note">A small recreation of the segmented layout (12 segments of 10 HP). It is not the game build.</p>
+      </div>
+      <div class="entry-text">
+        <h3>Segmented Health</h3>
         <p>
-          My work gave Splitstar a responsive player foundation: movement, aiming, shooting,
-          power-ups and a readable segmented health system that work together.
-        </p>
-        <p>
-          The project taught me to treat gameplay systems as connected parts of one player
-          experience, instead of separate technical features.
+          My main individual contribution. Inspired by <em>My Friend Pedro</em>, I split health
+          into visible segments instead of one continuous bar, so players can read damage
+          quickly in busy fights. A <code>PlayerHealth</code> component stores current and
+          maximum health (120 HP) and handles damage and healing, while the UI updates
+          immediately when health changes. The Bastion shield is handled separately and
+          absorbs damage before regular health is touched.
         </p>
       </div>
     </div>
-  </main>
+  </section>
+
+  <!-- 04 IN ACTION -->
+  <section class="chapter alt" id="action" aria-labelledby="action-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 04 &middot; Final game</div>
+      <h2 id="action-title">In Action</h2>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/InGame.png" alt="Splitstar gameplay showing combat, score and health">
+      </figure>
+      <div class="entry-text">
+        <h3>In-game</h3>
+        <p>Explain what the player sees in the finished game here.</p>
+      </div>
+    </div>
+  </section>
 
   <div class="end">
     <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+    <a class="btn" href="#top">Go back to the top &uarr;</a>
   </div>
   <div class="starline"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
@@ -238,6 +333,40 @@
         render('Systems online.');
       });
       render();
+    })();
+
+    // Video's spelen alleen in beeld
+    (function () {
+      var vids = document.querySelectorAll('.clip video, .ss-hero-video');
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+          else { e.target.pause(); }
+        });
+      }, { threshold: 0.25 });
+      vids.forEach(function (v) { io.observe(v); });
+    })();
+
+    // Zijnavigatie: tonen vanaf chapter 1, actieve chapter markeren
+    (function () {
+      var nav = document.getElementById('side-nav');
+      var secs = Array.prototype.slice.call(document.querySelectorAll('.chapter[id]'));
+      var links = nav.querySelectorAll('a[data-target]');
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var h = window.innerHeight;
+        nav.classList.toggle('show', secs[0].getBoundingClientRect().top < h * 0.5);
+        var cur = null;
+        secs.forEach(function (s) { if (s.getBoundingClientRect().top <= h * 0.4) cur = s.id; });
+        links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-target') === cur); });
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
     })();
   </script>
   <script src="ProjectImageLightbox.js"></script>
