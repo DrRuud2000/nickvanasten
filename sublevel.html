@@ -7,6 +7,79 @@
   <meta name="description" content="Sublevel: an abandoned bunker horror game. Nick van Asten worked on player movement, interactables, jumpscares and sound design.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
+  <style>
+    /* ===== Sublevel: overview + process chapters (voeg later samen met Portfolio.css) ===== */
+    body.sublevel-page .overview { max-width: 760px; margin: 0 auto 48px; padding: 0 6vw; text-align: left; }
+    body.sublevel-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+    body.sublevel-page .overview p { color: #c9c5c0; }
+
+    body.sublevel-page .chapter-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 900px; margin: 0 auto 72px; padding: 0 6vw; }
+    body.sublevel-page .chapter-nav a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: .85rem; font-weight: 600; transition: .2s; }
+    body.sublevel-page .chapter-nav a b { color: #c49a2c; font-size: .72rem; letter-spacing: .15em; }
+    body.sublevel-page .chapter-nav a:hover, body.sublevel-page .chapter-nav a:focus-visible { border-color: var(--red2); background: var(--red); box-shadow: 0 0 22px rgba(212, 34, 45, .3); outline: 0; }
+
+    /* Chapter: titel + intro, daarna rijen met video links en uitleg rechts (niets sticky) */
+    body.sublevel-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
+    body.sublevel-page .chapter.alt { background: var(--bg2); border-bottom: 1px solid var(--line); }
+    body.sublevel-page .chapter-head, body.sublevel-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.sublevel-page .chapter-head { margin-bottom: 40px; }
+    body.sublevel-page .chapter-head .eyebrow { color: #c49a2c; }
+    body.sublevel-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: #c9c5c0; }
+
+    body.sublevel-page .entry { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
+    body.sublevel-page .entry:last-child { margin-bottom: 0; }
+    body.sublevel-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    body.sublevel-page .entry-text p { margin: 0; color: #c9c5c0; }
+
+    body.sublevel-page .clip { position: relative; aspect-ratio: 16 / 9; margin: 0; background: #000; border: 1px solid var(--line); overflow: hidden; }
+    body.sublevel-page .clip video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    body.sublevel-page .blueprint { position: absolute; right: 10px; bottom: 10px; z-index: 3; width: clamp(90px, 22%, 260px); margin: 0; background: #000; border: 1px solid var(--red2); box-shadow: 0 6px 20px rgba(0, 0, 0, .7); }
+    body.sublevel-page .blueprint img { display: block; width: 100%; height: auto; }
+    body.sublevel-page .blueprint figcaption { padding: 2px 6px; background: rgba(0, 0, 0, .85); color: var(--mute); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    body.sublevel-page .sound-toggle { position: absolute; left: 10px; bottom: 10px; z-index: 3; min-height: 40px; padding: 8px 14px; background: rgba(0, 0, 0, .75); color: var(--text); border: 1px solid var(--line); font: 600 .74rem Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: .2s; }
+    body.sublevel-page .sound-toggle:hover, body.sublevel-page .sound-toggle:focus-visible { border-color: var(--red2); outline: 0; }
+    body.sublevel-page .sound-toggle[aria-pressed="true"] { background: var(--red); border-color: var(--red2); }
+
+    /* Early designs */
+    body.sublevel-page .early { margin-top: clamp(48px, 7vw, 88px); }
+    body.sublevel-page .designs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; }
+    body.sublevel-page .designs figure { margin: 0; background: var(--card); border: 1px solid var(--line); }
+    body.sublevel-page .designs img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    body.sublevel-page .designs figcaption { padding: 8px 12px; color: var(--mute); font-size: .78rem; }
+
+    @media (max-width: 900px) {
+      body.sublevel-page .chapter { padding: 48px 0; }
+      body.sublevel-page .entry { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+    }
+    @media (max-width: 700px) {
+      body.sublevel-page .chapter-nav { margin-bottom: 48px; }
+      body.sublevel-page .chapter-nav a { flex: 1 1 140px; justify-content: center; }
+    }
+    @media (max-width: 520px) {
+      body.sublevel-page .blueprint { width: 32%; }
+      body.sublevel-page .designs { grid-template-columns: 1fr; }
+    }
+  
+    /* Hero met gameplay-video op de achtergrond */
+    body.sublevel-page .sl-hero { position: relative; display: grid; place-items: center; min-height: clamp(460px, calc(100svh - 70px), 860px); padding: 40px 6vw; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
+    body.sublevel-page .sl-hero-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+    body.sublevel-page .sl-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7, 7, 10, .6), rgba(7, 7, 10, .3) 45%, rgba(7, 7, 10, .92)); }
+    body.sublevel-page .sl-hero h1 { font-size: clamp(3.2rem, 13vw, 8.5rem); line-height: 1; text-transform: uppercase; letter-spacing: .08em; }
+    body.sublevel-page .sl-hero p { color: #e2ded8; text-shadow: 0 2px 14px #000; }
+    body.sublevel-page .sl-hero-btns { margin-top: 30px; }
+    body.sublevel-page .sl-hero .btn:not(.primary) { background: rgba(0, 0, 0, .45); }
+    body.sublevel-page .sl-hero .project-page-nav a, body.sublevel-page .sl-hero .project-page-nav span { background: rgba(7, 7, 10, .6); }
+    body.sublevel-page .sl-trailer-label { text-align: center; margin-bottom: 14px; }
+    body.sublevel-page .wrap#trailer { scroll-margin-top: 70px; }
+    body.sublevel-page .chapter-top { max-width: 1400px; margin: 40px auto 0; padding: 0 clamp(20px, 4vw, 48px); }
+    body.sublevel-page .chapter-top a { color: var(--mute); font-size: .82rem; }
+    body.sublevel-page .chapter-top a:hover { color: var(--text); }
+    @media (max-width: 700px) {
+      body.sublevel-page .sl-hero { padding: 28px 20px; }
+      body.sublevel-page .sl-hero-btns .btn { flex: 1 1 100%; max-width: 280px; text-align: center; }
+    }
+  </style>
 </head>
 <body class="sublevel-page">
   <nav>
@@ -23,7 +96,10 @@
   </nav>
   <div class="hazard"></div>
 
-  <header class="project-hero">
+  <header class="project-hero sl-hero">
+    <video class="sl-hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="Video/Sublevel PreviewComp.mp4" type="video/mp4">
+    </video>
     <div class="wrap">
       <div class="project-page-nav" role="navigation" aria-label="Project navigation">
         <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
@@ -36,44 +112,219 @@
       <div class="eyebrow">Project file &middot; Horror</div>
       <h1>Sublevel</h1>
       <p>An abandoned bunker horror game about exploring, surviving and never feeling quite safe.</p>
+      <div class="btns sl-hero-btns">
+        <a class="btn primary" href="https://drruud.itch.io/sublevel" target="_blank" rel="noopener noreferrer">Play the game</a>
+        <a class="btn" href="#chapters">My process</a>
+      </div>
     </div>
   </header>
 
-  <div class="wrap">
-    <div class="project-media">
-      <video controls autoplay muted playsinline preload="metadata">
-        <source src="Video/Sublevel PreviewComp.mp4" type="video/mp4">
-        Je browser ondersteunt geen video.
-      </video>
-    </div>
-  </div>
+  <!-- OVERVIEW -->
+  <section class="overview" id="overview" aria-labelledby="overview-title">
+    <div class="eyebrow">Overview</div>
+    <h2 id="overview-title">One bunker. One way out.</h2>
+    <p class="lead">
+      Sublevel is a horror game set in an abandoned underground bunker. You wake up alone and have to
+      find a way to escape before the creatures below find you. It was built in Unreal Engine 5 by a
+      team of three in eight weeks.
+    </p>
+    <dl class="project-details">
+      <div><dt>Engine</dt><dd>Unreal Engine 5</dd></div>
+      <div><dt>Genre</dt><dd>Horror</dd></div>
+      <div><dt>Team</dt><dd>3 people</dd></div>
+      <div><dt>Timeline</dt><dd>8 weeks</dd></div>
+      <div><dt>My focus</dt><dd>Gameplay &amp; sound</dd></div>
+    </dl>
+  </section>
 
-  <main class="wrap">
-    <div class="project-copy">
-      <dl class="project-details">
-        <div>
-          <dt>Engine</dt>
-          <dd>Unreal Engine</dd>
-        </div>
-        <div>
-          <dt>Genre</dt>
-          <dd>Horror</dd>
-        </div>
-        <div>
-          <dt>Type</dt>
-          <dd>Team project</dd>
-        </div>
-        <div>
-          <dt>My focus</dt>
-          <dd>Gameplay &amp; sound</dd>
-        </div>
-      </dl>
+  <nav class="chapter-nav" id="chapters" aria-label="Process chapters">
+    <a href="#prototype"><b>01</b> Prototype</a>
+    <a href="#player"><b>02</b> Player</a>
+    <a href="#interactables"><b>03</b> Interactables</a>
+    <a href="#atmosphere"><b>04</b> Atmosphere</a>
+    <a href="#widgets"><b>05</b> Widgets</a>
+  </nav>
+
+  <!-- 01 PROTOTYPE -->
+  <section class="chapter" id="prototype" aria-labelledby="prototype-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 01 &middot; Design phase</div>
+      <h2 id="prototype-title">Prototype</h2>
+      <p>Before anything looked good, we blocked out the bunker with simple shapes to test layout and pacing.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel_Prototype_Loop.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Sublevel/Map.png" alt="Core loop blueprint"><figcaption>Map Design &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Core Idea</h3>
+        <p>Explore, solve, survive. Getting this loop playable in the first weeks gave the three of us a shared base to build on.</p>
+    </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/PrototypeScare.mp4" type="video/mp4"></video>
+      </figure>
+      <div class="entry-text">
+        <h3>Level blockout</h3>
+        <p>Grey boxes only. This showed us early where the player could get lost, where rooms felt too empty and how long a stretch of corridor could be before it got boring.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PLAYER -->
+  <section class="chapter alt" id="player" aria-labelledby="player-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 02 &middot; Movement</div>
+      <h2 id="player-title">Player</h2>
+      <p>For Sublevel, I designed the player using player characters and blueprints.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Run.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <figure class="blueprint"><img src="Images/Sublevel/SprintSound.png" alt="Movement blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Movement</h3>
+        <p>The movement in the game needed to avoid feeling too fast, as the player should feel a sense of fear. We arrived at this conclusion after several playtests, aiming to find the perfect balance of movement speed and stamina for our player within a horror environment.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel_Player_Camera.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Blueprint_Player_Camera.png" alt="Camera blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Camera</h3>
+        <p>The camera and view feel make exploring the bunker natural without losing tension.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Flashlight.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Sublevel/Flashlight.png" alt="Flashlight blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Flashlight</h3>
+        <p>The bunker is dark to create a sense of abandonment and heighten tension for the player. Nevertheless, we decided to provide the first-person player with a flashlight. I designed this flashlight. Once the player picks it up, they keep it with them at all times—even if they die. The player is also given the option not to pick up the flashlight, or to turn the flashlight off.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 INTERACTABLES -->
+  <section class="chapter" id="interactables" aria-labelledby="interactables-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Interaction</div>
+      <h2 id="interactables-title">Interactables</h2>
+      <p>Everything the player can touch runs on one unified Blueprint interaction system, so new interactables could be added quickly.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Key.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Sublevel/Interact.png" alt="Keycard blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Linetrace</h3>
+        <p>For the interactables, I opted to use a line-trace function—one that remains invisible during gameplay while still being fully functional. I also enlarged the hitboxes for these interactables, making it easier for the player to engage with the objects. Since I was also responsible for the audio, I incorporated sound effects and certain movements to further immerse the player in the game.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/KeyDoor.mp4" type="video/mp4"></video>
+      </figure>
+      <div class="entry-text">
+        <h3>Door</h3>
+        <p>Explain how the door works here: opening, locked states and the sound that goes with it.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Valve.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Sublevel/Valve.png" alt="Valve blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Valve</h3>
+        <p>Explain how the valve works here: how the player turns it, what feedback they get and what it opens up.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Locker.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Blueprint_Locker.png" alt="Locker (prototype) blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Locker (prototype)</h3>
+        <p>Explain the locker prototype here: how it started and what you would improve.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ATMOSPHERE -->
+  <section class="chapter alt" id="atmosphere" aria-labelledby="atmosphere-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 04 &middot; Sound design</div>
+      <h2 id="atmosphere-title">Atmosphere</h2>
+      <p>Ambience, interaction sounds, warning cues and distant bangs make the bunker feel alive. Turn the sound on.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio muted loop playsinline preload="metadata"><source src="Video/Sublevel/Ambientsound.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <figure class="blueprint"><img src="Images/Layout_Sound.png" alt="Ambience blueprint"><figcaption>Sound Layout &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Ambience</h3>
+        <p>Each area has its own ambience, and repeated sounds are varied so nothing becomes predictable.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio muted loop playsinline preload="metadata"><source src="Video/Sublevel/Jumpscare.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <figure class="blueprint"><img src="Images/Sublevel/Jumpscaretension.png" alt="Jumpscare blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Jumpscare</h3>
+        <p>Audio cues and environmental events build anticipation before an encounter instead of relying only on sudden scares.</p>
+      </div>
+    </div>
+
+  <!-- 05 WIDGETS -->
+  <section class="chapter" id="widgets" aria-labelledby="widgets-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 05 &middot; UI</div>
+      <h2 id="widgets-title">Widgets</h2>
+      <p>A minimal interface that never pulls the player out of the bunker.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Sublevel/Timer.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Sublevel/Timer.png" alt="Interaction prompts blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Interaction prompts</h3>
+        <p>Prompts, pickups and menus that appear only when they are needed.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/Sublevel/LoadingScreen.png" alt="Widgets" loading="lazy">
+        <figure class="blueprint"><img src="Images/Sublevel/Widgets.png" alt="Interaction prompts blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Interaction prompts</h3>
+        <p>Prompts, pickups and menus that appear only when they are needed.</p>
+      </div>
+    </div>
+  </section>
+
 
       <section class="sublevel-story" aria-labelledby="sublevel-story-title">
         <div class="eyebrow">The game</div>
         <h2 id="sublevel-story-title">A way out of the darkness</h2>
         <p class="lead">
-          Sublevel is a bunker horror game made by a team of three students over eight weeks.
           You wake up alone in an abandoned underground facility where a scientist once performed
           experiments on people. Explore the bunker, solve the obstacles in your way and find a
           route to the surface before the creatures below find you.
@@ -83,96 +334,6 @@
           objects and sudden scares make every step feel uncertain. You never know what is waiting
           around the next corner.
         </p>
-
-        <h2 class="sublevel-enemies-title">The creatures below</h2>
-        <p>Three enemies haunt the bunker, each creating a different kind of threat.</p>
-        <div class="sublevel-enemies">
-          <article>
-            <h3>Jeffrey</h3>
-            <p>He seems to be everywhere and nowhere. Jeffrey is always finding you and wants to play, but his attention is hard to escape.</p>
-          </article>
-          <article>
-            <h3>Phil</h3>
-            <p>Hungry and trapped for years in a flooded part of the bunker, Phil is not someone you want to meet.</p>
-          </article>
-          <article>
-            <h3>Bob</h3>
-            <p>If Bob appears, do not wait around. Run.</p>
-          </article>
-        </div>
-        <p class="sublevel-enemy-note">
-          The enemy characters use 3D meshes sourced from
-          <a href="https://www.mixamo.com/" target="_blank" rel="noopener noreferrer">Mixamo</a>.
-        </p>
-      </section>
-
-      <div class="eyebrow">Role</div>
-      <h2>The Interacter</h2>
-      <p class="lead">
-        During the development of our abandoned bunker horror game, I focused on player movement,
-        interactables, jumpscares, and sound design. My goal was to make the player feel immersed
-        in the environment while keeping exploration intuitive and tense.
-      </p>
-      <img src="Images/Layout_Sound.png" alt="Sound Design" class="sound-image">
-
-      <h2>My Contribution</h2>
-      <div class="contrib">
-        <article class="c-card">
-          <span class="num">04</span>
-          <h3>Sound Design</h3>
-          <p>
-            I designed and implemented the game's audio system to make the bunker feel alive and
-            unsettling. I worked with ambient sounds, interaction sounds, warning cues, and
-            environmental sounds such as distant bangs and pipe noises. Different areas received
-            their own ambience, while variations in repeated sounds helped prevent the audio from
-            becoming predictable.
-          </p>
-        </article>
-        <article class="c-card">
-          <span class="num">01</span>
-          <h3>Player Movement</h3>
-          <p>
-            I worked on the player movement to make exploration through the bunker feel responsive
-            and natural. Movement was designed to support the horror experience by giving the
-            player enough control while maintaining a sense of vulnerability.
-          </p>
-        </article>
-        <article class="c-card">
-          <span class="num">02</span>
-          <h3>Interactables</h3>
-          <p>
-            I designed and implemented key interactions such as doors, valves, keycards, pickups,
-            and hiding spots. I used Blueprint Actors and a unified interaction system so new
-            interactables could be added efficiently. Clear interaction feedback helped players
-            understand what they could interact with without breaking immersion.
-          </p>
-        </article>
-        <article class="c-card">
-          <span class="num">03</span>
-          <h3>Jumpscares &amp; Tension</h3>
-          <p>
-            I worked on scripted environmental triggers and jumpscares to support the pacing of
-            the game. Instead of relying only on sudden scares, I used interactions, environmental
-            events, and audio cues to build anticipation before an encounter.
-          </p>
-          <br>
-          <img src="Images/JumpScare_Jefrey.png" alt="Jumpscare">
-        </article>
-      </div>
-
-      <section class="sublevel-play wrap" aria-labelledby="sublevel-play-title">
-        <div class="eyebrow">Play the game</div>
-        <h2 id="sublevel-play-title">Enter the bunker</h2>
-        <p>Play Sublevel on itch.io, or keep scrolling to learn about the game and my work on it.</p>
-        <iframe
-          class="sublevel-itch"
-          title="Play Sublevel on itch.io"
-          src="https://itch.io/embed/5189314?bg_color=000000&amp;fg_color=ffffff&amp;border_color=000000"
-          loading="lazy"
-          allowfullscreen>
-          <a href="https://drruud.itch.io/sublevel">Sublevel by DrRuud</a>
-        </iframe>
-      </section>
 
       <div class="result">
         <h3>Result</h3>
@@ -185,12 +346,43 @@
     </div>
   </main>
 
-
   <div class="end">
     <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
   </div>
   <div class="hazard"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
   <script src="ProjectImageLightbox.js"></script>
+  <script>
+    // Video's spelen alleen in beeld; per keer maar 1 video met geluid
+    (function () {
+      var vids = document.querySelectorAll('.clip video, .sl-hero-video');
+      function reset(v) {
+        v.muted = true;
+        var b = v.parentNode.querySelector('.sound-toggle');
+        if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = 'Sound off'; }
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var v = e.target;
+            if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            else { v.pause(); if (v.hasAttribute('data-audio')) reset(v); }
+          });
+        }, { threshold: 0.25 });
+        vids.forEach(function (v) { io.observe(v); });
+      }
+      document.querySelectorAll('.sound-toggle').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.parentNode.querySelector('video');
+          var on = v.muted;
+          vids.forEach(function (o) { if (o !== v && o.hasAttribute('data-audio')) reset(o); });
+          v.muted = !on;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.textContent = on ? 'Sound on' : 'Sound off';
+          if (v.paused) v.play();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
