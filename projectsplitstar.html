@@ -45,6 +45,7 @@
     body.splitstar-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
     body.splitstar-page .entry-text p { margin: 0 0 12px; color: #c3cbe6; }
     body.splitstar-page .entry-text p:last-child { margin-bottom: 0; }
+    body.splitstar-page .coop { display: inline-block; margin: 0 0 10px; padding: 3px 10px; border: 1px solid var(--coral); color: var(--coral); font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 
     /* Om en om: oneven chapter = video links, even chapter = video rechts */
     body.splitstar-page .chapter.alt .entry { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
@@ -119,7 +120,7 @@
         <a href="towerclash.html">Tower Clash</a>
         <a href="YouAreHaunted.html">VR Horror Castle</a>
       </div>
-      <div class="eyebrow">Group project &middot; 2.5D shooter</div>
+      <div class="eyebrow">Group project &middot; 2.5D sidescroller</div>
       <h1>Project Splitstar</h1>
       <p>A fast-paced 2.5D space shooter about dodging, aiming and surviving enemies and projectiles.</p>
       <div class="btns ss-hero-btns">
@@ -129,30 +130,37 @@
     </div>
   </header>
 
-  <!-- OVERVIEW -->
   <section class="overview" id="overview" aria-labelledby="overview-title">
     <div class="eyebrow">Overview</div>
-    <h2 id="overview-title">The Pilot</h2>
+    <h2 id="overview-title">Try to escape the spacebase</h2>
+    <p class="lead">
+      Sublevel is a horror game set in an abandoned underground bunker. You wake up alone and have to
+      find a way to escape before the scary creatures find you. It was built in Unreal Engine 5 by a
+      team of three in eight weeks. (Semester 2, Game Development)
+    </p>
     <dl class="project-details">
-      <div><dt>Genre</dt><dd>Shooter</dd></div>
-      <div><dt>Perspective</dt><dd>2.5D</dd></div>
-      <div><dt>Type</dt><dd>Team project</dd></div>
-      <div><dt>My focus</dt><dd>Player systems</dd></div>
+      <div><dt>Engine</dt><dd>Unreal Engine 5</dd></div>
+      <div><dt>Genre</dt><dd>2.5D Sidescroller</dd></div>
+      <div><dt>Team</dt><dd>4 people</dd></div>
+      <div><dt>Timeline</dt><dd>8 weeks</dd></div>
+      <div><dt>Main focus</dt><dd>Player</dd></div>
+      <div><dt>Semester 2</dt><dd>New experience</dd></div>
     </dl>
   </section>
 
   <!-- TRAILER -->
   <section class="trailer" id="trailer" aria-label="Splitstar trailer">
-    <div class="eyebrow">Trailer</div>
+    <div class="eyebrow"><h2>Trailer</h2></div>
     <figure>
       <video controls preload="metadata">
         <source src="Video/ProjectsplitstartrailerComp.mp4" type="video/mp4">
       </video>
     </figure>
+    <h3 class = "eyebrow">This video makes use of AI-generated voice-overs and an AI-generated poster.</h3>
   </section>
 
   <!-- Zijnavigatie (verschijnt vanaf chapter 1) -->
-  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#player" data-target="player" aria-label="Player">02<span>Player</span></a><a href="#health" data-target="health" aria-label="Health">03<span>Health</span></a><a href="#action" data-target="action" aria-label="In action">04<span>In action</span></a></nav>
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#movement" data-target="movement" aria-label="Movement">02<span>Movement</span></a><a href="#combat" data-target="combat" aria-label="Combat">03<span>Combat</span></a><a href="#health" data-target="health" aria-label="Health &amp; Power-ups">04<span>Health &amp; Power-ups</span></a><a href="#menu" data-target="menu" aria-label="Menu &amp; In Action">05<span>Menu &amp; In Action</span></a></nav>
 
   <!-- 01 PROTOTYPE -->
   <section class="chapter" id="prototype" aria-labelledby="prototype-title">
@@ -166,16 +174,25 @@
       </figure>
       <div class="entry-text">
         <h3>Aiming prototype</h3>
-        <p>Explain what you tested here and what it taught you.</p>
+        <p>Write about aiming prototype here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/Prototype.png" alt="Early Splitstar prototype testing aiming direction">
+      </figure>
+      <div class="entry-text">
+        <h3>Aiming prototype</h3>
+        <p>Write about aiming prototype here.</p>
       </div>
     </div>
   </section>
 
-  <!-- 02 PLAYER -->
-  <section class="chapter alt" id="player" aria-labelledby="player-title">
+  <!-- 02 MOVEMENT -->
+  <section class="chapter alt" id="movement" aria-labelledby="movement-title">
     <div class="chapter-head">
-      <div class="eyebrow">Chapter 02 &middot; Player systems</div>
-      <h2 id="player-title">Player</h2>
+      <div class="eyebrow">Chapter 02 &middot; Player movement</div>
+      <h2 id="movement-title">Movement</h2>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -184,23 +201,51 @@
       </figure>
       <div class="entry-text">
         <h3>Movement</h3>
-        <p>Explain how the movement works here.</p>
+        <p>Explain how movement works here.</p>
       </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Dash.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Dash.png" alt="Dash blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Dash</h3>
+        <p>Explain how dash works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Transform.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Transform.png" alt="Transform blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Transform</h3>
+        <p>Explain how transform works here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 COMBAT -->
+  <section class="chapter" id="combat" aria-labelledby="combat-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Weapons</div>
+      <h2 id="combat-title">Combat</h2>
     </div>
     <div class="entry">
       <figure class="clip">
         <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Aiming.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/Aiming.png" alt="Rotation and aiming blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <figure class="blueprint"><img src="Images/Splitstar/Aiming.png" alt="Rotation &amp; Aiming blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Rotation &amp; Aiming</h3>
-        <p>Explain how rotation and aiming work here.</p>
+        <p>Explain how rotation &amp; aiming works here.</p>
       </div>
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Shooting.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/Shooting.png" alt="Shooting blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Shoot.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Shoot.png" alt="Shooting blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Shooting</h3>
@@ -209,21 +254,32 @@
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Powerups.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/Powerups.png" alt="Power-ups blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Lazer.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Lazer.png" alt="Laser blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
-        <h3>Power-ups</h3>
-        <p>Explain how the power-ups work here.</p>
+        <h3>Laser</h3>
+        <p>Explain how laser works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/RapidFire.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/RapidFire.png" alt="Rapid Fire blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <span class="coop">Made together with a teammate</span>
+        <h3>Rapid Fire</h3>
+        <p>Explain how rapid fire works here.</p>
       </div>
     </div>
   </section>
 
-  <!-- 03 HEALTH -->
-  <section class="chapter" id="health" aria-labelledby="health-title">
+  <!-- 04 HEALTH &AMP; POWER-UPS -->
+  <section class="chapter alt" id="health" aria-labelledby="health-title">
     <div class="chapter-head">
-      <div class="eyebrow">Chapter 03 &middot; Health</div>
-      <h2 id="health-title">Segmented Health System</h2>
+      <div class="eyebrow">Chapter 04 &middot; Health &amp; power-ups</div>
+      <h2 id="health-title">Health &amp; Power-ups</h2>
     </div>
     <div class="entry">
       <div class="hud" id="hud" aria-label="Interactive health bar demo">
@@ -254,13 +310,65 @@
         </p>
       </div>
     </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Health.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Health.png" alt="Health pickup blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <span class="coop">Made together with a teammate</span>
+        <h3>Health pickup</h3>
+        <p>Explain how health pickup works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Healing.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Healing.png" alt="Healing blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Healing</h3>
+        <p>Explain how healing works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Shield.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Shield.png" alt="Bastion Shield blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Bastion Shield</h3>
+        <p>Explain how bastion shield works here.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Speed.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Speed.png" alt="Speed boost blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <span class="coop">Made together with a teammate</span>
+        <h3>Speed boost</h3>
+        <p>Explain how speed boost works here.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- 04 IN ACTION -->
-  <section class="chapter alt" id="action" aria-labelledby="action-title">
+  <!-- 05 MENU &AMP; IN ACTION -->
+  <section class="chapter" id="menu" aria-labelledby="menu-title">
     <div class="chapter-head">
-      <div class="eyebrow">Chapter 04 &middot; Final game</div>
-      <h2 id="action-title">In Action</h2>
+      <div class="eyebrow">Chapter 05 &middot; Interface &amp; final game</div>
+      <h2 id="menu-title">Menu &amp; In Action</h2>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/menu.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/menu.png" alt="Menu blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Menu</h3>
+        <p>Explain how menu works here.</p>
+      </div>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -268,7 +376,7 @@
       </figure>
       <div class="entry-text">
         <h3>In-game</h3>
-        <p>Explain what the player sees in the finished game here.</p>
+        <p>Write about in-game here.</p>
       </div>
     </div>
   </section>

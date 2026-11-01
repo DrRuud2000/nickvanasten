@@ -95,107 +95,39 @@
     }
 
     /* Zijnavigatie: alleen compacte blokjes links; tekst verschijnt bij hover */
-    body.sublevel-page nav.side-nav {
-      position: fixed;
-      top: 50%;
-      left: 8px;
-      right: auto;
-      bottom: auto;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 42px;
-      min-width: 0;
-      max-width: none;
-      height: auto;
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      opacity: 0;
-      pointer-events: none;
-      transform: translate(-8px, -50%);
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    body.sublevel-page nav.side-nav.show {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translate(0, -50%);
-    }
-    body.sublevel-page nav.side-nav a {
-      position: relative;
-      display: grid;
-      flex: 0 0 36px;
-      place-items: center;
-      box-sizing: border-box;
-      width: 36px;
-      min-width: 36px;
-      height: 36px;
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      border: 1px solid transparent;
-      box-shadow: none;
-      color: var(--mute);
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-decoration: none;
-      transition: color .2s, border-color .2s;
-    }
-    body.sublevel-page nav.side-nav a:hover,
-    body.sublevel-page nav.side-nav a:focus-visible,
-    body.sublevel-page nav.side-nav a.active {
-      color: var(--red2);
-      background: transparent;
-      border-color: var(--red2);
-      outline: 0;
-    }
-    body.sublevel-page nav.side-nav a span {
-      position: absolute;
-      top: 50%;
-      left: calc(100% + 10px);
-      right: auto;
-      z-index: 2;
-      width: max-content;
-      max-width: 220px;
-      padding: 5px 9px;
-      margin: 0;
-      background: var(--bg2);
-      border: 1px solid var(--line);
-      box-shadow: none;
-      color: var(--text);
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-50%);
-      transition: opacity .2s ease;
-    }
-    body.sublevel-page nav.side-nav a:hover span,
-    body.sublevel-page nav.side-nav a:focus-visible span {
-      opacity: 1;
-    }
+    body.sublevel-page nav.side-nav { position: fixed; top: 50%; left: 8px; right: auto; bottom: auto; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 42px; min-width: 0; max-width: none; height: auto; margin: 0; padding: 0; background: transparent; border: 0; box-shadow: none; opacity: 0; pointer-events: none; transform: translate(-8px, -50%); transition: opacity .25s ease, transform .25s ease; }
+    body.sublevel-page nav.side-nav.show { opacity: 1; pointer-events: auto; transform: translate(0, -50%); }
+    body.sublevel-page nav.side-nav a { position: relative; display: grid; flex: 0 0 36px; place-items: center; box-sizing: border-box; width: 36px; min-width: 36px; height: 36px; margin: 0; padding: 0; background: transparent; border: 1px solid transparent; box-shadow: none; color: var(--mute); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; transition: color .2s, border-color .2s; }
+    body.sublevel-page nav.side-nav a:hover, body.sublevel-page nav.side-nav a:focus-visible, body.sublevel-page nav.side-nav a.active { color: var(--red2); background: transparent; border-color: var(--red2); outline: 0; }
+    body.sublevel-page nav.side-nav a span { position: absolute; top: 50%; left: calc(100% + 10px); right: auto; z-index: 2; width: max-content; max-width: 220px; padding: 5px 9px; margin: 0; background: var(--bg2); border: 1px solid var(--line); box-shadow: none; color: var(--text); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .2s ease; }
+    body.sublevel-page nav.side-nav a:hover span, body.sublevel-page nav.side-nav a:focus-visible span { opacity: 1; }
     @media (max-width: 900px) {
-      body.sublevel-page nav.side-nav {
-        top: auto;
-        bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-        left: 50%;
-        right: auto;
-        flex-direction: row;
-        width: auto;
-        transform: translate(-50%, 12px);
-      }
+      body.sublevel-page nav.side-nav { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); left: 50%; right: auto; flex-direction: row; width: auto; transform: translate(-50%, 12px); }
       body.sublevel-page nav.side-nav.show { transform: translate(-50%, 0); }
       body.sublevel-page nav.side-nav a { flex-basis: 36px; }
       body.sublevel-page nav.side-nav a span { display: none; }
+    }
+
+    /* Iteration: zelfde opbouw als de andere chapters */
+    body.sublevel-page .chapter.iteration { padding: 64px 0 40px; }
+    body.sublevel-page .iteration .chapter-head p.lead { max-width: 820px; font-size: 1.05rem; }
+    body.sublevel-page .wrapup { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.sublevel-page .learned-intro { margin: 0; color: var(--text); font-size: 1.05rem; font-weight: 600; }
+    body.sublevel-page .learned-list { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: learned; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); border-bottom: 1px solid var(--line); }
+    body.sublevel-page .learned-list li { counter-increment: learned; display: flex; gap: 16px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); color: #c9c5c0; }
+    body.sublevel-page .learned-list li::before { content: counter(learned, decimal-leading-zero); flex: 0 0 auto; color: #c49a2c; font: 600 .72rem Arial, sans-serif; letter-spacing: .2em; }
+    body.sublevel-page .showcase { margin: clamp(32px, 5vw, 56px) 0 0; }
+    body.sublevel-page .showcase img { display: block; width: 100%; max-height: 640px; object-fit: cover; border: 1px solid var(--line); background: #000; }
+    body.sublevel-page .showcase figcaption { margin-top: 10px; color: var(--mute); font-size: .82rem; }
+    body.sublevel-page .iteration .end { padding: 36px 0 0; }
+    body.sublevel-page .iteration .end .btn { margin: 0; }
+    @media (max-width: 900px) {
+      body.sublevel-page .chapter.iteration { padding: 48px 0 32px; }
+      body.sublevel-page .iteration .end { padding-top: 28px; }
+    }
+    @media (max-width: 700px) {
+      body.sublevel-page .learned-list { grid-template-columns: 1fr; }
+      body.sublevel-page .learned-list li { padding: 14px 0; }
     }
   </style>
 </head>
@@ -237,14 +169,14 @@
     </div>
   </header>
 
-  <!-- OVERVIEW -->
+ 
   <section class="overview" id="overview" aria-labelledby="overview-title">
     <div class="eyebrow">Overview</div>
     <h2 id="overview-title">One bunker. One way out.</h2>
     <p class="lead">
       Sublevel is a horror game set in an abandoned underground bunker. You wake up alone and have to
-      find a way to escape before the creatures below find you. It was built in Unreal Engine 5 by a
-      team of three in eight weeks.
+      find a way to escape before the scary creatures find you. It was built in Unreal Engine 5 by a
+      team of three in eight weeks. (Semester 2, Game Development)
     </p>
     <dl class="project-details">
       <div><dt>Engine</dt><dd>Unreal Engine 5</dd></div>
@@ -252,6 +184,7 @@
       <div><dt>Team</dt><dd>3 people</dd></div>
       <div><dt>Timeline</dt><dd>8 weeks</dd></div>
       <div><dt>My focus</dt><dd>Gameplay &amp; sound</dd></div>
+      <div><dt>Semester 2</dt><dd>Best game of the semester</dd></div>
     </dl>
   </section>
 
@@ -272,7 +205,7 @@
       </figure>
       <div class="entry-text">
         <h3>Core Idea</h3>
-        <p>Explore, solve, survive. Getting this loop playable in the first weeks gave the three of us a shared base to build on.</p>
+        <p>Before we had a clear idea of what we were going to create, we researched various horror games. We then began roughing out our concept on a whiteboard and drafted an initial sketch of the map. After discussing the idea with several instructors, we realized that our scope was too ambitious; consequently, we removed elements such as cutscenes and the "turn on the power" mechanic from the final product.</p>
       </div>
     </div>
     <div class="entry">
@@ -281,7 +214,7 @@
       </figure>
       <div class="entry-text">
         <h3>Prototype Scare</h3>
-        <p>A simple scare sequence designed to test the effectiveness of our sound design and pacing.</p>
+        <p>Before the three of us began working on the actual game, we each created our own prototype. I took charge of the player-related elements, developing a tension-building scare mechanic, a hiding spot, and player movement.</p>
       </div>
     </div>
   </section>
@@ -291,7 +224,7 @@
     <div class="chapter-head">
       <div class="eyebrow">Chapter 02 &middot; Movement</div>
       <h2 id="player-title">Player</h2>
-      <p>For Sublevel, I designed the player using player characters and blueprints.</p>
+      <p>For Sublevel, I designed the player by using a player character and blueprints.</p>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -311,7 +244,7 @@
       </figure>
       <div class="entry-text">
         <h3>Camera</h3>
-        <p>The camera and view feel make exploring the bunker natural without losing tension.</p>
+        <p>Regarding the camera effect, I focused specifically on making the first-person perspective feel as authentic as possible. To achieve this, I implemented a head-bob feature. Through various playtests and feedback sessions, we fine-tuned the speed and intensity of the head-bob to ensure the best possible player experience as the character's head moves in-game.</p>
       </div>
     </div>
     <div class="entry">
@@ -349,7 +282,7 @@
       </figure>
       <div class="entry-text">
         <h3>Door</h3>
-        <p>Explain how the door works here: opening, locked states and the sound that goes with it.</p>
+        <p>We didn&apos;t want to make it too easy for the player to escape the bunker, so I added a keycard and a door that work in tandem. The door and the keycard are also placed far apart to ensure the escape isn’t too simple. Following several playtests, I made it easier for the player to locate the keycard by using light and various objects to help guide them toward it.</p>
       </div>
     </div>
     <div class="entry">
@@ -360,7 +293,7 @@
       </figure>
       <div class="entry-text">
         <h3>Valve</h3>
-        <p>Explain how the valve works here: how the player turns it, what feedback they get and what it opens up.</p>
+        <p>At the beginning, it appears that there is only one direction to go. The player also encounters a flooded room containing an enemy. I have created a guide on how the player can drain the room to progress with the story. Furthermore, through the use of sound effects and audio cues, I have made it clear that the enemy has escaped from the room, thereby opening up a path.</p>
       </div>
     </div>
     <div class="entry">
@@ -370,7 +303,7 @@
       </figure>
       <div class="entry-text">
         <h3>Locker (prototype)</h3>
-        <p>Explain the locker prototype here: how it started and what you would improve.</p>
+        <p>During the prototyping phase and the initial conceptual stage of Sublevel, I created hiding spots. These were intended to allow the player to conceal themselves and evade enemies (similar to The Outlast Trials). While this feature is present in Sublevel, it is not a core mechanic and remains unfinished. Following several playtests and feedback sessions, we realized that we lacked the time required to fully complete this feature.</p>
       </div>
     </div>
   </section>
@@ -380,7 +313,7 @@
     <div class="chapter-head">
       <div class="eyebrow">Chapter 04 &middot; Sound design</div>
       <h2 id="atmosphere-title">Atmosphere</h2>
-      <p>Ambience, interaction sounds, warning cues and distant bangs make the bunker feel alive. Turn the sound on.</p>
+      <p>My main focus was to add ambient sounds and to scare the player through visuals and sound.</p>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -390,7 +323,7 @@
       </figure>
       <div class="entry-text">
         <h3>Ambience</h3>
-        <p>Each area has its own ambience, and repeated sounds are varied so nothing becomes predictable.</p>
+        <p>For this game, I needed to create the impression that the player is inside an abandoned bunker. To achieve this, I incorporated sounds like those of a radiator and faint, distant dripping—subtle background audio designed to make the player feel truly immersed in the environment. The goal was to guide the player through the level without providing too many explicit hints. During the showcase, I received many compliments on my sound design.</p>
       </div>
     </div>
     <div class="entry">
@@ -401,7 +334,7 @@
       </figure>
       <div class="entry-text">
         <h3>Jumpscare</h3>
-        <p>Audio cues and environmental events build anticipation before an encounter instead of relying only on sudden scares.</p>
+        <p>My task was to scare the player using sounds and visuals. To achieve this, I created a "Jefrey_Jumpscare." In this sequence, a character appears on the player's camera, the lights go out, and the player&apos;s view is locked, forcing them to look straight ahead. Many people were truly startled by this fantastic jumpscare! : &#41;</p>
       </div>
     </div>
   </section>
@@ -411,7 +344,7 @@
     <div class="chapter-head">
       <div class="eyebrow">Chapter 05 &middot; UI</div>
       <h2 id="widgets-title">Widgets</h2>
-      <p>A minimal interface that never pulls the player out of the bunker.</p>
+      <p>User interface that guides the player through the bunker and provides information</p>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -419,8 +352,8 @@
         <figure class="blueprint"><img src="Images/Sublevel/Timer.png" alt="Interaction prompts blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
-        <h3>Interaction prompts</h3>
-        <p>Prompts, pickups and menus that appear only when they are needed.</p>
+        <h3>UI Indicators</h3>
+        <p>I had to guide the player and provide information as they moved through the bunker. To do this, I created a widget system that displays information to the player, triggered at specific moments. In this example, you can see the time the player needs to survive.</p>
       </div>
     </div>
     <div class="entry">
@@ -429,7 +362,7 @@
       </figure>
       <div class="entry-text">
         <h3>Interaction prompts</h3>
-        <p>Prompts, pickups and menus that appear only when they are needed.</p>
+        <p>I have checked all the interactables and looked at what the player might do wrong. If the player does not follow the story in the correct way, they will soon be made aware of this through a widget.</p>
       </div>
     </div>
     <div class="entry">
@@ -438,44 +371,41 @@
         <figure class="blueprint"><img src="Images/Sublevel/Widgets.png" alt="Interaction prompts blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
-        <h3>Interaction prompts</h3>
-        <p>Prompts, pickups and menus that appear only when they are needed.</p>
+        <h3>Game Explanation</h3>
+        <p>Before the player enters the bunker, I have opted to include a loading screen that displays all the controls, ensuring the player knows in advance what actions they can take when facing danger. This loading screen also serves to initiate the main level.</p>
       </div>
     </div>
   </section>
 
-  <main class="wrap">
-    <div class="project-copy">
-      <section class="sublevel-story" aria-labelledby="sublevel-story-title">
-        <div class="eyebrow">The game</div>
-        <h2 id="sublevel-story-title">A way out of the darkness</h2>
-        <p class="lead">
-          You wake up alone in an abandoned underground facility where a scientist once performed
-          experiments on people. Explore the bunker, solve the obstacles in your way and find a
-          route to the surface before the creatures below find you.
-        </p>
-        <p>
-          The bunker is more than a setting: its dark corridors, unsettling sounds, interactive
-          objects and sudden scares make every step feel uncertain. You never know what is waiting
-          around the next corner.
-        </p>
-      </section>
+  <!-- ITERATION -->
+  <main class="chapter alt iteration" id="story" aria-labelledby="sublevel-story-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Iteration</div>
+      <h2 id="sublevel-story-title">The end of a new beginning</h2>
+      <p class="lead">
+        After the eight weeks and this project, I was very pleased with the final result.
+        As a team, we had given our all to make Sublevel a great game and to ensure it truly felt like a horror experience.
+        During the showcase event, we received many compliments from fellow students and lecturers; people hadn&apos;t expected the game to look so good. We also witnessed plenty of jump scares from those who played it.
+        After working on this game, it became immediately clear to me that I want to create games rather than just play them.
+      </p>
+    </div>
 
-      <div class="result">
-        <h3>Result</h3>
-        <p>
-          These systems helped turn the bunker from a static environment into a responsive and tense
-          horror experience. Playtesting showed clearer navigation, stronger interaction, and a
-          more uncomfortable atmosphere, which supported the intended horror experience.
-        </p>
+    <div class="wrapup">
+      <p class="learned-intro">I learned a lot about game design during this project.</p>
+      <ul class="learned-list">
+        <li>Making choices regarding the addition and omission of mechanics</li>
+        <li>How best to incorporate feedback from others into the game</li>
+        <li>Using Unreal Engine</li>
+        <li>Creating a game in which the player feels tension</li>
+      </ul>
+
+      <div class="end">
+        <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+        <a class="btn" href="#top">Go back to the top &uarr;</a>
       </div>
     </div>
   </main>
 
-  <div class="end">
-    <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
-    <a class="btn" href="#top">Go back to the top &uarr;</a>
-  </div>
   <div class="hazard"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
   <script src="ProjectImageLightbox.js"></script>
