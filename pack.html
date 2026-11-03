@@ -4,11 +4,94 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>the pack | nick van asten</title>
-  <meta name="description" content="Enter The Pack: a darkly comic escape game where every locked room is a new challenge and a cruel host turns survival into a show.">
+  <meta name="description" content="Pack: a darkly comic escape game idea by Nick van Asten, where every locked room is a new challenge and a cruel host turns survival into a show.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
+  <style>
+    /* ===== Pack: layout zoals Sublevel (voeg later samen met Portfolio.css) ===== */
+    body.pack-page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+    body.pack-page > * { width: 100%; }
+    body.pack-page > footer { margin-top: auto; }
+    body.pack-page { --gold: #c49a2c; --soft: #d8cbe6; }
+
+    /* Hero met video als achtergrond */
+    body.pack-page .sl-hero { position: relative; display: grid; place-items: center; min-height: clamp(460px, calc(100svh - 70px), 860px); padding: 40px 6vw; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
+    body.pack-page .sl-hero-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+    body.pack-page .sl-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11, 7, 17, .6), rgba(11, 7, 17, .3) 45%, rgba(11, 7, 17, .92)); }
+    body.pack-page .sl-hero h1 { font-size: clamp(3.2rem, 13vw, 8.5rem); line-height: 1; text-transform: uppercase; letter-spacing: .08em; }
+    body.pack-page .sl-hero p { color: #e8def2; text-shadow: 0 2px 14px #000; }
+    body.pack-page .sl-hero-btns { margin-top: 30px; }
+    body.pack-page .sl-hero .btn:not(.primary) { background: rgba(0, 0, 0, .45); }
+    body.pack-page .sl-hero .project-page-nav a, body.pack-page .sl-hero .project-page-nav span { background: rgba(11, 7, 17, .6); }
+
+    /* Overview */
+    body.pack-page .overview { max-width: 760px; margin: clamp(56px, 9vw, 110px) auto clamp(56px, 7vw, 88px); padding: 0 6vw; text-align: left; }
+    body.pack-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+    body.pack-page .overview p { color: var(--soft); }
+    body.pack-page .eyebrow { color: var(--red2); }
+
+    /* Chapters */
+    body.pack-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
+    body.pack-page .chapter.alt { background: var(--bg2); border-bottom: 1px solid var(--line); }
+    body.pack-page .chapter-head, body.pack-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.pack-page .chapter-head { margin-bottom: 40px; }
+    body.pack-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: var(--soft); }
+    body.pack-page .entry { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
+    body.pack-page .entry:last-child { margin-bottom: 0; }
+    body.pack-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    body.pack-page .entry-text p { margin: 0 0 12px; color: var(--soft); }
+    body.pack-page .entry-text p:last-child { margin-bottom: 0; }
+    body.pack-page .entry.solo { grid-template-columns: minmax(0, 1fr); max-width: 900px; }
+    body.pack-page .chapter.alt .entry:not(.solo) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
+    body.pack-page .chapter.alt .entry:not(.solo) .clip { order: 2; }
+
+    body.pack-page .clip { position: relative; aspect-ratio: 16 / 9; margin: 0; background: #000; border: 1px solid var(--line); overflow: hidden; }
+    body.pack-page .clip video, body.pack-page .clip > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    body.pack-page .sound-toggle { position: absolute; left: 10px; bottom: 10px; z-index: 3; min-height: 40px; padding: 8px 14px; background: rgba(0, 0, 0, .75); color: var(--text); border: 1px solid var(--line); font: 600 .74rem Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: .2s; }
+    body.pack-page .sound-toggle:hover, body.pack-page .sound-toggle:focus-visible { border-color: var(--red2); outline: 0; }
+    body.pack-page .sound-toggle[aria-pressed="true"] { background: var(--red); border-color: var(--red2); }
+
+    /* Kaarten (host-eigenschappen) */
+    body.pack-page .traits { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.pack-page .trait { padding: 22px; background: var(--card); border: 1px solid var(--line); border-top: 2px solid var(--gold); }
+    body.pack-page .trait h3 { color: var(--gold); font-size: 1.05rem; margin-bottom: 8px; }
+    body.pack-page .trait p { margin: 0; color: var(--soft); font-size: .93rem; }
+
+    /* Zijnavigatie */
+    body.pack-page nav.side-nav { position: fixed; top: 50%; left: 8px; right: auto; bottom: auto; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 42px; height: auto; margin: 0; padding: 0; background: transparent; border: 0; box-shadow: none; opacity: 0; pointer-events: none; transform: translate(-8px, -50%); transition: opacity .25s ease, transform .25s ease; }
+    body.pack-page nav.side-nav.show { opacity: 1; pointer-events: auto; transform: translate(0, -50%); }
+    body.pack-page nav.side-nav a { position: relative; display: grid; flex: 0 0 36px; place-items: center; width: 36px; height: 36px; margin: 0; padding: 0; border: 1px solid transparent; color: var(--mute); font-size: .72rem; font-weight: 700; letter-spacing: .08em; transition: color .2s, border-color .2s; }
+    body.pack-page nav.side-nav a:hover, body.pack-page nav.side-nav a:focus-visible, body.pack-page nav.side-nav a.active { color: var(--red2); border-color: var(--red2); outline: 0; }
+    body.pack-page nav.side-nav a span { position: absolute; top: 50%; left: calc(100% + 10px); width: max-content; max-width: 220px; padding: 5px 9px; background: var(--bg2); border: 1px solid var(--line); color: var(--text); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .2s ease; }
+    body.pack-page nav.side-nav a:hover span, body.pack-page nav.side-nav a:focus-visible span { opacity: 1; }
+
+    /* Iteration */
+    body.pack-page .chapter.iteration { padding: 64px 0 40px; }
+    body.pack-page .iteration .chapter-head p.lead { max-width: 820px; font-size: 1.05rem; }
+    body.pack-page .wrapup { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.pack-page .learned-intro { margin: 0; color: var(--text); font-size: 1.05rem; font-weight: 600; }
+    body.pack-page .learned-list { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: learned; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); border-bottom: 1px solid var(--line); }
+    body.pack-page .learned-list li { counter-increment: learned; display: flex; gap: 16px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); color: var(--soft); }
+    body.pack-page .learned-list li::before { content: counter(learned, decimal-leading-zero); flex: 0 0 auto; color: var(--gold); font: 600 .72rem Arial, sans-serif; letter-spacing: .2em; }
+    body.pack-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 36px 0 0; }
+    body.pack-page .end .btn { margin: 0; }
+
+    @media (max-width: 900px) {
+      body.pack-page .chapter { padding: 48px 0; }
+      body.pack-page .entry, body.pack-page .chapter.alt .entry:not(.solo) { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+      body.pack-page .chapter.alt .entry:not(.solo) .clip { order: 0; }
+      body.pack-page nav.side-nav { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); left: 50%; flex-direction: row; width: auto; transform: translate(-50%, 12px); }
+      body.pack-page nav.side-nav.show { transform: translate(-50%, 0); }
+      body.pack-page nav.side-nav a span { display: none; }
+    }
+    @media (max-width: 700px) {
+      body.pack-page .sl-hero { padding: 28px 20px; }
+      body.pack-page .sl-hero-btns .btn { flex: 1 1 100%; max-width: 280px; text-align: center; }
+      body.pack-page .learned-list { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="pack-page">
+<body class="pack-page" id="top">
   <nav>
     <a class="brand" href="index.html" aria-label="Nick van Asten - home">
       <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
@@ -23,109 +106,226 @@
   </nav>
   <div class="plate"></div>
 
-  <header class="project-hero">
-    <div class="lamp" aria-hidden="true"></div>
+  <header class="project-hero sl-hero">
+    <video class="sl-hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="Video/PackvideoComp.mp4" type="video/mp4">
+    </video>
     <div class="wrap">
       <div class="project-page-nav" role="navigation" aria-label="Project navigation">
         <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
         <a href="sublevel.html">Sublevel</a>
         <a href="projectsplitstar.html">Project Splitstar</a>
+        <span aria-current="page">Pack</span>
         <a href="towerclash.html">Tower Clash</a>
         <a href="YouAreHaunted.html">VR Horror Castle</a>
-        <span aria-current="page">Pack</span>
       </div>
       <div class="eyebrow">Project file &middot; Escape challenge</div>
       <h1>Pack</h1>
-      <p>
-        Escape a surreal bunker, one dangerous room at a time, while its twisted host turns your struggle into his
-        show.
-      </p>
+      <p>A game idea of my own: escape a surreal bunker, one dangerous room at a time, while a twisted host turns your struggle into his show.</p>
+      <div class="btns sl-hero-btns">
+        <a class="btn primary" href="#why">Why I design</a>
+        <a class="btn" href="#host">Meet The Pack</a>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="project-copy">
-      <dl class="project-details">
-        <div><dt>Engine</dt><dd>Unreal Engine</dd></div>
-        <div><dt>Genre</dt><dd>Escape / dark comedy</dd></div>
-        <div><dt>Experience</dt><dd>Single-player escape game</dd></div>
-        <div><dt>Core hook</dt><dd>A host who watches every move</dd></div>
-      </dl>
+  <section class="overview" id="overview" aria-labelledby="overview-title">
+    <div class="eyebrow">Overview</div>
+    <h2 id="overview-title">A game you never agreed to play</h2>
+    <p class="lead">
+      You wake up alone in a locked facility and have no idea how you got there. A voice explains the rules:
+      escape every room to get closer to freedom and to the prize The Pack keeps promising. Every room is a new
+      puzzle, trap or test. Pack is a game idea that I came up with myself, and this page shows how I turn an idea
+      into a story and a game.
+    </p>
+    <dl class="project-details">
+      <div><dt>Engine</dt><dd>Unreal Engine</dd></div>
+      <div><dt>Genre</dt><dd>Escape / dark comedy</dd></div>
+      <div><dt>Experience</dt><dd>Single-player</dd></div>
+      <div><dt>Core hook</dt><dd>A host who watches every move</dd></div>
+      <div><dt>My focus</dt><dd>Concept &amp; story</dd></div>
+    </dl>
+  </section>
 
-      <div class="eyebrow">The Game Idea</div>
-      <h2>A game you never agreed to play</h2>
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#why" data-target="why" aria-label="Why I design">01<span>Why I design</span></a><a href="#story" data-target="story" aria-label="Storytelling">02<span>Storytelling</span></a><a href="#host" data-target="host" aria-label="The host">03<span>The host</span></a><a href="#rooms" data-target="rooms" aria-label="Rooms">04<span>Rooms</span></a><a href="#robots" data-target="robots" aria-label="Robots">05<span>Robots</span></a></nav>
+
+  <!-- 01 WHY -->
+  <section class="chapter alt" id="why" aria-labelledby="why-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 01 &middot; Game design</div>
+      <h2 id="why-title">Why I design games</h2>
+      <p>I don't just want to play games, I want to make them. Pack is where that shows the most.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip"><img src="Images/PackBunker.png" alt="Concept art: the bunker"></figure>
+      <div class="entry-text">
+        <h3>What I enjoy</h3>
+        <p>What I like most about game design is working out how a player will feel. I think about what they see, what they do and what they fear, and then I build the game around that. I also enjoy development itself: solving problems, testing, and seeing an idea slowly become something you can actually play.</p>
+        <p>I have a big imagination, and you can see that in every project in this portfolio. Sublevel is a bunker full of tension, Splitstar is a world with its own rules, Tower Clash is a battle, and the VR Horror Castle puts you inside the story. Pack is the most personal one, because everything in it, from the rooms to the host, comes from my own head.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 STORYTELLING -->
+  <section class="chapter" id="story" aria-labelledby="story-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 02 &middot; Narrative</div>
+      <h2 id="story-title">Why storytelling</h2>
+      <p>A good mechanic is fun for a minute. A good story makes the player care about it.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip"><img src="Images/ThePack.png" alt="Concept art: The Pack"></figure>
+      <div class="entry-text">
+        <h3>From idea to story</h3>
+        <p>For Pack I started with a simple question: who would build a place like this, and why? The answer became the host. His obsession with games began with family tragedies tied to games of Ludo and Bully, and that explains why he turns games into dangerous spectacles.</p>
+        <p>Because the host has a past, every room means something. The puzzles are not random, they are part of his show. That is what I want to do as a designer: tell a story through the game itself, so the player discovers it instead of just reading it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 HOST -->
+  <section class="chapter alt" id="host" aria-labelledby="host-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Character</div>
+      <h2 id="host-title">The Pack</h2>
+      <p>The Pack is the mastermind behind the facility. He is the voice in your ear, on the screens and sometimes even on a hoverboard.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/PackFail.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text">
+        <h3>When you fail</h3>
+        <p>When you lose a challenge, you respawn at the start of that room and The Pack reacts. Sometimes he is angry, sometimes he finds it hilarious, and sometimes he is almost sad that you failed. Turn the sound on to hear what he says.</p>
+        <p>Failing is part of the game. You can try a different approach without losing all your progress, and his comments make every retry feel personal.</p>
+      </div>
+    </div>
+    <div class="traits">
+      <article class="trait"><h3>Angry, but amused</h3><p>He gets mad when you fail, but he also enjoys the show. Often both at the same time.</p></article>
+      <article class="trait"><h3>Quick to get attached</h3><p>He grows fond of his participants fast, and he doesn't give up on them easily.</p></article>
+      <article class="trait"><h3>In your head</h3><p>He loves torturing his players and messing with their minds. That is what makes him charming and hateful.</p></article>
+    </div>
+  </section>
+
+  <!-- 04 ROOMS -->
+  <section class="chapter" id="rooms" aria-labelledby="rooms-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 04 &middot; Level design</div>
+      <h2 id="rooms-title">Room by room</h2>
+      <p>Every locked room has its own puzzle, trap or test, and the challenges get harder the deeper you go.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/PackvideoComp.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text">
+        <h3>Dark comedy</h3>
+        <p>The facility is built from stark, box-like rooms with purple lights and subtle circus details. The look is unsettling like a game show, and it mixes real tension with The Pack's absurd, cruel humour.</p>
+        <p>I wanted the player to feel toyed with instead of just tested. Study the room, take a risk and figure out how it works before it gets the better of you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ROBOTS -->
+  <section class="chapter alt" id="robots" aria-labelledby="robots-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 05 &middot; Worldbuilding</div>
+      <h2 id="robots-title">Little helpers</h2>
+      <p>The Pack doesn't build his show alone.</p>
+    </div>
+    <div class="entry solo">
+      <div class="entry-text">
+        <h3>The robot minions</h3>
+        <p>Small robots work as his henchmen. They prepare and maintain the rooms so the show can always continue. They also drive the story: one room is still under construction, and that is your chance to slip into the hidden corridors, break out of the challenge loop and find out what The Pack is really doing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITERATION -->
+  <main class="chapter iteration" id="end" aria-labelledby="pack-end-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Iteration</div>
+      <h2 id="pack-end-title">Escape the show</h2>
       <p class="lead">
-        You wake up alone in a locked facility with no idea how you got there. A voice introduces the rules: escape
-        each room to get closer to freedom—and to the prize The Pack keeps promising. Every room is a new puzzle,
-        trap or test. You have to study your surroundings, take risks and figure out how the room works before it
-        gets the better of you.
+        The Pack promises a cash prize, but the deeper you go, the more the game becomes about taking back control.
+        Will you play by his rules, or use the unfinished room to find a way out? Pack is still an idea, but it shows
+        how I think as a designer: I start with a feeling, build a world and a character around it, and then turn it
+        into something a player can experience.
       </p>
-
-      <div class="gallery">
-        <figure><img src="Images/PackBunker.png" alt="Concept art: the bunker"><figcaption>Concept: the bunker</figcaption></figure>
-        <figure><img src="Images/ThePack.png" alt="Concept art: The Pack"><figcaption>Concept: the host</figcaption></figure>
-      </div>
-
-      <h2>What makes the game</h2>
-      <div class="contrib">
-        <article class="c-card">
-          <h3>A room-by-room challenge</h3>
-          <p>Each locked room has its own puzzle, trap or dangerous test. The challenges grow more demanding as you move deeper into the facility, keeping every new door a question mark.</p>
-        </article>
-        <article class="c-card">
-          <h3>The Pack is always watching</h3>
-          <p>Through an earpiece, loudspeakers and screens, The Pack gives instructions, reacts to your choices and taunts you when you fail. He treats your fear like entertainment—and makes even a simple room feel personal.</p>
-        </article>
-        <article class="c-card">
-          <h3>Dark comedy in a strange show</h3>
-          <p>The facility is built from stark, box-like rooms, touched by purple lights and subtle circus details. Its unsettling game-show feel mixes real tension with The Pack's absurd, cruel humour.</p>
-        </article>
-      </div>
-
-      <h2>Failure is part of the game</h2>
-      <p>
-        Losing a challenge sends you back to the start of that room, not the beginning of the whole game. You can
-        try a different approach while The Pack comments on your failure. That keeps the stakes tense without
-        making experimentation feel like a waste of progress.
-      </p>
-
-      <h2>There is more behind the rooms</h2>
-      <p>
-        The Pack is not just the voice announcing each challenge: he is the mastermind behind the facility and its
-        spectacle. Small robots prepare and maintain the rooms, making sure the show can continue. But one room is
-        still under construction. It offers a chance to slip into the hidden corridors, break out of the challenge
-        loop and discover what The Pack is really doing.
-      </p>
-      <p>
-        The host himself is a strange mix of showman and menace. His obsession with games began with family
-        tragedies tied to games of Ludo and Bully, shaping his desire to turn games into dangerous spectacles.
-        Most of the time he stays out of sight; when he does appear, it might be on a screen—or even on a
-        hoverboard.
-      </p>
-
-      <div class="project-media">
-        <video controls preload="metadata">
-          <source src="Video/PackvideoComp.mp4" type="video/mp4">
-          Je browser ondersteunt geen video.
-        </video>
-      </div>
-
-      <div class="result">
-        <h3>Escape the show</h3>
-        <p>
-          The Pack promises a cash prize, but the deeper you go, the more the game becomes about taking back
-          control. Will you play by his rules—or use the unfinished room to find a way out?
-        </p>
+    </div>
+    <div class="wrapup">
+      <p class="learned-intro">What Pack shows about me as a game designer.</p>
+      <ul class="learned-list">
+        <li>Turning a big idea into a clear game concept</li>
+        <li>Building a character that drives the story</li>
+        <li>Balancing tension and humour</li>
+        <li>Keeping failure fun so players want to try again</li>
+      </ul>
+      <div class="end">
+        <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+        <a class="btn" href="#top">Go back to the top &uarr;</a>
       </div>
     </div>
   </main>
 
-  <div class="end">
-    <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
-  </div>
   <div class="plate"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
 
   <script src="ProjectImageLightbox.js"></script>
+  <script>
+    // Video's spelen alleen in beeld; per keer maar 1 video met geluid
+    (function () {
+      var vids = document.querySelectorAll('.clip video, .sl-hero-video');
+      function reset(v) {
+        v.muted = true;
+        var b = v.parentNode.querySelector('.sound-toggle');
+        if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = 'Sound off'; }
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var v = e.target;
+            if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            else { v.pause(); if (v.hasAttribute('data-audio')) reset(v); }
+          });
+        }, { threshold: 0.25 });
+        vids.forEach(function (v) { io.observe(v); });
+      }
+      document.querySelectorAll('.sound-toggle').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.parentNode.querySelector('video');
+          var on = v.muted;
+          vids.forEach(function (o) { if (o !== v && o.hasAttribute('data-audio')) reset(o); });
+          v.muted = !on;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.textContent = on ? 'Sound on' : 'Sound off';
+          if (v.paused) v.play();
+        });
+      });
+    })();
+
+    // Zijnavigatie
+    (function () {
+      var nav = document.getElementById('side-nav');
+      var secs = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+      var links = nav.querySelectorAll('a[data-target]');
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var h = window.innerHeight;
+        nav.classList.toggle('show', secs[0].getBoundingClientRect().top < h * 0.5);
+        var cur = null;
+        secs.forEach(function (s) { if (s.getBoundingClientRect().top <= h * 0.4) cur = s.id; });
+        links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-target') === cur); });
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </body>
 </html>

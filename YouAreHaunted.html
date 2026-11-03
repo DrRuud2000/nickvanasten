@@ -4,11 +4,96 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>vr horror castle | nick van asten</title>
-  <meta name="description" content="A VR horror game set in an abandoned castle with two ghosts, Tony and Barry. Nick van Asten worked on game flow, map design and sound design.">
+  <meta name="description" content="You Are Haunted: a VR horror game set in an abandoned castle with two ghosts, Tony and Barry. Nick van Asten worked on game flow, map design and sound design.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
+  <style>
+    /* ===== You Are Haunted: layout zoals Sublevel, met verticale video's (voeg later samen met Portfolio.css) ===== */
+    body.vr-page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; --gold: #c6a15b; --soft: #d0c6b3; }
+    body.vr-page > * { width: 100%; }
+    body.vr-page > footer { margin-top: auto; }
+    body.vr-page .eyebrow { color: var(--red2); }
+
+    /* Hero: verticale video in een telefoonkader + dezelfde video als vage achtergrond */
+    body.vr-page .sl-hero { position: relative; display: grid; place-items: center; min-height: clamp(520px, calc(100svh - 70px), 900px); padding: 40px 6vw; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
+    body.vr-page .sl-hero-video { position: absolute; inset: -40px; z-index: -2; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(26px) brightness(.55) saturate(.9); }
+    body.vr-page .sl-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(9, 8, 7, .55), rgba(9, 8, 7, .35) 45%, rgba(9, 8, 7, .92)); }
+    body.vr-page .hero-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 340px); gap: clamp(28px, 5vw, 72px); align-items: center; width: 100%; max-width: 1100px; margin: 0 auto; }
+    body.vr-page .hero-text { text-align: left; }
+    body.vr-page .hero-text .project-page-nav { justify-content: flex-start; }
+    body.vr-page .sl-hero h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 1.05; text-transform: uppercase; letter-spacing: .06em; }
+    body.vr-page .sl-hero p { margin: 18px 0 0; max-width: 520px; color: #e6dfd0; text-shadow: 0 2px 14px #000; }
+    body.vr-page .sl-hero-btns { margin-top: 30px; justify-content: flex-start; }
+    body.vr-page .sl-hero .btn:not(.primary) { background: rgba(0, 0, 0, .45); }
+    body.vr-page .sl-hero .project-page-nav a, body.vr-page .sl-hero .project-page-nav span { background: rgba(9, 8, 7, .6); }
+
+    /* Overview */
+    body.vr-page .overview { max-width: 760px; margin: clamp(56px, 9vw, 110px) auto clamp(56px, 7vw, 88px); padding: 0 6vw; text-align: left; }
+    body.vr-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+    body.vr-page .overview p { color: var(--soft); }
+
+    /* Chapters */
+    body.vr-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
+    body.vr-page .chapter.alt { background: var(--bg2); border-bottom: 1px solid var(--line); }
+    body.vr-page .chapter-head, body.vr-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.vr-page .chapter-head { margin-bottom: 40px; }
+    body.vr-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: var(--soft); }
+    body.vr-page .entry { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
+    body.vr-page .entry:last-child { margin-bottom: 0; }
+    body.vr-page .entry.wide { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
+    body.vr-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    body.vr-page .entry-text p { margin: 0; color: var(--soft); }
+    body.vr-page .chapter.alt .entry { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); }
+    body.vr-page .chapter.alt .entry.wide { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
+    body.vr-page .chapter.alt .entry .clip { order: 2; }
+
+    body.vr-page .clip { position: relative; width: 100%; aspect-ratio: 9 / 16; margin: 0; background: #000; border: 1px solid var(--line); overflow: hidden; }
+    body.vr-page .entry.wide .clip { aspect-ratio: 16 / 9; }
+    body.vr-page .clip video, body.vr-page .clip > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    body.vr-page .sound-toggle { position: absolute; left: 10px; bottom: 10px; z-index: 3; min-height: 40px; padding: 8px 14px; background: rgba(0, 0, 0, .75); color: var(--text); border: 1px solid var(--line); font: 600 .74rem Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: .2s; }
+    body.vr-page .sound-toggle:hover, body.vr-page .sound-toggle:focus-visible { border-color: var(--red2); outline: 0; }
+    body.vr-page .sound-toggle[aria-pressed="true"] { background: var(--red); border-color: var(--red2); }
+    body.vr-page .hero-phone { max-width: 340px; justify-self: end; border-color: var(--red); box-shadow: 0 0 60px rgba(198, 161, 91, .18); }
+
+    /* Zijnavigatie */
+    body.vr-page nav.side-nav { position: fixed; top: 50%; left: 8px; right: auto; bottom: auto; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 42px; height: auto; margin: 0; padding: 0; background: transparent; border: 0; box-shadow: none; opacity: 0; pointer-events: none; transform: translate(-8px, -50%); transition: opacity .25s ease, transform .25s ease; }
+    body.vr-page nav.side-nav.show { opacity: 1; pointer-events: auto; transform: translate(0, -50%); }
+    body.vr-page nav.side-nav a { position: relative; display: grid; flex: 0 0 36px; place-items: center; width: 36px; height: 36px; margin: 0; padding: 0; border: 1px solid transparent; color: var(--mute); font-size: .72rem; font-weight: 700; letter-spacing: .08em; transition: color .2s, border-color .2s; }
+    body.vr-page nav.side-nav a:hover, body.vr-page nav.side-nav a:focus-visible, body.vr-page nav.side-nav a.active { color: var(--red2); border-color: var(--red2); outline: 0; }
+    body.vr-page nav.side-nav a span { position: absolute; top: 50%; left: calc(100% + 10px); width: max-content; max-width: 220px; padding: 5px 9px; background: var(--bg2); border: 1px solid var(--line); color: var(--text); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .2s ease; }
+    body.vr-page nav.side-nav a:hover span, body.vr-page nav.side-nav a:focus-visible span { opacity: 1; }
+
+    /* Iteration */
+    body.vr-page .chapter.iteration { padding: 64px 0 40px; }
+    body.vr-page .iteration .chapter-head p.lead { max-width: 820px; font-size: 1.05rem; }
+    body.vr-page .wrapup { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.vr-page .learned-intro { margin: 0; color: var(--text); font-size: 1.05rem; font-weight: 600; }
+    body.vr-page .learned-list { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: learned; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); border-bottom: 1px solid var(--line); }
+    body.vr-page .learned-list li { counter-increment: learned; display: flex; gap: 16px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); color: var(--soft); }
+    body.vr-page .learned-list li::before { content: counter(learned, decimal-leading-zero); flex: 0 0 auto; color: var(--gold); font: 600 .72rem Arial, sans-serif; letter-spacing: .2em; }
+    body.vr-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 36px 0 0; }
+    body.vr-page .end .btn { margin: 0; }
+
+    @media (max-width: 900px) {
+      body.vr-page .chapter { padding: 48px 0; }
+      body.vr-page .entry, body.vr-page .entry.wide, body.vr-page .chapter.alt .entry, body.vr-page .chapter.alt .entry.wide { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+      body.vr-page .chapter.alt .entry .clip { order: 0; }
+      body.vr-page .entry:not(.wide) .clip { max-width: 320px; margin-inline: auto; }
+      body.vr-page .hero-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+      body.vr-page .hero-text, body.vr-page .hero-text .project-page-nav, body.vr-page .sl-hero-btns { text-align: center; justify-content: center; }
+      body.vr-page .sl-hero p { margin-inline: auto; }
+      body.vr-page .hero-phone { justify-self: center; max-width: 260px; }
+      body.vr-page nav.side-nav { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); left: 50%; flex-direction: row; width: auto; transform: translate(-50%, 12px); }
+      body.vr-page nav.side-nav.show { transform: translate(-50%, 0); }
+      body.vr-page nav.side-nav a span { display: none; }
+    }
+    @media (max-width: 700px) {
+      body.vr-page .sl-hero { padding: 28px 20px; }
+      body.vr-page .learned-list { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="vr-page">
+<body class="vr-page" id="top">
   <nav>
     <a class="brand" href="index.html" aria-label="Nick van Asten - home">
       <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
@@ -21,114 +106,219 @@
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
-  <div class="fog" aria-hidden="true"><i></i><i></i></div>
 
-  <header class="project-hero">
-    <div class="wrap">
-      <div class="project-page-nav" role="navigation" aria-label="Project navigation">
-        <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
-        <a href="sublevel.html">Sublevel</a>
-        <a href="projectsplitstar.html">Project Splitstar</a>
-        <a href="pack.html">Pack</a>
-        <a href="towerclash.html">Tower Clash</a>
-        <span aria-current="page">VR Horror Castle</span>
+  <header class="project-hero sl-hero">
+    <video class="sl-hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="Video/Yahgameplay.mp4" type="video/mp4">
+    </video>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="project-page-nav" role="navigation" aria-label="Project navigation">
+          <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
+          <a href="sublevel.html">Sublevel</a>
+          <a href="projectsplitstar.html">Project Splitstar</a>
+          <a href="pack.html">Pack</a>
+          <a href="towerclash.html">Tower Clash</a>
+          <span aria-current="page">VR Horror Castle</span>
+        </div>
+        <div class="eyebrow">Project file &middot; VR Horror</div>
+        <h1>You Are Haunted</h1>
+        <p>An abandoned castle, two ghosts called Tony and Barry, and a way out you have to earn.</p>
+        <div class="btns sl-hero-btns">
+          <a class="btn primary" href="#flow">My process</a>
+        </div>
       </div>
-      <div class="eyebrow">Project file &middot; VR Horror</div>
-      <h1>VR Horror Castle</h1>
-      <p>An abandoned castle, two ghosts called Tony and Barry, and a way out you have to earn.</p>
+      <figure class="clip hero-phone">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/Yahgameplay.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
     </div>
   </header>
 
-  <main class="wrap">
-    <div class="project-copy">
-      <dl class="project-details">
-        <div><dt>Platform</dt><dd>VR</dd></div>
-        <div><dt>Genre</dt><dd>Horror</dd></div>
-        <div><dt>Type</dt><dd>Duo project</dd></div>
-        <div><dt>My focus</dt><dd>Flow, map &amp; sound</dd></div>
-      </dl>
+  <section class="overview" id="overview" aria-labelledby="overview-title">
+    <div class="eyebrow">Overview</div>
+    <h2 id="overview-title">Overview title</h2>
+    <p class="lead">Write your overview here: what the game is, who made it, how long it took and which tools you used.</p>
+    <dl class="project-details">
+      <div><dt>Platform</dt><dd>VR</dd></div>
+      <div><dt>Genre</dt><dd>Horror</dd></div>
+      <div><dt>Team</dt><dd>2 people</dd></div>
+      <div><dt>Timeline</dt><dd>Add timeline</dd></div>
+      <div><dt>My focus</dt><dd>Flow, map &amp; sound</dd></div>
+    </dl>
+  </section>
 
-      <div class="eyebrow">Role</div>
-      <h2>The Level &amp; Sound Designer</h2>
-      <p class="lead">
-        In VR you stand inside the level, so the map, the route and the sound all decide how scared you feel.
-        I designed how players move through the castle, how the rooms are built, and how audio makes the ghosts
-        feel close. The goal: players know what to do next, but never feel safe.
-      </p>
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#flow" data-target="flow" aria-label="Game flow">01<span>Game flow</span></a><a href="#map" data-target="map" aria-label="Map design">02<span>Map design</span></a><a href="#secrets" data-target="secrets" aria-label="Hidden routes">03<span>Hidden routes</span></a><a href="#sound" data-target="sound" aria-label="Sound design">04<span>Sound design</span></a></nav>
 
-      <h2>My Contribution</h2>
-      <div class="contrib">
-        <article class="c-card">
-          <h3>Game Flow</h3>
-          <p>Players meet Tony first, then Barry, then unlock the escape. I guided them with riddles, notes and lighting instead of UI, inspired by Resident Evil 7 and Amnesia.</p>
-        </article>
-        <article class="c-card">
-          <h3>Map Design</h3>
-          <p>Big halls for scale, narrow corridors for tension and small rooms for clues. I took ideas from Hitman's Thornbridge Manor and closed off areas that added nothing.</p>
-        </article>
-        <article class="c-card">
-          <h3>Sound Design</h3>
-          <p>Ambient wind, directional footsteps and whispers, and triggered sounds. Ghosts are heard before they are seen, and they can change the lighting.</p>
-        </article>
-      </div>
+  <!-- 01 GAME FLOW -->
+  <section class="chapter alt" id="flow" aria-labelledby="flow-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 01 &middot; Game flow</div>
+      <h2 id="flow-title">Game Flow</h2>
+      <p>Chapter intro: how the player is guided from Tony to Barry to the exit.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Tony.mp4" type="video/mp4"></video></figure>
+      <div class="entry-text"><h3>Meeting Tony</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry">
+      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Barry.mp4" type="video/mp4"></video></figure>
+      <div class="entry-text"><h3>Meeting Barry</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry">
+      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/RiddlesNotes.mp4" type="video/mp4"></video></figure>
+      <div class="entry-text"><h3>Riddles &amp; Notes</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry">
+      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Escape.mp4" type="video/mp4"></video></figure>
+      <div class="entry-text"><h3>The Escape</h3><p>Add your explanation here.</p></div>
+    </div>
+  </section>
 
-      <h2>Explore the Castle</h2>
-      <p>The map below shows the route through the castle, from the first encounter with Tony to Barry's crypt and the escape.</p>
+  <!-- 02 MAP DESIGN -->
+  <section class="chapter" id="map" aria-labelledby="map-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 02 &middot; Level design</div>
+      <h2 id="map-title">Map Design</h2>
+      <p>Chapter intro: halls, corridors and small rooms, and how they build tension.</p>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/ScareMap.png" alt="Castle map layout"></figure>
+      <div class="entry-text"><h3>Castle Layout</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/LightingLevel.png" alt="Lighting in the castle"></figure>
+      <div class="entry-text"><h3>Lighting</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry">
+      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Rooms.mp4" type="video/mp4"></video></figure>
+      <div class="entry-text"><h3>Rooms &amp; Corridors</h3><p>Add your explanation here.</p></div>
+    </div>
+  </section>
 
-      <div class="gallery">
-        <figure><img src="Images/ScareMap.png" alt="Castle map layout"><figcaption>Castle layout and route</figcaption></figure>
-        <figure><img src="Images/LightingLevel.png" alt="Lighting in the castle"><figcaption>Lighting guiding the player</figcaption></figure>
-      </div>
+  <!-- 03 HIDDEN ROUTES -->
+  <section class="chapter alt" id="secrets" aria-labelledby="secrets-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Exploration</div>
+      <h2 id="secrets-title">Hidden Routes</h2>
+      <p>Chapter intro: how exploring and noticing details moves the story forward.</p>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/SecretDoor.png" alt="A movable cabinet concealing a hidden map"></figure>
+      <div class="entry-text"><h3>The Secret Closet</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/SecretDoor (2).png" alt="A concealed doorway behind the staircase"></figure>
+      <div class="entry-text"><h3>The Secret Door</h3><p>Add your explanation here.</p></div>
+    </div>
+  </section>
 
-      <h2>Hidden Routes &amp; Story Clues</h2>
-      <p>
-        The castle does not explain every step directly. Players have to explore, notice details and interact
-        with the environment to discover how to continue. Two hidden routes reward that curiosity and move the
-        story forward.
-      </p>
-      <div class="gallery secret-gallery">
-        <figure>
-          <img src="Images/SecretDoor.png" alt="A movable cabinet concealing a hidden map">
-          <figcaption>
-            <strong>The Secret Closet</strong>
-            <p>
-              Players can push the cabinet aside to uncover a hidden map. The map gives them a clue about where
-              to go next, letting them work out how to continue the story for themselves.
-            </p>
-          </figcaption>
-        </figure>
-        <figure>
-          <img src="Images/SecretDoor (2).png" alt="A concealed doorway behind the staircase">
-          <figcaption>
-            <strong>The Secret Door</strong>
-            <p>
-              A concealed door behind the staircase leads into Barry's room. Finding it opens the next part of
-              the castle and brings the player further into the story.
-            </p>
-          </figcaption>
-        </figure>
-      </div>
+  <!-- 04 SOUND DESIGN -->
+  <section class="chapter" id="sound" aria-labelledby="sound-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 04 &middot; Sound design</div>
+      <h2 id="sound-title">Sound Design</h2>
+      <p>Chapter intro: how audio makes the ghosts feel close.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Ambience.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text"><h3>Ambience</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Footsteps.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text"><h3>Footsteps &amp; Whispers</h3><p>Add your explanation here.</p></div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/GhostTriggers.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text"><h3>Ghost Triggers</h3><p>Add your explanation here.</p></div>
+    </div>
+  </section>
 
-      <h2>Gameplay Video</h2>
-      <div class="project-media">
-        <video src="Video/Yahgameplay.mp4" aria-label="Gameplay preview of the haunted castle" controls preload="metadata" playsinline></video>
-      </div>
-
-      <div class="result">
-        <h3>Result</h3>
-        <p>
-          The castle now leads players from Tony to Barry to the exit without handing them instructions, and the
-          sound keeps them on edge. The biggest lesson: flow, map and sound have to be designed together.
-        </p>
+  <!-- ITERATION -->
+  <main class="chapter alt iteration" id="end" aria-labelledby="yah-end-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Iteration</div>
+      <h2 id="yah-end-title">Closing title</h2>
+      <p class="lead">Write your reflection here: how the project went and what you are proud of.</p>
+    </div>
+    <div class="wrapup">
+      <p class="learned-intro">What I learned during this project.</p>
+      <ul class="learned-list">
+        <li>Add a lesson here</li>
+        <li>Add a lesson here</li>
+        <li>Add a lesson here</li>
+        <li>Add a lesson here</li>
+      </ul>
+      <div class="end">
+        <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+        <a class="btn" href="#top">Go back to the top &uarr;</a>
       </div>
     </div>
   </main>
 
-  <div class="end">
-    <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
-  </div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
-
   <script src="ProjectImageLightbox.js"></script>
+  <script>
+    // Video's spelen alleen in beeld; per keer maar 1 video met geluid
+    (function () {
+      var vids = document.querySelectorAll('.clip video, .sl-hero-video');
+      function reset(v) {
+        v.muted = true;
+        var b = v.parentNode.querySelector('.sound-toggle');
+        if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = 'Sound off'; }
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var v = e.target;
+            if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            else { v.pause(); if (v.hasAttribute('data-audio')) reset(v); }
+          });
+        }, { threshold: 0.25 });
+        vids.forEach(function (v) { io.observe(v); });
+      }
+      document.querySelectorAll('.sound-toggle').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.parentNode.querySelector('video');
+          var on = v.muted;
+          vids.forEach(function (o) { if (o !== v && o.hasAttribute('data-audio')) reset(o); });
+          v.muted = !on;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.textContent = on ? 'Sound on' : 'Sound off';
+          if (v.paused) v.play();
+        });
+      });
+    })();
+
+    // Zijnavigatie
+    (function () {
+      var nav = document.getElementById('side-nav');
+      var secs = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+      var links = nav.querySelectorAll('a[data-target]');
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var h = window.innerHeight;
+        nav.classList.toggle('show', secs[0].getBoundingClientRect().top < h * 0.5);
+        var cur = null;
+        secs.forEach(function (s) { if (s.getBoundingClientRect().top <= h * 0.4) cur = s.id; });
+        links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-target') === cur); });
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </body>
 </html>

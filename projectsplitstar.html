@@ -27,7 +27,7 @@
     body.splitstar-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
 
     /* Trailer */
-    body.splitstar-page .trailer { max-width: 1000px; margin: 0 auto clamp(56px, 8vw, 96px); padding: 0 clamp(20px, 4vw, 48px); scroll-margin-top: 70px; }
+    body.splitstar-page .trailer { max-width: 940px; margin: 0 auto clamp(56px, 8vw, 96px); padding: 0 clamp(24px, 5vw, 56px); scroll-margin-top: 70px; }
     body.splitstar-page .trailer .eyebrow { text-align: center; margin-bottom: 14px; }
     body.splitstar-page .trailer figure { margin: 0; background: #050814; border: 1px solid var(--line); box-shadow: 0 0 60px rgba(79, 227, 255, .12); }
     body.splitstar-page .trailer video { display: block; width: 100%; height: auto; }
@@ -35,16 +35,22 @@
     /* Chapters */
     body.splitstar-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
     body.splitstar-page .chapter.alt { background: rgba(10, 16, 36, .85); border-bottom: 1px solid var(--line); }
-    body.splitstar-page .chapter-head, body.splitstar-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+    body.splitstar-page .chapter-head, body.splitstar-page .entry { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 56px); }
     body.splitstar-page .chapter-head { margin-bottom: 40px; }
     body.splitstar-page .chapter-head .eyebrow { color: var(--coral); }
-    body.splitstar-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: #c3cbe6; }
+    body.splitstar-page .chapter-head p { max-width: 680px; margin: 14px 0 0; color: #c3cbe6; font-size: .95rem; }
 
     body.splitstar-page .entry { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
     body.splitstar-page .entry:last-child { margin-bottom: 0; }
     body.splitstar-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
-    body.splitstar-page .entry-text p { margin: 0 0 12px; color: #c3cbe6; }
+    body.splitstar-page .entry-text p { margin: 0 0 12px; color: #c3cbe6; font-size: .95rem; line-height: 1.75; }
     body.splitstar-page .entry-text p:last-child { margin-bottom: 0; }
+    body.splitstar-page .entry-text a[href="#aim"],
+    body.splitstar-page .entry-text a[href="#kill"] { color: var(--coral); font-weight: 600; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
+    body.splitstar-page .entry-text a[href="#aim"]:hover,
+    body.splitstar-page .entry-text a[href="#kill"]:hover,
+    body.splitstar-page .entry-text a[href="#aim"]:focus-visible,
+    body.splitstar-page .entry-text a[href="#kill"]:focus-visible { color: var(--cyan); }
     body.splitstar-page .coop { display: inline-block; margin: 0 0 10px; padding: 3px 10px; border: 1px solid var(--coral); color: var(--coral); font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 
     /* Om en om: oneven chapter = video links, even chapter = video rechts */
@@ -59,15 +65,30 @@
     body.splitstar-page .blueprint img { display: block; width: 100%; height: auto; }
     body.splitstar-page .blueprint figcaption { padding: 2px 6px; background: rgba(0, 0, 0, .85); color: var(--mute); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
 
-    /* Segmented health demo staat op de plek van de video */
-    body.splitstar-page .entry > .hud { margin-top: 0; }
+    body.splitstar-page .playtests-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 48px); max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 56px); }
+    body.splitstar-page .playtests-grid .entry { display: flex; flex-direction: column; align-items: stretch; gap: 18px; margin: 0; padding: 0; }
+    body.splitstar-page .playtests-grid .entry-text h3 { margin: 0 0 10px; }
 
-    body.splitstar-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 50px 6vw 80px; }
+    body.splitstar-page .chapter.iteration { padding: 64px 0 40px; }
+    body.splitstar-page .iteration .chapter-head p.lead { max-width: 820px; font-size: 1.05rem; line-height: 1.75; }
+    body.splitstar-page .iteration .chapter-head p.lead + p.lead { margin-top: 16px; }
+    body.splitstar-page .wrapup { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 56px); }
+    body.splitstar-page .learned-intro { margin: 0; color: var(--text); font-size: 1.05rem; font-weight: 600; }
+    body.splitstar-page .learned-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); margin: 16px 0 0; padding: 0; list-style: none; counter-reset: learned; border-bottom: 1px solid var(--line); }
+    body.splitstar-page .learned-list li { display: flex; align-items: baseline; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); color: #c3cbe6; counter-increment: learned; }
+    body.splitstar-page .learned-list li::before { content: counter(learned, decimal-leading-zero); flex: 0 0 auto; color: var(--coral); font: 600 .72rem Arial, sans-serif; letter-spacing: .2em; }
+    body.splitstar-page .iteration .end { padding: 28px 0 0; }
+    body.splitstar-page .iteration .end .btn { margin: 0; }
 
     @media (max-width: 900px) {
       body.splitstar-page .chapter { padding: 48px 0; }
       body.splitstar-page .entry, body.splitstar-page .chapter.alt .entry { grid-template-columns: 1fr; gap: 18px; align-items: start; }
       body.splitstar-page .chapter.alt .entry > :first-child { order: 0; }
+      body.splitstar-page .chapter.iteration { padding: 48px 0 32px; }
+      body.splitstar-page .iteration .end { padding-top: 24px; }
+    }
+    @media (max-width: 760px) {
+      body.splitstar-page .playtests-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 700px) {
       body.splitstar-page .ss-hero { padding: 28px 20px; }
@@ -75,6 +96,10 @@
     }
     @media (max-width: 520px) {
       body.splitstar-page .blueprint { width: 32%; }
+    }
+    @media (max-width: 700px) {
+      body.splitstar-page .learned-list { grid-template-columns: 1fr; }
+      body.splitstar-page .learned-list li { padding: 14px 0; }
     }
 
     /* Zijnavigatie */
@@ -125,7 +150,7 @@
       <p>A fast-paced 2.5D space shooter about dodging, aiming and surviving enemies and projectiles.</p>
       <div class="btns ss-hero-btns">
         <a class="btn primary" href="#trailer">Watch the trailer</a>
-        <a class="btn" href="#prototype">My process</a>
+        <a class="btn primary" href="#prototype">My process</a>
       </div>
     </div>
   </header>
@@ -158,13 +183,14 @@
     <h3 class = "eyebrow">This video makes use of AI-generated voice-overs and an AI-generated poster.</h3>
   </section>
 
-  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#movement" data-target="movement" aria-label="Movement">02<span>Movement</span></a><a href="#combat" data-target="combat" aria-label="Combat">03<span>Combat</span></a><a href="#health" data-target="health" aria-label="Health &amp; Power-ups">04<span>Health &amp; Power-ups</span></a><a href="#menu" data-target="menu" aria-label="Menu &amp; In Action">05<span>Menu &amp; In Action</span></a><a href="#test" data-target="test" aria-label="Test">T<span>Playtests</span></a></nav>
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#movement" data-target="movement" aria-label="Movement">02<span>Movement</span></a><a href="#combat" data-target="combat" aria-label="Combat">03<span>Combat</span></a><a href="#health" data-target="health" aria-label="Health &amp; Power-ups">04<span>Health &amp; Power-ups</span></a><a href="#menu" data-target="menu" aria-label="Menu &amp; In Action">05<span>Menu &amp; In Action</span></a><a href="#test" data-target="test" aria-label="Playtests">T<span>Playtests</span></a><a href="#iteration" data-target="iteration" aria-label="Iteration">&#8595;<span>Iteration</span></a></nav>
 
   <!-- 01 PROTOTYPE -->
-  <section class="chapter" id="prototype" aria-labelledby="prototype-title">
+  <section class="chapter alt" id="prototype" aria-labelledby="prototype-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 01 &middot; Design phase</div>
       <h2 id="prototype-title">Prototype</h2>
+      <p>Early concepts and a first playable version helped define the game and its player.</p>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -172,8 +198,8 @@
         <figure class="blueprint"><img src="Images/Splitstar/IdeaPlayer.jpeg" alt="Movement blueprint"><figcaption>Player design &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
-        <h3>Aiming prototype</h3>
-        <p>Write about aiming prototype here.</p>
+        <h3>First design</h3>
+        <p>For this project, I was tasked with creating the player movement for a 2.5D side-scroller. I hadn&apos;t heard of this type of game before I was only familiar with 2D side-scrollers like Mario. The concept involved controlling a drone/spacecraft that flies through a space base. The player has the ability to transform between a drone and a heavy space vehicle. For this project, I developed the classes for both of these forms.</p>
       </div>
     </div>
     <div class="entry">
@@ -181,17 +207,18 @@
         <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/FirstPrototype.mp4" type="video/mp4"></video>
       </figure>
       <div class="entry-text">
-        <h3>Movement</h3>
-        <p>Explain how movement works here.</p>
+        <h3>First prototype</h3>
+        <p>Before we began working on the game, everyone branched off to work on their own level. During this phase, I started exploring how to enable the player to fly and aim within the level. In this initial prototype, the player could look from left to right using the 'A' and 'D' keys a mechanic I later modified.</p>
       </div>
     </div>
   </section>
 
   <!-- 02 MOVEMENT -->
-  <section class="chapter alt" id="movement" aria-labelledby="movement-title">
+  <section class="chapter" id="movement" aria-labelledby="movement-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 02 &middot; Player movement</div>
       <h2 id="movement-title">Movement</h2>
+      <p>Flight, dash, and transformation systems shape how the player moves through each level.</p>
     </div>
     <div class="entry">
       <figure class="clip">
@@ -200,7 +227,7 @@
       </figure>
       <div class="entry-text">
         <h3>Movement</h3>
-        <p>Explain how movement works here.</p>
+        <p>For movement, the player needed to be able to move in any direction using the WASD keys. The player required the freedom to fly toward any enemy and avoid any obstacle. To achieve this, I enabled the player to fly and added friction without gravity to give the user the sensation of actually being inside a space vehicle.</p>
       </div>
     </div>
     <div class="entry">
@@ -210,7 +237,7 @@
       </figure>
       <div class="entry-text">
         <h3>Dash</h3>
-        <p>Explain how dash works here.</p>
+        <p>The dash ability was designed exclusively for the Drone (Viper). The drone is faster and can more easily maneuver through tight spaces. I implemented the dash ability by launching the player forward in the direction they are aiming. During several playtests, a bug persisted where the player would fall out of the map while dashing; to resolve this, I disabled gravity for the player during the dash.</p>
       </div>
     </div>
     <div class="entry">
@@ -220,25 +247,26 @@
       </figure>
       <div class="entry-text">
         <h3>Transform</h3>
-        <p>Explain how transform works here.</p>
+        <p>For the game, we gave the player the option to choose between two different classes, between which they can transform. The two vehicles differ from one another: the Viper drone is more mobile, while the tank is better at absorbing damage. I implemented this feature by creating two distinct classes. We had also planned to include visual effects (VFX) for the transformation, but after several rounds of feedback and considering our time management, we decided to scrap that idea.</p>
       </div>
     </div>
   </section>
 
   <!-- 03 COMBAT -->
-  <section class="chapter" id="combat" aria-labelledby="combat-title">
+  <section class="chapter alt" id="combat" aria-labelledby="combat-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 03 &middot; Weapons</div>
       <h2 id="combat-title">Combat</h2>
+      <p>Aiming, weapons, and hazards make each encounter responsive and challenging.</p>
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Aiming.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/Aiming.png" alt="Rotation &amp; Aiming blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Aim.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/Aim.png" alt="Rotation &amp; Aiming blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Rotation &amp; Aiming</h3>
-        <p>Explain how rotation &amp; aiming works here.</p>
+        <p>Initially, the player character was intended to rotate in the direction of the aiming cursor. Following several rounds of testing, I adjusted this so that the character can only look left or right. However, the player can still aim in any direction to hit any enemy. To achieve this, I utilized an "aim rotator" in conjunction with the player's position. This mechanic underwent numerous revisions based on feedback from various playtests <a href="#aim">Aiming test</a>.</p>
       </div>
     </div>
     <div class="entry">
@@ -248,7 +276,7 @@
       </figure>
       <div class="entry-text">
         <h3>Shooting</h3>
-        <p>Explain how shooting works here.</p>
+        <p>For the shooting function, the player must be able to shoot 360 degrees around them (just not in the dead zone). I have created a bullet projectile for this that spawns in front of the player when they shoot. I have created different bullets and set different damage percentages for both vehicles. For the test result <a href="#kill" >Killing test</a>.</p>
       </div>
     </div>
     <div class="entry">
@@ -258,76 +286,47 @@
       </figure>
       <div class="entry-text">
         <h3>Laser</h3>
-        <p>Explain how laser works here.</p>
+        <p>The player must defeat every enemy in a level. They also need to watch out for obstacles specifically lasers that I&apos;ve created. These lasers have gone through several iterations: at first, you could pass through them while taking damage, and later, touching one would cause knockback. Based on the results of various tests, I decided to keep things simple: the player now takes damage over time while in contact with a laser.</p>
       </div>
     </div>
     <div class="entry">
       <figure class="clip">
         <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/RapidFire.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/RapidFire.png" alt="Rapid Fire blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <figure class="blueprint"><img src="Images/Splitstar/FireRate.png" alt="Rapid Fire blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <span class="coop">Made together with a teammate</span>
         <h3>Rapid Fire</h3>
-        <p>Explain how rapid fire works here.</p>
+        <p>I created the power-ups together with a teammate. He built the collectible blocks using a randomizer, while I developed the effects granted by the power-ups. For the fire rate boost, I adjusted the projectile-spawning function to trigger more rapidly. The effect lasts for a few seconds before wearing off. Playtesters enjoyed the addition of power-ups, and they immediately provide a better gameplay experience.</p>
       </div>
     </div>
   </section>
 
   <!-- 04 HEALTH &AMP; POWER-UPS -->
-  <section class="chapter alt" id="health" aria-labelledby="health-title">
+  <section class="chapter" id="health" aria-labelledby="health-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 04 &middot; Health &amp; power-ups</div>
       <h2 id="health-title">Health &amp; Power-ups</h2>
+      <p>The health system, recovery, and power-ups help players survive each encounter.</p>
     </div>
     <div class="entry">
-      <div class="hud" id="hud" aria-label="Interactive health bar demo">
-        <div class="hud-top">
-          <span>Interactive demo</span>
-          <span class="hud-hp" id="hp-text">120 / 120 HP</span>
-        </div>
-        <div class="segs" id="segs"></div>
-        <div class="shield"><i id="shield-bar"></i></div>
-        <p class="hud-msg" id="hud-msg" role="status" aria-live="polite">Systems online.</p>
-        <div class="hud-btns">
-          <button type="button" id="btn-hit">Take hit (20)</button>
-          <button type="button" id="btn-heal">Heal (10)</button>
-          <button type="button" id="btn-shield">Raise Bastion shield</button>
-          <button type="button" id="btn-reset">Reset</button>
-        </div>
-        <p class="hud-note">A small recreation of the segmented layout (12 segments of 10 HP). It is not the game build.</p>
-      </div>
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Healing.mp4" type="video/mp4"></video>
+      </figure>
       <div class="entry-text">
-        <h3>Segmented Health</h3>
-        <p>
-          My main individual contribution. Inspired by <em>My Friend Pedro</em>, I split health
-          into visible segments instead of one continuous bar, so players can read damage
-          quickly in busy fights. A <code>PlayerHealth</code> component stores current and
-          maximum health (120 HP) and handles damage and healing, while the UI updates
-          immediately when health changes. The Bastion shield is handled separately and
-          absorbs damage before regular health is touched.
-        </p>
+        <span class="coop">Made together with a teammate</span>
+        <h3>Health pickup</h3>
+        <p>I have created a healing power-up that restores 1 segment of health to the player. I have also added sound effects to the power-ups that suit them.</p>
       </div>
     </div>
     <div class="entry">
       <figure class="clip">
         <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Health.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/Health.png" alt="Health pickup blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
-      </figure>
-      <div class="entry-text">
-        <span class="coop">Made together with a teammate</span>
-        <h3>Health pickup</h3>
-        <p>Explain how health pickup works here.</p>
-      </div>
-    </div>
-    <div class="entry">
-      <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Healing.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/Healing.png" alt="Healing blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <figure class="blueprint"><img src="Images/Splitstar/Health.png" alt="Health blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Healing</h3>
-        <p>Explain how healing works here.</p>
+        <p>For the segmented health system, I conducted research into various games (specifically 2.5D side-scrollers), focusing in particular on *My Friend Pedro*, which utilizes a segmented health system. I have divided the player's HP into three segments. If the player loses one segment, they regain two full segments. Additionally, the HP percentage is adjusted based on the player's chosen class.</p>
       </div>
     </div>
     <div class="entry">
@@ -337,7 +336,7 @@
       </figure>
       <div class="entry-text">
         <h3>Bastion Shield</h3>
-        <p>Explain how bastion shield works here.</p>
+        <p>The Viper drone has a dash ability, while for the Bastion drone, I have designed a shield ability and encoded it into a blueprint. Once activated, the shield remains active for a few seconds or until it has blocked 3 projectiles. The shield is also deactivated if you switch classes.</p>
       </div>
     </div>
     <div class="entry">
@@ -348,100 +347,144 @@
       <div class="entry-text">
         <span class="coop">Made together with a teammate</span>
         <h3>Speed boost</h3>
-        <p>Explain how speed boost works here.</p>
+        <p>The speed boost is a temporary power-up that increases the player's movement speed for a short duration. I created this by adjusting the player's movement speed for a specific duration.</p>
       </div>
     </div>
   </section>
 
   <!-- 05 MENU &AMP; IN ACTION -->
-  <section class="chapter" id="menu" aria-labelledby="menu-title">
+  <section class="chapter alt" id="menu" aria-labelledby="menu-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 05 &middot; Interface &amp; final game</div>
       <h2 id="menu-title">Menu &amp; In Action</h2>
+      <p>The menu and final presentation introduce the game and its playable experience.</p>
     </div>
     <div class="entry">
       <figure class="clip">
-        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/menu.mp4" type="video/mp4"></video>
-        <figure class="blueprint"><img src="Images/Splitstar/menu.png" alt="Menu blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/MenuSplitstar.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/LevelSelect.png" alt="Menu blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
       <div class="entry-text">
         <h3>Menu</h3>
-        <p>Explain how menu works here.</p>
+        <p>Prior to the showcase, the game did not yet have a menu screen. I designed this menu screen based on the atmosphere the game is intended to convey. It is immediately clear to the player that this is a space-themed game and that they can choose between two different classes. Furthermore, the presence of an enemy on the platform lets the player know right away that their objective is to destroy turrets. During the showcase event, I received many compliments regarding the UI and the menu screen.</p>
       </div>
     </div>
     <div class="entry">
       <figure class="clip">
-        <img src="Images/InGame.png" alt="Splitstar gameplay showing combat, score and health">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/Credits.mp4" type="video/mp4"></video>
       </figure>
       <div class="entry-text">
-        <h3>In-game</h3>
-        <p>Write about in-game here.</p>
+        <h3>Credits</h3>
+        <p>During the project, we were tasked with providing credit for the assets and music we used. I created a credits screen (much like in Star Wars) to acknowledge the creators of those assets.</p>
       </div>
     </div>
   </section>
 
-  <div class="end">
-    <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
-    <a class="btn" href="#top">Go back to the top &uarr;</a>
-  </div>
+  <section class="chapter" id="test" aria-labelledby="test-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Testing &middot; Player &amp; Teamwork</div>
+      <h2 id="test-title">Playtests</h2>
+      <p>Testing helped uncover issues with aiming and combat and guided the final adjustments.</p>
+    </div>
+    <div class="playtests-grid">
+    <div class="entry" id="aim">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/AimingTest.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/FirstAim.png" alt="Aiming test blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Aiming Test</h3>
+        <p>After several playtests, the aiming system still didn't feel quite right. Players were able to aim toward the camera outside the intended field of view and fire shots in that direction. I tried many things to fix this; ultimately, I locked one of the player's vector values, which prevented the player from moving off the horizontal axis while aiming. In the video, you can see how I try to keep track of the value that indicates what the player is aiming at.</p>
+      </div>
+    </div>
+    <div class="entry" id="kill">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/Splitstar/KillingTest.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/Splitstar/AimConcept.png" alt="Killing test blueprint"><figcaption>Design &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Killing Test</h3>
+        <p>In the test video, you can see that I placed a white box along the line of aim. During the early phase of the game, players could accidentally shoot their own character, potentially even knocking themselves out of the map. Furthermore, players were unable to hit enemies, and at times, they would inadvertently inflict damage upon themselves. I resolved this issue by creating distinct collision groups within the project files, a solution that also proved very useful later on when implementing power-ups.</p>
+      </div>
+    </div>
+  </section>
+
+
+<main class="chapter alt iteration" id="iteration" aria-labelledby="splitstar-story-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Iteration</div>
+      <h2 id="splitstar-story-title">A new genre, a new challenge</h2>
+      <p class="lead">
+        Looking back at Project Splitstar, I am very happy with what we achieved as a team.
+        The showcase event was once again a big success, and many students came to play our
+        game. It was great to see people enjoying what we had worked on. We even held a small
+        competition to see who could get the highest score, and of course, I ended up winning.
+        Seeing people enjoy the game and compete for a high score was one of my favourite
+        parts of this project.
+      </p>
+      <p class="lead">
+        Project Splitstar was a very different experience compared to Sublevel. We worked
+        on a completely different genre, creating a 2.5D drone-based space shooter instead
+        of a first-person horror game. I already had some experience with creating player
+        systems, but designing a player that can fly freely while only aiming horizontally
+        was a new challenge. It took some experimenting to make the movement and aiming
+        feel right and work well together.
+      </p>
+      <p class="lead">
+        During this project, I worked on player movement, rotation, aiming, shooting,
+        power-ups, and the health system. I especially enjoyed working on the player
+        mechanics because they have such a big impact on how the game feels. I also learned
+        more about balancing gameplay and how important it is to make controls clear and
+        responsive. Through playtesting and feedback, we were able to find problems and
+        improve the game step by step.
+      </p>
+      <p class="lead">
+        One thing I learned from this project is that a game does not always need a lot of
+        complicated mechanics to be fun. I think the most important part is that the core
+        gameplay feels good. The player should understand what they can do, the controls
+        should feel responsive, and the game should give the player a reason to keep
+        playing. For me, these are some of the most important values when making a game.
+        A good game should also make players want to improve themselves, try again, and
+        enjoy the experience.
+      </p>
+      <p class="lead">
+        Of course, there were still things we could have improved. Some features were
+        added quite late in development, which gave us less time to test and polish them.
+        With more time, I would have liked to improve the balance of the gameplay and
+        spend more time testing the different mechanics. This would have helped us make
+        the overall experience even better.
+      </p>
+      <p class="lead">
+        Overall, Project Splitstar taught me a lot about creating gameplay for a different
+        genre. I learned that every game has its own challenges and that you cannot simply
+        use the same approach for every type of player or game. I especially enjoyed
+        working on the player systems and seeing how our game developed through testing.
+        It made me even more interested in creating gameplay that feels satisfying and
+        makes players want to keep playing.
+      </p>
+    </div>
+
+    <div class="wrapup">
+      <p class="learned-intro">I learned a lot about game development during this project.</p>
+      <ul class="learned-list">
+        <li>Designing player movement and aiming for a flying 2.5D character</li>
+        <li>Creating responsive controls that make gameplay feel good</li>
+        <li>Developing player systems such as shooting, power-ups, health, and shields</li>
+        <li>Balancing gameplay through playtesting and player feedback</li>
+        <li>Understanding the importance of strong and enjoyable core gameplay</li>
+        <li>Adapting my development approach to a completely different game genre</li>
+      </ul>
+      <div class="end">
+        <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+        <a class="btn" href="#top">Go back to the top &uarr;</a>
+      </div>
+    </div>
+  </main>
+
   <div class="starline"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
 
-  <!-- AI helped me with the script. But I Designed the health system in game myself. -->
   <script>
-    (function () {
-      var MAX = 120, SEG = 10, SHIELD_MAX = 30, HIT = 20, HEAL = 10;
-      var hp = MAX, shield = 0;
-      var hud = document.getElementById('hud');
-      var segs = document.getElementById('segs');
-      var fills = [];
-      for (var i = 0; i < MAX / SEG; i++) {
-        var s = document.createElement('div');
-        s.className = 'seg';
-        var f = document.createElement('i');
-        s.appendChild(f);
-        segs.appendChild(s);
-        fills.push(f);
-      }
-      var hpText = document.getElementById('hp-text');
-      var shieldBar = document.getElementById('shield-bar');
-      var msg = document.getElementById('hud-msg');
-
-      function render(text) {
-        fills.forEach(function (f, i) {
-          var pct = Math.max(0, Math.min(1, (hp - i * SEG) / SEG)) * 100;
-          f.style.width = pct + '%';
-        });
-        shieldBar.style.width = (shield / SHIELD_MAX * 100) + '%';
-        hpText.textContent = hp + ' / ' + MAX + ' HP';
-        hud.classList.toggle('low', hp > 0 && hp <= 30);
-        if (text) msg.textContent = text;
-      }
-      document.getElementById('btn-hit').addEventListener('click', function () {
-        if (hp === 0) return;
-        var absorbed = Math.min(shield, HIT);
-        shield -= absorbed;
-        hp = Math.max(0, hp - (HIT - absorbed));
-        render(hp === 0 ? 'Ship destroyed.' :
-               absorbed ? 'Shield absorbed ' + absorbed + ' damage.' : 'Hull hit: -' + HIT + ' HP.');
-      });
-      document.getElementById('btn-heal').addEventListener('click', function () {
-        if (hp === 0) return;
-        hp = Math.min(MAX, hp + HEAL);
-        render(hp === MAX ? 'Health is full.' : 'Repaired +' + HEAL + ' HP.');
-      });
-      document.getElementById('btn-shield').addEventListener('click', function () {
-        if (hp === 0) return;
-        shield = SHIELD_MAX;
-        render('Bastion shield raised.');
-      });
-      document.getElementById('btn-reset').addEventListener('click', function () {
-        hp = MAX; shield = 0;
-        render('Systems online.');
-      });
-      render();
-    })();
-
     // Video's spelen alleen in beeld
     (function () {
       var vids = document.querySelectorAll('.clip video, .ss-hero-video');
