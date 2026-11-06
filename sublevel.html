@@ -7,129 +7,7 @@
   <meta name="description" content="Sublevel: an abandoned bunker horror game. Nick van Asten worked on player movement, interactables, jumpscares and sound design.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
-  <style>
-    /* ===== Sublevel: overview + process chapters (voeg later samen met Portfolio.css) ===== */
-    body.sublevel-page .overview { max-width: 760px; margin: clamp(56px, 9vw, 110px) auto clamp(56px, 7vw, 88px); padding: 0 6vw; text-align: left; }
-    body.sublevel-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
-    body.sublevel-page .overview p { color: #c9c5c0; }
 
-    body.sublevel-page .chapter-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 900px; margin: 0 auto 72px; padding: 0 6vw; }
-    body.sublevel-page .chapter-nav a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: .85rem; font-weight: 600; transition: .2s; }
-    body.sublevel-page .chapter-nav a b { color: #c49a2c; font-size: .72rem; letter-spacing: .15em; }
-    body.sublevel-page .chapter-nav a:hover, body.sublevel-page .chapter-nav a:focus-visible { border-color: var(--red2); background: var(--red); box-shadow: 0 0 22px rgba(212, 34, 45, .3); outline: 0; }
-
-    /* Chapter: titel + intro, daarna rijen met video links en uitleg rechts (niets sticky) */
-    body.sublevel-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
-    body.sublevel-page .chapter.alt { background: var(--bg2); border-bottom: 1px solid var(--line); }
-    body.sublevel-page .chapter-head, body.sublevel-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-    body.sublevel-page .chapter-head { margin-bottom: 40px; }
-    body.sublevel-page .chapter-head .eyebrow { color: #c49a2c; }
-    body.sublevel-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: #c9c5c0; }
-
-    body.sublevel-page .entry { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
-    body.sublevel-page .entry:last-child { margin-bottom: 0; }
-    body.sublevel-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
-    body.sublevel-page .entry-text p { margin: 0; color: #c9c5c0; }
-
-    body.sublevel-page .clip { position: relative; aspect-ratio: 16 / 9; margin: 0; background: #000; border: 1px solid var(--line); overflow: hidden; }
-    body.sublevel-page .clip video { display: block; width: 100%; height: 100%; object-fit: cover; }
-    body.sublevel-page .blueprint { position: absolute; right: 10px; bottom: 10px; z-index: 3; width: clamp(90px, 22%, 260px); margin: 0; background: #000; border: 1px solid var(--red2); box-shadow: 0 6px 20px rgba(0, 0, 0, .7); }
-    body.sublevel-page .blueprint img { display: block; width: 100%; height: auto; }
-    body.sublevel-page .blueprint figcaption { padding: 2px 6px; background: rgba(0, 0, 0, .85); color: var(--mute); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
-
-    body.sublevel-page .sound-toggle { position: absolute; left: 10px; bottom: 10px; z-index: 3; min-height: 40px; padding: 8px 14px; background: rgba(0, 0, 0, .75); color: var(--text); border: 1px solid var(--line); font: 600 .74rem Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: .2s; }
-    body.sublevel-page .sound-toggle:hover, body.sublevel-page .sound-toggle:focus-visible { border-color: var(--red2); outline: 0; }
-    body.sublevel-page .sound-toggle[aria-pressed="true"] { background: var(--red); border-color: var(--red2); }
-
-    /* Early designs */
-    body.sublevel-page .early { margin-top: clamp(48px, 7vw, 88px); }
-    body.sublevel-page .designs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; }
-    body.sublevel-page .designs figure { margin: 0; background: var(--card); border: 1px solid var(--line); }
-    body.sublevel-page .designs img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-    body.sublevel-page .designs figcaption { padding: 8px 12px; color: var(--mute); font-size: .78rem; }
-
-    @media (max-width: 900px) {
-      body.sublevel-page .chapter { padding: 48px 0; }
-      body.sublevel-page .entry { grid-template-columns: 1fr; gap: 18px; align-items: start; }
-    }
-    @media (max-width: 700px) {
-      body.sublevel-page .chapter-nav { margin-bottom: 48px; }
-      body.sublevel-page .chapter-nav a { flex: 1 1 140px; justify-content: center; }
-    }
-    @media (max-width: 520px) {
-      body.sublevel-page .blueprint { width: 32%; }
-      body.sublevel-page .designs { grid-template-columns: 1fr; }
-    }
-  
-    /* Hero met gameplay-video op de achtergrond */
-    body.sublevel-page .sl-hero { position: relative; display: grid; place-items: center; min-height: clamp(460px, calc(100svh - 70px), 860px); padding: 40px 6vw; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
-    body.sublevel-page .sl-hero-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
-    body.sublevel-page .sl-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(7, 7, 10, .6), rgba(7, 7, 10, .3) 45%, rgba(7, 7, 10, .92)); }
-    body.sublevel-page .sl-hero h1 { font-size: clamp(3.2rem, 13vw, 8.5rem); line-height: 1; text-transform: uppercase; letter-spacing: .08em; }
-    body.sublevel-page .sl-hero p { color: #e2ded8; text-shadow: 0 2px 14px #000; }
-    body.sublevel-page .sl-hero-btns { margin-top: 30px; }
-    body.sublevel-page .sl-hero .btn:not(.primary) { background: rgba(0, 0, 0, .45); }
-    body.sublevel-page .sl-hero .project-page-nav a, body.sublevel-page .sl-hero .project-page-nav span { background: rgba(7, 7, 10, .6); }
-    body.sublevel-page .sl-trailer-label { text-align: center; margin-bottom: 14px; }
-    body.sublevel-page .wrap#trailer { scroll-margin-top: 70px; }
-    body.sublevel-page .chapter-top { max-width: 1400px; margin: 40px auto 0; padding: 0 clamp(20px, 4vw, 48px); }
-    body.sublevel-page .chapter-top a { color: var(--mute); font-size: .82rem; }
-    body.sublevel-page .chapter-top a:hover { color: var(--text); }
-    @media (max-width: 700px) {
-      body.sublevel-page .sl-hero { padding: 28px 20px; }
-      body.sublevel-page .sl-hero-btns .btn { flex: 1 1 100%; max-width: 280px; text-align: center; }
-    }
-    /* Footer altijd onderaan + knoppen onderaan */
-    body.sublevel-page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
-    body.sublevel-page > * { width: 100%; }
-    body.sublevel-page > footer { margin-top: auto; }
-    body.sublevel-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 50px 6vw 80px; }
-    body.sublevel-page .clip > img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-    /* Chapters om en om: oneven = video links, even = video rechts */
-    body.sublevel-page .chapter.alt .entry { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
-    body.sublevel-page .chapter.alt .entry .clip { order: 2; }
-    @media (max-width: 900px) {
-      body.sublevel-page .chapter.alt .entry { grid-template-columns: 1fr; }
-      body.sublevel-page .chapter.alt .entry .clip { order: 0; }
-    }
-
-    /* Zijnavigatie: alleen compacte blokjes links; tekst verschijnt bij hover */
-    body.sublevel-page nav.side-nav { position: fixed; top: 50%; left: 8px; right: auto; bottom: auto; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 42px; min-width: 0; max-width: none; height: auto; margin: 0; padding: 0; background: transparent; border: 0; box-shadow: none; opacity: 0; pointer-events: none; transform: translate(-8px, -50%); transition: opacity .25s ease, transform .25s ease; }
-    body.sublevel-page nav.side-nav.show { opacity: 1; pointer-events: auto; transform: translate(0, -50%); }
-    body.sublevel-page nav.side-nav a { position: relative; display: grid; flex: 0 0 36px; place-items: center; box-sizing: border-box; width: 36px; min-width: 36px; height: 36px; margin: 0; padding: 0; background: transparent; border: 1px solid transparent; box-shadow: none; color: var(--mute); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; transition: color .2s, border-color .2s; }
-    body.sublevel-page nav.side-nav a:hover, body.sublevel-page nav.side-nav a:focus-visible, body.sublevel-page nav.side-nav a.active { color: var(--red2); background: transparent; border-color: var(--red2); outline: 0; }
-    body.sublevel-page nav.side-nav a span { position: absolute; top: 50%; left: calc(100% + 10px); right: auto; z-index: 2; width: max-content; max-width: 220px; padding: 5px 9px; margin: 0; background: var(--bg2); border: 1px solid var(--line); box-shadow: none; color: var(--text); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .2s ease; }
-    body.sublevel-page nav.side-nav a:hover span, body.sublevel-page nav.side-nav a:focus-visible span { opacity: 1; }
-    @media (max-width: 900px) {
-      body.sublevel-page nav.side-nav { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); left: 50%; right: auto; flex-direction: row; width: auto; transform: translate(-50%, 12px); }
-      body.sublevel-page nav.side-nav.show { transform: translate(-50%, 0); }
-      body.sublevel-page nav.side-nav a { flex-basis: 36px; }
-      body.sublevel-page nav.side-nav a span { display: none; }
-    }
-
-    /* Iteration: zelfde opbouw als de andere chapters */
-    body.sublevel-page .chapter.iteration { padding: 64px 0 40px; }
-    body.sublevel-page .iteration .chapter-head p.lead { max-width: 820px; font-size: 1.05rem; }
-    body.sublevel-page .wrapup { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-    body.sublevel-page .learned-intro { margin: 0; color: var(--text); font-size: 1.05rem; font-weight: 600; }
-    body.sublevel-page .learned-list { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: learned; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); border-bottom: 1px solid var(--line); }
-    body.sublevel-page .learned-list li { counter-increment: learned; display: flex; gap: 16px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); color: #c9c5c0; }
-    body.sublevel-page .learned-list li::before { content: counter(learned, decimal-leading-zero); flex: 0 0 auto; color: #c49a2c; font: 600 .72rem Arial, sans-serif; letter-spacing: .2em; }
-    body.sublevel-page .showcase { margin: clamp(32px, 5vw, 56px) 0 0; }
-    body.sublevel-page .showcase img { display: block; width: 100%; max-height: 640px; object-fit: cover; border: 1px solid var(--line); background: #000; }
-    body.sublevel-page .showcase figcaption { margin-top: 10px; color: var(--mute); font-size: .82rem; }
-    body.sublevel-page .iteration .end { padding: 36px 0 0; }
-    body.sublevel-page .iteration .end .btn { margin: 0; }
-    @media (max-width: 900px) {
-      body.sublevel-page .chapter.iteration { padding: 48px 0 32px; }
-      body.sublevel-page .iteration .end { padding-top: 28px; }
-    }
-    @media (max-width: 700px) {
-      body.sublevel-page .learned-list { grid-template-columns: 1fr; }
-      body.sublevel-page .learned-list li { padding: 14px 0; }
-    }
-  </style>
 </head>
 <body class="sublevel-page" id="top">
   <nav>
@@ -155,9 +33,9 @@
         <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
         <span aria-current="page">Sublevel</span>
         <a href="projectsplitstar.html">Project Splitstar</a>
+        <a href="YouAreHaunted.html">VR Horror Castle</a>
         <a href="pack.html">Pack</a>
         <a href="towerclash.html">Tower Clash</a>
-        <a href="YouAreHaunted.html">VR Horror Castle</a>
       </div>
       <div class="eyebrow">Project file &middot; Horror</div>
       <h1>Sublevel</h1>
@@ -169,7 +47,7 @@
     </div>
   </header>
 
- 
+
   <section class="overview" id="overview" aria-labelledby="overview-title">
     <div class="eyebrow">Overview</div>
     <h2 id="overview-title">One bunker. One way out.</h2>
@@ -188,10 +66,10 @@
     </dl>
   </section>
 
-  <!-- Zijnavigatie (verschijnt vanaf chapter 1) -->
-  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#player" data-target="player" aria-label="Player">02<span>Player</span></a><a href="#interactables" data-target="interactables" aria-label="Interactables">03<span>Interactables</span></a><a href="#atmosphere" data-target="atmosphere" aria-label="Atmosphere">04<span>Atmosphere</span></a><a href="#widgets" data-target="widgets" aria-label="Widgets">05<span>Widgets</span></a></nav>
 
-  <!-- 01 PROTOTYPE -->
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#player" data-target="player" aria-label="Player">02<span>Player</span></a><a href="#interactables" data-target="interactables" aria-label="Interactables">03<span>Interactables</span></a><a href="#atmosphere" data-target="atmosphere" aria-label="Atmosphere">04<span>Atmosphere</span></a><a href="#widgets" data-target="widgets" aria-label="Widgets">05<span>Widgets</span></a><a href="#iteration" data-target="iteration" aria-label="Iteration">&#8595;<span>Iteration</span></a></nav>
+
+
   <section class="chapter alt" id="prototype" aria-labelledby="prototype-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 01 &middot; Design phase</div>
@@ -219,7 +97,7 @@
     </div>
   </section>
 
-  <!-- 02 PLAYER -->
+
   <section class="chapter" id="player" aria-labelledby="player-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 02 &middot; Movement</div>
@@ -259,7 +137,7 @@
     </div>
   </section>
 
-  <!-- 03 INTERACTABLES -->
+
   <section class="chapter alt" id="interactables" aria-labelledby="interactables-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 03 &middot; Interaction</div>
@@ -308,7 +186,7 @@
     </div>
   </section>
 
-  <!-- 04 ATMOSPHERE -->
+
   <section class="chapter" id="atmosphere" aria-labelledby="atmosphere-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 04 &middot; Sound design</div>
@@ -339,7 +217,7 @@
     </div>
   </section>
 
-  <!-- 05 WIDGETS -->
+
   <section class="chapter alt" id="widgets" aria-labelledby="widgets-title">
     <div class="chapter-head">
       <div class="eyebrow">Chapter 05 &middot; UI</div>
@@ -377,8 +255,8 @@
     </div>
   </section>
 
-  <!-- ITERATION -->
-  <main class="chapter alt iteration" id="story" aria-labelledby="sublevel-story-title">
+
+  <main class="chapter alt iteration" id="iteration" aria-labelledby="sublevel-story-title">
     <div class="chapter-head">
       <div class="eyebrow">Iteration</div>
       <h2 id="sublevel-story-title">The end of a new beginning</h2>
@@ -410,7 +288,6 @@
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
   <script src="ProjectImageLightbox.js"></script>
   <script>
-    // Video's spelen alleen in beeld; per keer maar 1 video met geluid
     (function () {
       var vids = document.querySelectorAll('.clip video, .sl-hero-video');
       function reset(v) {
@@ -441,7 +318,6 @@
       });
     })();
 
-    // Zijnavigatie: tonen vanaf chapter 1, actieve chapter markeren
     (function () {
       var nav = document.getElementById('side-nav');
       var secs = Array.prototype.slice.call(document.querySelectorAll('.chapter'));

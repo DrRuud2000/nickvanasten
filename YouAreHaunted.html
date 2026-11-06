@@ -7,91 +7,7 @@
   <meta name="description" content="You Are Haunted: a VR horror game set in an abandoned castle with two ghosts, Tony and Barry. Nick van Asten worked on game flow, map design and sound design.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
-  <style>
-    /* ===== You Are Haunted: layout zoals Sublevel, met verticale video's (voeg later samen met Portfolio.css) ===== */
-    body.vr-page { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; --gold: #c6a15b; --soft: #d0c6b3; }
-    body.vr-page > * { width: 100%; }
-    body.vr-page > footer { margin-top: auto; }
-    body.vr-page .eyebrow { color: var(--red2); }
 
-    /* Hero: verticale video in een telefoonkader + dezelfde video als vage achtergrond */
-    body.vr-page .sl-hero { position: relative; display: grid; place-items: center; min-height: clamp(520px, calc(100svh - 70px), 900px); padding: 40px 6vw; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--line); }
-    body.vr-page .sl-hero-video { position: absolute; inset: -40px; z-index: -2; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(26px) brightness(.55) saturate(.9); }
-    body.vr-page .sl-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(9, 8, 7, .55), rgba(9, 8, 7, .35) 45%, rgba(9, 8, 7, .92)); }
-    body.vr-page .hero-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 340px); gap: clamp(28px, 5vw, 72px); align-items: center; width: 100%; max-width: 1100px; margin: 0 auto; }
-    body.vr-page .hero-text { text-align: left; }
-    body.vr-page .hero-text .project-page-nav { justify-content: flex-start; }
-    body.vr-page .sl-hero h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); line-height: 1.05; text-transform: uppercase; letter-spacing: .06em; }
-    body.vr-page .sl-hero p { margin: 18px 0 0; max-width: 520px; color: #e6dfd0; text-shadow: 0 2px 14px #000; }
-    body.vr-page .sl-hero-btns { margin-top: 30px; justify-content: flex-start; }
-    body.vr-page .sl-hero .btn:not(.primary) { background: rgba(0, 0, 0, .45); }
-    body.vr-page .sl-hero .project-page-nav a, body.vr-page .sl-hero .project-page-nav span { background: rgba(9, 8, 7, .6); }
-
-    /* Overview */
-    body.vr-page .overview { max-width: 760px; margin: clamp(56px, 9vw, 110px) auto clamp(56px, 7vw, 88px); padding: 0 6vw; text-align: left; }
-    body.vr-page .overview .project-details { margin: 28px 0 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
-    body.vr-page .overview p { color: var(--soft); }
-
-    /* Chapters */
-    body.vr-page .chapter { width: 100%; padding: 64px 0; border-top: 1px solid var(--line); }
-    body.vr-page .chapter.alt { background: var(--bg2); border-bottom: 1px solid var(--line); }
-    body.vr-page .chapter-head, body.vr-page .entry { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-    body.vr-page .chapter-head { margin-bottom: 40px; }
-    body.vr-page .chapter-head p { max-width: 720px; margin: 14px 0 0; color: var(--soft); }
-    body.vr-page .entry { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
-    body.vr-page .entry:last-child { margin-bottom: 0; }
-    body.vr-page .entry.wide { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
-    body.vr-page .entry-text h3 { font-size: 1.3rem; margin-bottom: 10px; }
-    body.vr-page .entry-text p { margin: 0; color: var(--soft); }
-    body.vr-page .chapter.alt .entry { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); }
-    body.vr-page .chapter.alt .entry.wide { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
-    body.vr-page .chapter.alt .entry .clip { order: 2; }
-
-    body.vr-page .clip { position: relative; width: 100%; aspect-ratio: 9 / 16; margin: 0; background: #000; border: 1px solid var(--line); overflow: hidden; }
-    body.vr-page .entry.wide .clip { aspect-ratio: 16 / 9; }
-    body.vr-page .clip video, body.vr-page .clip > img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    body.vr-page .sound-toggle { position: absolute; left: 10px; bottom: 10px; z-index: 3; min-height: 40px; padding: 8px 14px; background: rgba(0, 0, 0, .75); color: var(--text); border: 1px solid var(--line); font: 600 .74rem Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: .2s; }
-    body.vr-page .sound-toggle:hover, body.vr-page .sound-toggle:focus-visible { border-color: var(--red2); outline: 0; }
-    body.vr-page .sound-toggle[aria-pressed="true"] { background: var(--red); border-color: var(--red2); }
-    body.vr-page .hero-phone { max-width: 340px; justify-self: end; border-color: var(--red); box-shadow: 0 0 60px rgba(198, 161, 91, .18); }
-
-    /* Zijnavigatie */
-    body.vr-page nav.side-nav { position: fixed; top: 50%; left: 8px; right: auto; bottom: auto; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 42px; height: auto; margin: 0; padding: 0; background: transparent; border: 0; box-shadow: none; opacity: 0; pointer-events: none; transform: translate(-8px, -50%); transition: opacity .25s ease, transform .25s ease; }
-    body.vr-page nav.side-nav.show { opacity: 1; pointer-events: auto; transform: translate(0, -50%); }
-    body.vr-page nav.side-nav a { position: relative; display: grid; flex: 0 0 36px; place-items: center; width: 36px; height: 36px; margin: 0; padding: 0; border: 1px solid transparent; color: var(--mute); font-size: .72rem; font-weight: 700; letter-spacing: .08em; transition: color .2s, border-color .2s; }
-    body.vr-page nav.side-nav a:hover, body.vr-page nav.side-nav a:focus-visible, body.vr-page nav.side-nav a.active { color: var(--red2); border-color: var(--red2); outline: 0; }
-    body.vr-page nav.side-nav a span { position: absolute; top: 50%; left: calc(100% + 10px); width: max-content; max-width: 220px; padding: 5px 9px; background: var(--bg2); border: 1px solid var(--line); color: var(--text); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .2s ease; }
-    body.vr-page nav.side-nav a:hover span, body.vr-page nav.side-nav a:focus-visible span { opacity: 1; }
-
-    /* Iteration */
-    body.vr-page .chapter.iteration { padding: 64px 0 40px; }
-    body.vr-page .iteration .chapter-head p.lead { max-width: 820px; font-size: 1.05rem; }
-    body.vr-page .wrapup { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
-    body.vr-page .learned-intro { margin: 0; color: var(--text); font-size: 1.05rem; font-weight: 600; }
-    body.vr-page .learned-list { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: learned; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 56px); border-bottom: 1px solid var(--line); }
-    body.vr-page .learned-list li { counter-increment: learned; display: flex; gap: 16px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); color: var(--soft); }
-    body.vr-page .learned-list li::before { content: counter(learned, decimal-leading-zero); flex: 0 0 auto; color: var(--gold); font: 600 .72rem Arial, sans-serif; letter-spacing: .2em; }
-    body.vr-page .end { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 36px 0 0; }
-    body.vr-page .end .btn { margin: 0; }
-
-    @media (max-width: 900px) {
-      body.vr-page .chapter { padding: 48px 0; }
-      body.vr-page .entry, body.vr-page .entry.wide, body.vr-page .chapter.alt .entry, body.vr-page .chapter.alt .entry.wide { grid-template-columns: 1fr; gap: 18px; align-items: start; }
-      body.vr-page .chapter.alt .entry .clip { order: 0; }
-      body.vr-page .entry:not(.wide) .clip { max-width: 320px; margin-inline: auto; }
-      body.vr-page .hero-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
-      body.vr-page .hero-text, body.vr-page .hero-text .project-page-nav, body.vr-page .sl-hero-btns { text-align: center; justify-content: center; }
-      body.vr-page .sl-hero p { margin-inline: auto; }
-      body.vr-page .hero-phone { justify-self: center; max-width: 260px; }
-      body.vr-page nav.side-nav { top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); left: 50%; flex-direction: row; width: auto; transform: translate(-50%, 12px); }
-      body.vr-page nav.side-nav.show { transform: translate(-50%, 0); }
-      body.vr-page nav.side-nav a span { display: none; }
-    }
-    @media (max-width: 700px) {
-      body.vr-page .sl-hero { padding: 28px 20px; }
-      body.vr-page .learned-list { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
 <body class="vr-page" id="top">
   <nav>
@@ -109,7 +25,7 @@
 
   <header class="project-hero sl-hero">
     <video class="sl-hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-      <source src="Video/Yahgameplay.mp4" type="video/mp4">
+      <source src="Video/YouAreHaunted/Scare.mp4" type="video/mp4">
     </video>
     <div class="hero-grid">
       <div class="hero-text">
@@ -117,19 +33,20 @@
           <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
           <a href="sublevel.html">Sublevel</a>
           <a href="projectsplitstar.html">Project Splitstar</a>
+          <span aria-current="page">VR Horror Castle</span>
           <a href="pack.html">Pack</a>
           <a href="towerclash.html">Tower Clash</a>
-          <span aria-current="page">VR Horror Castle</span>
         </div>
         <div class="eyebrow">Project file &middot; VR Horror</div>
         <h1>You Are Haunted</h1>
         <p>An abandoned castle, two ghosts called Tony and Barry, and a way out you have to earn.</p>
         <div class="btns sl-hero-btns">
-          <a class="btn primary" href="#flow">My process</a>
+          <a class="btn primary" href="https://drruud.itch.io/youarehaunted" target="_blank" rel="noopener noreferrer">Play the game</a>
+          <a class="btn primary" href="#prototype">My process</a>
         </div>
       </div>
       <figure class="clip hero-phone">
-        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/Yahgameplay.mp4" type="video/mp4"></video>
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Scare.mp4" type="video/mp4"></video>
         <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
       </figure>
     </div>
@@ -137,126 +54,248 @@
 
   <section class="overview" id="overview" aria-labelledby="overview-title">
     <div class="eyebrow">Overview</div>
-    <h2 id="overview-title">Overview title</h2>
-    <p class="lead">Write your overview here: what the game is, who made it, how long it took and which tools you used.</p>
+    <h2 id="overview-title">You are never alone in this castle</h2>
+    <p class="lead">You Are Haunted is a VR horror game created in Unreal Engine 5. The game takes place in a dilapidated castle from which the player must try to escape. Roaming the castle are the spirits of two brothers who once lived there with their father.</p>
     <dl class="project-details">
       <div><dt>Platform</dt><dd>VR</dd></div>
       <div><dt>Genre</dt><dd>Horror</dd></div>
       <div><dt>Team</dt><dd>2 people</dd></div>
-      <div><dt>Timeline</dt><dd>Add timeline</dd></div>
+      <div><dt>Timeline</dt><dd>8 weeks</dd></div>
       <div><dt>My focus</dt><dd>Flow, map &amp; sound</dd></div>
+      <div><dt>Semester 3</dt><dd>Best game of the semester (Teacher approved)</dd></div>
     </dl>
   </section>
 
-  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#flow" data-target="flow" aria-label="Game flow">01<span>Game flow</span></a><a href="#map" data-target="map" aria-label="Map design">02<span>Map design</span></a><a href="#secrets" data-target="secrets" aria-label="Hidden routes">03<span>Hidden routes</span></a><a href="#sound" data-target="sound" aria-label="Sound design">04<span>Sound design</span></a></nav>
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation"><a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a><a href="#prototype" data-target="prototype" aria-label="Prototype">01<span>Prototype</span></a><a href="#interactables" data-target="interactables" aria-label="Interactables">02<span>Interactables</span></a><a href="#level" data-target="level" aria-label="Level and enemy">03<span>Level &amp; enemy</span></a><a href="#scares" data-target="scares" aria-label="Scares">04<span>Scares</span></a><a href="#sound" data-target="sound" aria-label="Sound design">05<span>Sound</span></a><a href="#playtests" data-target="playtests" aria-label="Playtests">T<span>Playtests</span></a><a href="#end" data-target="end" aria-label="Iteration">&#8595;<span>Iteration</span></a></nav>
 
-  <!-- 01 GAME FLOW -->
-  <section class="chapter alt" id="flow" aria-labelledby="flow-title">
+
+  <section class="chapter alt" id="prototype" aria-labelledby="prototype-title">
     <div class="chapter-head">
-      <div class="eyebrow">Chapter 01 &middot; Game flow</div>
-      <h2 id="flow-title">Game Flow</h2>
-      <p>Chapter intro: how the player is guided from Tony to Barry to the exit.</p>
+      <div class="eyebrow">Chapter 01 &middot; Design phase</div>
+      <h2 id="prototype-title">Prototype</h2>
+      <p>Before the castle looked like a castle, we blocked it out with simple shapes to test the layout, the scale and the route.</p>
+    </div>
+    <div class="entry wide">
+      <figure class="clip">
+        <img src="Images/YouAreHaunted/BlockOut.png" alt="Castle blockout">
+        <figure class="blueprint"><img src="Images/YouAreHaunted/MapDesign.jpg" alt="Map design"><figcaption>Map Design &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Blockout &amp; Map</h3>
+        <p>We started with a sketch of the castle map and built it in Unreal Engine with simple blocks. This let me test the size of the rooms, the length of the corridors and the route from the start to the exit before anything was decorated. In VR, scale matters a lot: a room that looks fine on a monitor can feel huge or cramped when you stand in it. When I opened the game to capture additional videos and screenshots, I discovered that all the asset files were gone.</p>
+      </div>
     </div>
     <div class="entry">
-      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Tony.mp4" type="video/mp4"></video></figure>
-      <div class="entry-text"><h3>Meeting Tony</h3><p>Add your explanation here.</p></div>
-    </div>
-    <div class="entry">
-      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Barry.mp4" type="video/mp4"></video></figure>
-      <div class="entry-text"><h3>Meeting Barry</h3><p>Add your explanation here.</p></div>
-    </div>
-    <div class="entry">
-      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/RiddlesNotes.mp4" type="video/mp4"></video></figure>
-      <div class="entry-text"><h3>Riddles &amp; Notes</h3><p>Add your explanation here.</p></div>
-    </div>
-    <div class="entry">
-      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Escape.mp4" type="video/mp4"></video></figure>
-      <div class="entry-text"><h3>The Escape</h3><p>Add your explanation here.</p></div>
+      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Setup.mp4" type="video/mp4"></video></figure>
+      <div class="entry-text">
+        <h3>VR Setup</h3>
+        <p>Before building the real game, I set up the VR player and tested it. I wanted the basics, like moving around and grabbing objects, to feel comfortable first. Everything else in the game depends on that. For this project, we used the Oculus Quest 2. We downloaded the Meta Horizon Link application to run the game on the headset. Additionally, we requested longer cables to ensure sufficient room for movement while using the headset.</p>
+      </div>
     </div>
   </section>
 
-  <!-- 02 MAP DESIGN -->
-  <section class="chapter" id="map" aria-labelledby="map-title">
-    <div class="chapter-head">
-      <div class="eyebrow">Chapter 02 &middot; Level design</div>
-      <h2 id="map-title">Map Design</h2>
-      <p>Chapter intro: halls, corridors and small rooms, and how they build tension.</p>
-    </div>
-    <div class="entry wide">
-      <figure class="clip"><img src="Images/ScareMap.png" alt="Castle map layout"></figure>
-      <div class="entry-text"><h3>Castle Layout</h3><p>Add your explanation here.</p></div>
-    </div>
-    <div class="entry wide">
-      <figure class="clip"><img src="Images/LightingLevel.png" alt="Lighting in the castle"></figure>
-      <div class="entry-text"><h3>Lighting</h3><p>Add your explanation here.</p></div>
-    </div>
-    <div class="entry">
-      <figure class="clip"><video autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Rooms.mp4" type="video/mp4"></video></figure>
-      <div class="entry-text"><h3>Rooms &amp; Corridors</h3><p>Add your explanation here.</p></div>
-    </div>
-  </section>
 
-  <!-- 03 HIDDEN ROUTES -->
-  <section class="chapter alt" id="secrets" aria-labelledby="secrets-title">
+  <section class="chapter" id="interactables" aria-labelledby="interactables-title">
     <div class="chapter-head">
-      <div class="eyebrow">Chapter 03 &middot; Exploration</div>
-      <h2 id="secrets-title">Hidden Routes</h2>
-      <p>Chapter intro: how exploring and noticing details moves the story forward.</p>
-    </div>
-    <div class="entry wide">
-      <figure class="clip"><img src="Images/SecretDoor.png" alt="A movable cabinet concealing a hidden map"></figure>
-      <div class="entry-text"><h3>The Secret Closet</h3><p>Add your explanation here.</p></div>
-    </div>
-    <div class="entry wide">
-      <figure class="clip"><img src="Images/SecretDoor (2).png" alt="A concealed doorway behind the staircase"></figure>
-      <div class="entry-text"><h3>The Secret Door</h3><p>Add your explanation here.</p></div>
-    </div>
-  </section>
-
-  <!-- 04 SOUND DESIGN -->
-  <section class="chapter" id="sound" aria-labelledby="sound-title">
-    <div class="chapter-head">
-      <div class="eyebrow">Chapter 04 &middot; Sound design</div>
-      <h2 id="sound-title">Sound Design</h2>
-      <p>Chapter intro: how audio makes the ghosts feel close.</p>
+      <div class="eyebrow">Chapter 02 &middot; Interaction</div>
+      <h2 id="interactables-title">Interactables</h2>
+      <p>In VR the player uses their hands, so every object has to be easy to understand and satisfying to use. All videos on this page are vertical because of VR</p>
     </div>
     <div class="entry">
       <figure class="clip">
-        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Ambience.mp4" type="video/mp4"></video>
-        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Lever.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/YouAreHaunted/Lever.png" alt="Lever blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
-      <div class="entry-text"><h3>Ambience</h3><p>Add your explanation here.</p></div>
+      <div class="entry-text">
+        <h3>Lever</h3>
+        <p>The lever is a puzzle element that the player must pull using their own hand. I&apos;ve implemented this within a 'Blueprint' that tracks whether the player has touched the lever and triggers the next event once the end position is reached. I wanted the player to operate the lever physically, as that feels much more satisfying in VR than simply pressing a button.</p>
+      </div>
     </div>
     <div class="entry">
       <figure class="clip">
-        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/Footsteps.mp4" type="video/mp4"></video>
-        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Paper.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/YouAreHaunted/Paper.png" alt="Paper blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
-      <div class="entry-text"><h3>Footsteps &amp; Whispers</h3><p>Add your explanation here.</p></div>
+      <div class="entry-text">
+        <h3>Paper</h3>
+        <p>The player needed to feel immersed in the game. I chose to convey the idea that an explorer had been there before you, leaving behind notes that could guide you toward the exit. These papers can be picked up and carried with you throughout the level. The papers tell the story of the explorer who came before you. He also created a map of the secret passage to Barry&apos;s room.</p>
+      </div>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/YouAreHaunted/Door.png" alt="Door blueprint"></figure>
+      <div class="entry-text">
+        <h3>Door</h3>
+        <p>The door opens when the player throws something against it. I wanted the player to think about what they can do in VR instead of just walking up to a door. The blueprint checks what hits the door and opens it when the hit is hard enough.</p>
+      </div>
     </div>
     <div class="entry">
       <figure class="clip">
-        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YAH/GhostTriggers.mp4" type="video/mp4"></video>
-        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Closet.mp4" type="video/mp4"></video>
+        <figure class="blueprint"><img src="Images/YouAreHaunted/Closet.png" alt="Closet blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
       </figure>
-      <div class="entry-text"><h3>Ghost Triggers</h3><p>Add your explanation here.</p></div>
+      <div class="entry-text">
+        <h3>Closet</h3>
+        <p>The player can grab the closet and pull it to the side. I made this so players who pay attention to their surroundings are rewarded with a new path. The closet slides to the side instead of flying around, so it stays controlled in VR. For this closet, I also considered how to direct the player's attention. To achieve this, I used light and blood splatters. During playtesting, I observed that once these elements were added, it was usually immediately clear to the player where they needed to go.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ITERATION -->
+
+  <section class="chapter alt" id="level" aria-labelledby="level-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Level design</div>
+      <h2 id="level-title">Level &amp; enemy</h2>
+      <p>The map and the enemy have to work together, so I made sure both could only do what I wanted them to do.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Stair.mp4" type="video/mp4"></video>
+        <figure class="blueprint blueprint-stair"><img src="Images/YouAreHaunted/Stair.png" alt="Stair barriers"><figcaption>Barriers &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Stair</h3>
+        <p>I used barriers on the stairs so the player can walk up and down them smoothly. My duo partner used a navmesh bounds for the enemies. During different playtests we found out that the enemy could not walk there, so I solved it with the barriers as well.</p>
+      </div>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/YouAreHaunted/EnemyBlockout.png" alt="Enemy blockout"></figure>
+      <div class="entry-text">
+        <h3>Enemy Blockout</h3>
+        <p>The enemy could walk and stand almost anywhere, which made it look broken. With this blockout I limited the area where the enemy can go, so it only moves where it makes sense and always ends up somewhere fair for the player. This also gives the player more freedom regarding where they can stand and move, preventing enemies from reaching them and launching an attack.</p>
+      </div>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/YouAreHaunted/BookshelfMaze.png" alt="Bookshelf maze"></figure>
+      <div class="entry-text">
+        <h3>Bookshelf Maze</h3>
+        <p>A maze made of bookshelves. The narrow paths make the player feel lost and tense, since the enemy can be around any corner. It is a different feeling than the big halls in the rest of the castle. I also made use of sound effects and visual environmental scares here to frighten the player.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="chapter" id="scares" aria-labelledby="scares-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 04 &middot; Horror</div>
+      <h2 id="scares-title">Scares</h2>
+      <p>The castle should never feel safe, so I added scares in the environment and in the story.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Crow.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+        <figure class="blueprint"><img src="Images/YouAreHaunted/Crow.png" alt="Crow blueprint"><figcaption>Blueprint &middot; click to zoom</figcaption></figure>
+      </figure>
+      <div class="entry-text">
+        <h3>Crow</h3>
+        <p>The crow is an environmental scare. When the player walks underneath it, the statue falls to the ground. Nothing really happens to the player, but it makes them wonder what else in the castle might move. The environmental objects that move help the game create a greater sense of fear for the player. To achieve this, I used a barrier that tracks the player's location, combined with a 'move to' component.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Enviromental.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text">
+        <h3>Environmental scares</h3>
+        <p>Besides the crow I added more small things that happen around the player. They are not dangerous, but they keep the player tense and make the castle feel alive. The environmental sounds associated with objects help the game by drawing the enemy toward those sounds; this alerts the player to be on their guard, as the enemy may be approaching or already nearby. In the example video, a candlestick can be heard falling over, to which the enemy immediately reacts.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Scare.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text">
+        <h3>Scare</h3>
+        <p>This is one of the main scares, which combines visuals and sound at a chosen moment. After the quiet parts of the castle, the player is not expecting it, and that is what makes it work. The best way to keep the player&apos;s attention focused on the game and to induce fear is through the use of jumpscares. I designed these scares based on the narrative: they feature the father of the two brothers, who is still somewhere inside the castle. He is not one of the game&apos;s main enemies and cannot harm the player—his only purpose is to startle them. I implemented this using a barrier and a blueprint that triggers a sound at a specific location while making the mesh visible for a split second.</p>
+      </div>
+    </div>
+    <div class="entry wide">
+      <figure class="clip"><img src="Images/YouAreHaunted/EndingSequence.png" alt="Ending sequence blueprint"></figure>
+      <div class="entry-text">
+        <h3>Ending Sequence</h3>
+        <p>When the player escapes, a short ending sequence plays. I built it so the game closes the story in a clear way, instead of just stopping when the player reaches the exit. The ending sequence was created using two cameras and audio, and it utilizes the level I designed. Although it isn&apos;t visible in the image since all the meshes have been removed the sequence (cutscene) made it immediately clear to the player that they had escaped the castle: you crawl through a tunnel, and then, out in the open air, the message "You escaped" appears.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="chapter alt" id="sound" aria-labelledby="sound-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 05 &middot; Sound design</div>
+      <h2 id="sound-title">Sound</h2>
+      <p>In VR you can hear where things are, so sound is one of the best ways to build tension.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Ambience.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text">
+        <h3>Ambience</h3>
+        <p>I added ambient sounds like wind and quiet background noises so the castle feels empty and old. The goal was to make the player feel alone, but never completely safe.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Squeek.mp4" type="video/mp4"></video>
+        <button class="sound-toggle" type="button" aria-pressed="false">Sound off</button>
+      </figure>
+      <div class="entry-text">
+        <h3>Squeaks</h3>
+        <p>Creaking and squeaking sounds make the old castle feel real. They also make the player look around, because they never know what caused the sound. These images are used to send one to the player.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="chapter" id="playtests" aria-labelledby="playtests-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter T &middot; Testing</div>
+      <h2 id="playtests-title">Playtests</h2>
+      <p>We let others play the game several times. Watching them showed us things we never noticed ourselves.</p>
+    </div>
+    <div class="pt-grid">
+      <article class="pt-card">
+        <h3>Playtesting</h3>
+        <figure class="clip"><video data-audio autoplay muted loop playsinline preload="metadata"><source src="Video/YouAreHaunted/Playtest.mp4" type="video/mp4"></video></figure>
+        <p class="pt-caption">“Why do we have a green wall?” — “I don't know.”</p>
+        <p>We conducted numerous playtests with students, teachers, and also at home with friends and family. We were successful in conveying a sense of tension within the game, with the VR component playing a significant role in this; however, we also discovered that people can quickly become nauseous when playing VR games. The playtest we conducted helped us improve the game.</p>
+      </article>
+      <article class="pt-card">
+        <h3>Build problem</h3>
+        <figure class="clip"><img src="Images/YouAreHaunted/BuildProblem.jpg" alt="The game build with missing assets"></figure>
+        <p>At the end of the project, we had to build the game and upload it to itch.io. Building the Unreal project took 4.5 hours on my laptop. The build worked, but many assets were missing, as shown here.</p>
+      </article>
+    </div>
+  </section>
+
+
   <main class="chapter alt iteration" id="end" aria-labelledby="yah-end-title">
     <div class="chapter-head">
       <div class="eyebrow">Iteration</div>
-      <h2 id="yah-end-title">Closing title</h2>
-      <p class="lead">Write your reflection here: how the project went and what you are proud of.</p>
+      <h2 id="yah-end-title">The haunted ending</h2>
+      <p class="lead">
+        After eight weeks of working on You Are Haunted, I am really proud of what we made.
+        As a team of two, we wanted a VR horror game where the player never feels safe, and I think we did that.
+        The game was chosen as the best game of the semester, which was a great moment after all the work.
+        The playtests taught me the most, because they showed what was actually scary and what was only confusing.
+        Working in VR made me think differently about space, sound and what the player does with their hands.
+      </p>
+      <p class="lead">
+        Creating a game in virtual reality is not easy. There are many factors to consider.
+        Players can move their camera anywhere and walk into areas where you don&apos;t want them to go.
+        During the development process, I also found it quite frustrating that I had to put on the headset every time I wanted to test something it would quickly make me feel dizzy.
+      </p>
     </div>
     <div class="wrapup">
-      <p class="learned-intro">What I learned during this project.</p>
+      <p class="learned-intro">I learned a lot about game design during this project.</p>
       <ul class="learned-list">
-        <li>Add a lesson here</li>
-        <li>Add a lesson here</li>
-        <li>Add a lesson here</li>
-        <li>Add a lesson here</li>
+        <li>Designing a level for VR, where scale and comfort matter</li>
+        <li>Using sound to guide and scare the player</li>
+        <li>Fixing problems that only show up in playtests</li>
+        <li>Working together as a team of two in Unreal Engine 5</li>
       </ul>
       <div class="end">
         <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
@@ -268,7 +307,6 @@
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
   <script src="ProjectImageLightbox.js"></script>
   <script>
-    // Video's spelen alleen in beeld; per keer maar 1 video met geluid
     (function () {
       var vids = document.querySelectorAll('.clip video, .sl-hero-video');
       function reset(v) {
@@ -299,7 +337,6 @@
       });
     })();
 
-    // Zijnavigatie
     (function () {
       var nav = document.getElementById('side-nav');
       var secs = Array.prototype.slice.call(document.querySelectorAll('.chapter'));

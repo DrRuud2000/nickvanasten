@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>tower clash | nick van asten</title>
-  <meta name="description" content="Tower Clash: a medieval tile-building board game. Nick van Asten continued the project alone: new theme, new rules, a card system and playtests.">
+  <meta name="description" content="Tower Clash is a medieval board game about building, climbing and controlling the board. See how I developed its rules, cards and prototype.">
   <link rel="icon" type="image/png" href="Images/WebsiteLogo.png">
   <link rel="stylesheet" href="Portfolio.css">
 </head>
-<body class="tower-page">
+<body class="tower-page" id="top">
   <nav>
     <a class="brand" href="index.html" aria-label="Nick van Asten - home">
       <img class="brand-logo" src="Images/WebsiteLogo.png" alt="">
@@ -23,92 +23,228 @@
   </nav>
   <div class="battlements"></div>
 
-  <header class="project-hero">
+  <header class="project-hero tc-hero">
+    <img class="tc-hero-image" src="Images/TowerClash/Playtest3.jpg" alt="">
     <div class="wrap">
       <div class="project-page-nav" role="navigation" aria-label="Project navigation">
         <a class="back" href="index.html?insert=1#projects">&larr; Portfolio</a>
         <a href="sublevel.html">Sublevel</a>
         <a href="projectsplitstar.html">Project Splitstar</a>
+        <a href="YouAreHaunted.html">VR Horror Castle</a>
         <a href="pack.html">Pack</a>
         <span aria-current="page">Tower Clash</span>
-        <a href="YouAreHaunted.html">VR Horror Castle</a>
       </div>
       <div class="eyebrow">Project file &middot; Board game</div>
       <h1>Tower Clash</h1>
-      <p>A medieval board game where the board is part of the strategy: build, climb and block your way to the crown.</p>
+      <p>A board game where the board keeps changing. Build your way up, block the others and try to reach the crown first.</p>
+      <div class="btns sl-hero-btns">
+        <a class="btn primary" href="#design">How it started</a>
+        <a class="btn" href="#playtests">Playtests</a>
+      </div>
     </div>
   </header>
 
-  <div class="wrap">
-    <div class="project-media">
-      <img src="Images/TowerClashLogo.png" alt="Tower Clash concept">
+  <section class="overview" id="overview" aria-labelledby="overview-title">
+    <div class="eyebrow">Overview</div>
+    <h2 id="overview-title">Build the path to the top</h2>
+    <p class="lead">
+      Tower Clash started as a two-week group assignment called <em>Bob-omb Tower</em>. I continued working on it
+      by myself and changed it into a medieval board game. Players build towers, move their characters across the
+      board and try to reach the crown before anyone else. The height of the board matters, so every move can open
+      a route or block one.
+    </p>
+    <dl class="project-details">
+      <div><dt>Format</dt><dd>Physical board game</dd></div>
+      <div><dt>Players</dt><dd>3&ndash;4</dd></div>
+      <div><dt>Board</dt><dd>7 &times; 7 tiles</dd></div>
+      <div><dt>My focus</dt><dd>Rules, cards &amp; playtests</dd></div>
+      <div><dt>Development</dt><dd>Group start, solo continuation</dd></div>
+    </dl>
+  </section>
+
+  <nav class="side-nav" id="side-nav" aria-label="Chapter navigation">
+    <a href="#top" aria-label="Back to top">&uarr;<span>Top</span></a>
+    <a href="#design" data-target="design" aria-label="Design">01<span>Design</span></a>
+    <a href="#rules" data-target="rules" aria-label="Rules">02<span>Rules</span></a>
+    <a href="#prototype" data-target="prototype" aria-label="Prototype">03<span>Prototype</span></a>
+    <a href="#cards" data-target="cards" aria-label="Cards">04<span>Cards</span></a>
+    <a href="#playtests" data-target="playtests" aria-label="Playtests">T<span>Playtests</span></a>
+    <a href="#iteration" data-target="iteration" aria-label="Iteration">&#8595;<span>Iteration</span></a>
+  </nav>
+
+  <section class="chapter alt" id="design" aria-labelledby="design-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 01 &middot; The beginning</div>
+      <h2 id="design-title">The first version of the board game</h2>
+      <p>Tower Clash began as a Mario-inspired group project. These first tests helped me discover the board game I wanted to keep developing.</p>
     </div>
-  </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/FirstPlaytest.jpg" alt="Players testing the first version of the board game" loading="lazy">
+      </figure>
+      <div class="entry-text">
+        <h3>Starting with a playtest</h3>
+        <p>The first playtest was part of a two-week group assignment. We used a simple board and pieces to try out the main idea: building a path upwards and moving across it.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/figures.jpg" alt="Mario-inspired figures and question-block pieces from the original board game" loading="lazy">
+      </figure>
+      <div class="entry-text">
+        <h3>A Mario-inspired start</h3>
+        <p>The first version used Mario-inspired characters and question blocks. I liked the idea of building a tower, so after the group project I continued developing the game and gave it its own medieval theme.</p>
+      </div>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/BoardDesign.png" alt="Early hand-drawn board design for Tower Clash" loading="lazy">
+      </figure>
+      <div class="entry-text">
+        <h3>Making it my own</h3>
+        <p>I changed the Mario-inspired concept into a medieval castle game with knights and a crown. I wanted the board and rules to support the same idea: players build a way up while making it harder for everyone else.</p>
+      </div>
+    </div>
+  </section>
 
-  <main class="wrap">
-    <div class="project-copy">
-      <dl class="project-details">
-        <div><dt>Format</dt><dd>Physical board game</dd></div>
-        <div><dt>Players</dt><dd>3&ndash;4</dd></div>
-        <div><dt>Type</dt><dd>Group start, solo continuation</dd></div>
-        <div><dt>My focus</dt><dd>Rules, cards &amp; playtests</dd></div>
-      </dl>
+  <section class="chapter" id="rules" aria-labelledby="rules-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 02 &middot; Rules &amp; board</div>
+      <h2 id="rules-title">Every level can change the plan</h2>
+      <p>The board is not just where the game happens. Its height changes which moves are possible.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/WrittenDesign.jpg" alt="Handwritten Tower Clash board and movement rules">
+      </figure>
+      <div class="entry-text">
+        <h3>Building and climbing</h3>
+        <p>The game uses a 7 by 7 board, with a starting corner for each player. Players can climb one level at a time, and a stack can reach up to five tiles. The goal can also be raised, so the route to the crown can change while everyone is playing.</p>
+        <p>I had to think about how these rules work together. Building too high can help you get closer to the goal, but it can also give another player a new route across the board.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="eyebrow">Role</div>
-      <h2>The Game Designer</h2>
+  <section class="chapter alt" id="prototype" aria-labelledby="prototype-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 03 &middot; Prototyping</div>
+      <h2 id="prototype-title">Test the height before polishing</h2>
+      <p>I used simple pieces first, so I could change the board quickly when a rule did not work.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/GravitrexBlocks.jpg" alt="Blocks used to test tile height in the Tower Clash prototype">
+      </figure>
+      <div class="entry-text">
+        <h3>A quick physical prototype</h3>
+        <p>I used LEGO bricks and a paper board to test the height of the tiles and how players could climb. This made it easy to move pieces around and try different situations without remaking the board every time.</p>
+        <p>It helped me see the rules on the table instead of only imagining them. I could check whether a move felt clear and whether the towers gave players interesting choices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="cards" aria-labelledby="cards-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 04 &middot; Card design</div>
+      <h2 id="cards-title">More ways to turn the game around</h2>
+      <p>The cards add surprises, but they still need to fit the rules of the board.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/CardDesignWritten.jpg" alt="Hand-drawn card concepts from the first version of Tower Clash">
+      </figure>
+      <div class="entry-text">
+        <h3>78 Mystery Cards</h3>
+        <p>I designed a deck of 78 cards split into seven groups: movement, defence, board control, action boosts, dice, risk and card draw. Each group gives players a different way to respond to what is happening on the board.</p>
+        <p>I also changed the names and visuals to match the medieval theme. The cards should be easy to understand, but still give players a reason to change their plan.</p>
+      </div>
+    </div>
+    <div class="gallery">
+      <figure>
+        <img src="Images/TowerClash/CardNaPlaytest.jpg" alt="Tower Clash cards arranged during a playtest">
+        <figcaption>Testing how the cards work together</figcaption>
+      </figure>
+      <figure>
+        <img src="Images/TowerClash/CardNaPlaytest2.jpg" alt="A second layout of Tower Clash cards during testing">
+        <figcaption>Trying different card combinations</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="chapter alt" id="playtests" aria-labelledby="playtests-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Chapter 05 &middot; Playtesting</div>
+      <h2 id="playtests-title">Find out what actually works</h2>
+      <p>Different playtests helped me see which rules worked, what slowed the game down and what the theme needed.</p>
+    </div>
+    <div class="entry">
+      <figure class="clip">
+        <img src="Images/TowerClash/PlaytestHome.jpg" alt="Tower Clash board, pieces and cards during a later playtest" loading="lazy">
+      </figure>
+      <div class="entry-text">
+        <h3>Rules and player interaction</h3>
+        <p>Players usually understood the goal quickly and enjoyed blocking each other and using cards. I also saw that some games became slow when players did not build upwards often enough. That showed me I needed to keep adjusting the movement and building rules, and test how the cards affect the pace.</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="chapter alt iteration" id="iteration" aria-labelledby="towerclash-iteration-title">
+    <div class="chapter-head">
+      <div class="eyebrow">Iteration</div>
+      <h2 id="towerclash-iteration-title">A game I want to keep building</h2>
       <p class="lead">
-        Tower Clash started as a two-week group assignment called <em>Bob-omb Tower</em>. I kept developing it
-        on my own: a new medieval theme, clearer rules, a card system and several rounds of playtesting.
-        Players place tiles, climb higher and race to the crown in the middle of the board.
+        Tower Clash started as a short group project and became a game I wanted to continue on my own. The playtests
+        showed me that the core idea works, but the pace and card balance can still improve. I want to test a version
+        without dice and make a stronger physical prototype. There is still a lot I can try, and that is what makes me
+        want to keep working on it.
       </p>
-
-      <div class="gallery">
-        <figure><img src="Images/BoardDesign.png" alt="Concept: board layout"><figcaption>Concept: board with the crown in the centre</figcaption></figure>
-        <figure><img src="Images/figures.jpg" alt="Concept: knights and tiles"><figcaption>First concept: knights</figcaption></figure>
-      </div>
-
-      <h2>My Contribution</h2>
-      <div class="contrib">
-        <article class="c-card">
-          <h3>New Theme</h3>
-          <p>I replaced the Mario-inspired setting with a medieval castle: a crown instead of a star and knights instead of characters. Card names and visuals were rewritten to match.</p>
-        </article>
-        <article class="c-card">
-          <h3>Rules &amp; Board</h3>
-          <p>The board is a 7&times;7 grid with a start corner for each player. Players can climb one level at a time, stacks go up to five tiles, and the goal itself can be raised.</p>
-        </article>
-        <article class="c-card">
-          <h3>Mystery Cards</h3>
-          <p>I designed a deck of 78 cards in seven groups: movement, defence, board control, action boosts, dice, risk and card draw.</p>
-        </article>
-        <article class="c-card">
-          <h3>Prototype</h3>
-          <p>LEGO bricks and a paper board let me change heights and test climbing rules quickly, before spending time on final components.</p>
-        </article>
-      </div>
-
-
-      <div class="gallery">
-        <figure><img src="Images/PlaytestHome.jpg" alt="Playtest at home"><figcaption>Playtest: casual group</figcaption></figure>
-        <figure><img src="Images/FirstPlaytest.jpg" alt="First prototype playtest"><figcaption>Playtest: first prototype</figcaption></figure>
-      </div>
-      <div class="result">
-        <h3>Result</h3>
-        <p>
-          Tower Clash is still in development, but the foundation is solid: a clear theme, a tested core
-          and a card system that is ready for the next playtests. Next up: testing the dice-free version,
-          then game length, rule clarity and replayability with new groups.
-        </p>
+    </div>
+    <div class="wrapup">
+      <p class="learned-intro">This project taught me to:</p>
+      <ul class="learned-list">
+        <li>Use playtests to improve rules and movement</li>
+        <li>Give an idea its own theme and identity</li>
+        <li>Prototype board-game mechanics with simple materials</li>
+        <li>Balance interaction, cards and game pace</li>
+      </ul>
+      <div class="end">
+        <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
+        <a class="btn" href="#top">Go back to the top &uarr;</a>
       </div>
     </div>
   </main>
 
-  <div class="end">
-    <a class="btn primary" href="index.html?insert=1#projects">&larr; More projects</a>
-  </div>
   <div class="battlements"></div>
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
 
   <script src="ProjectImageLightbox.js"></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('side-nav');
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.chapter[id]'));
+      var links = nav.querySelectorAll('a[data-target]');
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var height = window.innerHeight;
+        nav.classList.toggle('show', sections[0].getBoundingClientRect().top < height * 0.5);
+        var current = null;
+        sections.forEach(function (section) {
+          if (section.getBoundingClientRect().top <= height * 0.4) current = section.id;
+        });
+        links.forEach(function (link) {
+          link.classList.toggle('active', link.getAttribute('data-target') === current);
+        });
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </body>
 </html>
