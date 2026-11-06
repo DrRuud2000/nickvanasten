@@ -26,7 +26,7 @@
     <div class="wrap">
       <div class="eyebrow">Game Design &middot; Portfolio</div>
       <h1>Nick van Asten</h1>
-      <p class="home-intro">A selection of game worlds, systems and experiences I have helped bring to life.</p>
+      <p class="home-intro">A selection of game projects I'm proud of</p>
       <div class="btns">
         <a class="btn primary" href="#projects">Explore my projects</a>
         <a class="btn" href="#contact">Get in touch</a>
@@ -48,7 +48,7 @@
             <p>A bunker horror experience</p>
             <div class="project-contribution">
               <span>My contribution</span>
-              <p>I built the player,an interaction system and jumpscares.</p>
+              <p>I built the player, an interaction system and jumpscares.</p>
             </div>
             <span class="project-link">Explore Sublevel <span aria-hidden="true">&rarr;</span></span>
           </div>
@@ -83,7 +83,7 @@
 
       <div class="sidequests">
         <div class="eyebrow">More work</div>
-        <h2>Side quests</h2>
+        <h2>More Projects I'm proud of</h2>
         <div class="sidequest-grid">
           <a class="sidequest-card" href="pack.html">
             <img src="Images/ProjectPreviews/Pack.jpg" data-poster="Images/ProjectPreviews/Pack.jpg" data-gif="Gif/Packer.gif" alt="Gameplay preview of Pack">
@@ -103,10 +103,10 @@
             <div>
               <span class="project-kicker">Board game</span>
               <h3>TowerClash</h3>
-              <p>A medieval tile-building game with rules and cards refined through playtesting</p>
+              <p>A medieval tile-building boardgame where you build to the top</p>
               <div class="project-contribution">
                 <span>My contribution</span>
-                <p>I developed the medieval theme, designed the rules and card system, and refined the game through playtesting.</p>
+                <p>I developed designed the boardgame and refined the game through playtesting.</p>
               </div>
               <span class="project-link">View project <span aria-hidden="true">&rarr;</span></span>
             </div>
@@ -202,10 +202,10 @@
       <div class="eyebrow">Get in touch</div>
       <h2>Contact</h2>
       <div class="cards">
-        <a class="card">
-          <small>Email</small>
-          Send a message
-        </a>
+        <button class="card copy-email" type="button" aria-label="Copy nick@vanasten.eu to clipboard">
+          <small class="copy-status" aria-live="polite">Email</small>
+          nick@vanasten.eu
+        </button>
         <a
           class="card"
           href="https://www.linkedin.com/in/nick-van-asten-056778326"
@@ -226,6 +226,34 @@
   <footer>&copy; 2026 Nick van Asten &middot; Game Designer</footer>
 
   <script>
+    const emailButton = document.querySelector(".copy-email");
+    emailButton.addEventListener("click", async function () {
+      const email = "nick@vanasten.eu";
+      const status = emailButton.querySelector(".copy-status");
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          const textArea = document.createElement("textarea");
+          textArea.value = email;
+          textArea.setAttribute("readonly", "");
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.select();
+          const copied = document.execCommand("copy");
+          textArea.remove();
+          if (!copied) throw new Error("Clipboard copy command was rejected.");
+        }
+
+        status.textContent = "Copied!";
+      } catch (error) {
+        console.error("Could not copy the email address to the clipboard.", error);
+        status.textContent = "Copy failed";
+      }
+    });
+
     document.querySelectorAll(".featured-project img[data-gif], .sidequest-card img[data-gif]").forEach((image) => {
       const card = image.closest("a");
       let isPlaying = false;

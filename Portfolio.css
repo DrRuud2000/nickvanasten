@@ -166,7 +166,6 @@ h2::after {
 #home h1 {
   font-size: clamp(2.2rem, 7vw, 4.2rem);
   line-height: 1.1;
-  text-shadow: 0 0 40px rgba(163, 18, 27, .45);
 }
 
 .btns {
@@ -196,7 +195,6 @@ h2::after {
 .btn:hover {
   background: var(--red2);
   border-color: var(--red2);
-  box-shadow: 0 0 22px rgba(212, 34, 45, .35);
 }
 
 #projects {
@@ -399,11 +397,13 @@ body.portfolio-page #cv p {
   transition: .25s;
   text-align: center;
   overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: inherit;
+  cursor: pointer;
 }
 
 .card:hover {
   border-color: var(--red2);
-  box-shadow: 0 0 22px rgba(163, 18, 27, .3);
   transform: translateY(-3px);
 }
 
@@ -434,14 +434,15 @@ body.portfolio-page footer {
 
 @media (min-width: 900px) {
   body.portfolio-page .cards {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 700px) {
   body.portfolio-page .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 360px);
     gap: 10px;
+    justify-content: center;
   }
 }
 
@@ -523,7 +524,7 @@ body.portfolio-page footer {
 
 body.sublevel-page .project-media {
   border-color: var(--red);
-  box-shadow: 0 0 60px rgba(163, 18, 27, .22), inset 0 0 40px rgba(0, 0, 0, .8);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, .8);
   position: relative;
 }
 
@@ -584,7 +585,6 @@ body.sublevel-page .project-hero .eyebrow {
 
 body.sublevel-page .project-hero h1 {
   animation: flicker 7s infinite;
-  text-shadow: 0 0 40px rgba(163, 18, 27, .5);
 }
 
 @keyframes flicker {
